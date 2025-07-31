@@ -1,0 +1,22 @@
+# Railway Frontend Configuration
+
+# railway.json for frontend
+{
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
+
+# Environment Variables for Frontend
+VITE_API_BASE_URL=https://ritkart-backend.railway.app/api
+VITE_API_TIMEOUT=10000
+
+# Railway automatically detects:
+# - Node.js applications
+# - npm/yarn package manager
+# - Vite build system
+# - Serves built files automatically
