@@ -260,6 +260,108 @@ public class ProductService {
         return productRepository.findWithFilters(categoryIds, brands, minPrice, maxPrice, minRating, pageable);
     }
 
+    // Advanced search functionality
+    public List<String> getSearchSuggestions(String query, int limit) {
+        if (query == null || query.trim().isEmpty()) {
+            return List.of();
+        }
+        
+        // Get suggestions from product names, brands, and tags
+        List<String> suggestions = productRepository.findSearchSuggestions(query.toLowerCase(), limit);
+        return suggestions.stream().distinct().limit(limit).toList();
+    }
+
+    public Map<String, Object> getSearchAutocomplete(String query, int limit) {
+        Map<String, Object> autocomplete = new HashMap<>();
+        
+        if (query == null || query.trim().isEmpty()) {
+            return autocomplete;
+        }
+        
+        String lowerQuery = query.toLowerCase();
+        
+        // Product name suggestions
+        List<String> productSuggestions = productRepository.findProductNameSuggestions(lowerQuery, limit);
+        
+        // Brand suggestions
+        List<String> brandSuggestions = productRepository.findBrandSuggestions(lowerQuery, limit);
+        
+        // Category suggestions
+        List<String> categorySuggestions = categoryRepository.findCategorySuggestions(lowerQuery, limit);
+        
+        // Tag suggestions
+        List<String> tagSuggestions = productRepository.findTagSuggestions(lowerQuery, limit);
+        
+        autocomplete.put("products", productSuggestions);
+        autocomplete.put("brands", brandSuggestions);
+        autocomplete.put("categories", categorySuggestions);
+        autocomplete.put("tags", tagSuggestions);
+        
+        return autocomplete;
+    }
+
+    public Page<Product> advancedSearch(String query, List<String> categories, List<String> brands,
+                                      BigDecimal minPrice, BigDecimal maxPrice, Double minRating, Double maxRating,
+                                      Boolean hasDiscount, Boolean inStockOnly, Boolean freeShipping,
+                                      Pageable pageable) {
+        
+        // Set default values
+        if (minPrice == null) minPrice = BigDecimal.ZERO;
+        if (maxPrice == null) maxPrice = BigDecimal.valueOf(Double.MAX_VALUE);
+        if (minRating == null) minRating = 0.0;
+        if (maxRating == null) maxRating = 5.0;
+        if (categories == null) categories = List.of();
+        if (brands == null) brands = List.of();
+        if (hasDiscount == null) hasDiscount = false;
+        if (inStockOnly == null) inStockOnly = true;
+        if (freeShipping == null) freeShipping = false;
+        
+        return productRepository.findWithAdvancedFilters(
+            query, categories, brands, minPrice, maxPrice, minRating, maxRating,
+            hasDiscount, inStockOnly, freeShipping, pageable);
+    }
+
+    public List<String> getPopularSearchTerms(int limit) {
+        // For now, return some popular terms. In a real app, you'd track search queries
+        List<String> popularTerms = List.of(
+            "iphone", "laptop", "headphones", "watch", "camera",
+            "shoes", "book", "tablet", "gaming", "clothes",
+            "electronics", "home", "kitchen", "sports", "health"
+        );
+        
+        return popularTerms.stream().limit(limit).toList();
+    }
+
+    public Map<String, Object> getSearchAnalytics(int days) {
+        Map<String, Object> analytics = new HashMap<>();
+        
+        // In a real application, you would track search queries and their metrics
+        // For now, we'll return mock data
+        
+        analytics.put("totalSearches", 1250);
+        analytics.put("uniqueQueries", 845);
+        analytics.put("averageResultsPerSearch", 12.5);
+        analytics.put("noResultsRate", 8.3);
+        
+        List<Map<String, Object>> topQueries = List.of(
+            Map.of("query", "iphone", "count", 156, "clickRate", 85.2),
+            Map.of("query", "laptop", "count", 132, "clickRate", 78.9),
+            Map.of("query", "headphones", "count", 98, "clickRate", 92.1),
+            Map.of("query", "camera", "count", 87, "clickRate", 76.4),
+            Map.of("query", "shoes", "count", 76, "clickRate", 88.7)
+        );
+        
+        List<String> noResultQueries = List.of(
+            "flying car", "time machine", "unicorn", "dragon", "magic wand"
+        );
+        
+        analytics.put("topQueries", topQueries);
+        analytics.put("noResultQueries", noResultQueries);
+        analytics.put("period", days + " days");
+        
+        return analytics;
+    }
+
     // Special product lists
     public Page<Product> getProductsOnSale(Pageable pageable) {
         return productRepository.findActiveProductsOnSale(pageable);

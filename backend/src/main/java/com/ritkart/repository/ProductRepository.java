@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String> {
@@ -176,4 +177,117 @@ public interface ProductRepository extends MongoRepository<Product, String> {
     // Top rated products
     @Query(value = "{'isActive': true, 'totalReviews': {$gt: 0}}", sort = "{'averageRating': -1, 'totalReviews': -1}")
     Page<Product> findTopRatedProducts(Pageable pageable);
+    
+    // Find products by IDs (for wishlist)
+    Page<Product> findByIdIn(List<String> ids, Pageable pageable);
+    
+    List<Product> findByIdIn(List<String> ids);
+    
+    // Search suggestions and autocomplete
+    @Query(value = "{'$or': [" +
+           "{'name': {$regex: ?0, $options: 'i'}}, " +
+           "{'brand': {$regex: ?0, $options: 'i'}}, " +
+           "{'tags': {$regex: ?0, $options: 'i'}}" +
+           "], 'isActive': true}", 
+           fields = "{'name': 1, 'brand': 1, 'tags': 1}")
+    List<Product> findForSuggestions(String query, Pageable pageable);
+    
+    @Query(value = "{'name': {$regex: ?0, $options: 'i'}, 'isActive': true}", 
+           fields = "{'name': 1}")
+    List<Product> findProductNameSuggestions(String query, Pageable pageable);
+    
+    @Query(value = "{'brand': {$regex: ?0, $options: 'i'}, 'isActive': true}", 
+           fields = "{'brand': 1}")
+    List<Product> findBrandSuggestions(String query, Pageable pageable);
+    
+    @Query(value = "{'tags': {$regex: ?0, $options: 'i'}, 'isActive': true}", 
+           fields = "{'tags': 1}")
+    List<Product> findTagSuggestions(String query, Pageable pageable);
+    
+    // Advanced search with comprehensive filters
+    @Query("{'$and': [" +
+           "{'$or': [" +
+           "  {$expr: {$eq: [?0, null]}}, " +
+           "  {'$text': {'$search': ?0}}" +
+           "]}, " +
+           "{'$or': [" +
+           "  {'categoryId': {$in: ?1}}, " +
+           "  {$expr: {$eq: [{$size: ?1}, 0]}}" +
+           "]}, " +
+           "{'$or': [" +
+           "  {'brand': {$in: ?2}}, " +
+           "  {$expr: {$eq: [{$size: ?2}, 0]}}" +
+           "]}, " +
+           "{'price': {$gte: ?3, $lte: ?4}}, " +
+           "{'averageRating': {$gte: ?5, $lte: ?6}}, " +
+           "{'$or': [" +
+           "  {$expr: {$eq: [?7, false]}}, " +
+           "  {'discountPrice': {$exists: true, $ne: null}}" +
+           "]}, " +
+           "{'$or': [" +
+           "  {$expr: {$eq: [?8, false]}}, " +
+           "  {'stockQuantity': {$gt: 0}}" +
+           "]}, " +
+           "{'$or': [" +
+           "  {$expr: {$eq: [?9, false]}}, " +
+           "  {'freeShipping': true}" +
+           "]}, " +
+           "{'isActive': true}" +
+           "]}")
+    Page<Product> findWithAdvancedFilters(String query, List<String> categories, List<String> brands,
+                                         BigDecimal minPrice, BigDecimal maxPrice, 
+                                         Double minRating, Double maxRating,
+                                         Boolean hasDiscount, Boolean inStockOnly, Boolean freeShipping,
+                                         Pageable pageable);
+    
+    // Helper methods for search suggestions
+    default List<String> findSearchSuggestions(String query, int limit) {
+        Pageable pageable = Pageable.ofSize(limit);
+        List<Product> products = findForSuggestions(query, pageable);
+        
+        return products.stream()
+            .flatMap(product -> java.util.stream.Stream.of(
+                product.getName(),
+                product.getBrand()
+            ).filter(str -> str != null && str.toLowerCase().contains(query)))
+            .distinct()
+            .limit(limit)
+            .collect(java.util.stream.Collectors.toList());
+    }
+    
+    default List<String> findProductNameSuggestions(String query, int limit) {
+        Pageable pageable = Pageable.ofSize(limit * 2); // Get more to filter
+        List<Product> products = findProductNameSuggestions(query, pageable);
+        
+        return products.stream()
+            .map(Product::getName)
+            .filter(name -> name != null && name.toLowerCase().contains(query))
+            .distinct()
+            .limit(limit)
+            .collect(java.util.stream.Collectors.toList());
+    }
+    
+    default List<String> findBrandSuggestions(String query, int limit) {
+        Pageable pageable = Pageable.ofSize(limit * 2);
+        List<Product> products = findBrandSuggestions(query, pageable);
+        
+        return products.stream()
+            .map(Product::getBrand)
+            .filter(brand -> brand != null && brand.toLowerCase().contains(query))
+            .distinct()
+            .limit(limit)
+            .collect(java.util.stream.Collectors.toList());
+    }
+    
+    default List<String> findTagSuggestions(String query, int limit) {
+        Pageable pageable = Pageable.ofSize(limit * 2);
+        List<Product> products = findTagSuggestions(query, pageable);
+        
+        return products.stream()
+            .flatMap(product -> product.getTags() != null ? product.getTags().stream() : java.util.stream.Stream.empty())
+            .filter(tag -> tag != null && tag.toLowerCase().contains(query))
+            .distinct()
+            .limit(limit)
+            .collect(java.util.stream.Collectors.toList());
+    }
 }

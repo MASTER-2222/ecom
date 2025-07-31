@@ -87,6 +87,72 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @Operation(summary = "Get search suggestions")
+    @GetMapping("/search/suggestions")
+    public ResponseEntity<List<String>> getSearchSuggestions(
+            @Parameter(description = "Partial search term") @RequestParam String q,
+            @Parameter(description = "Number of suggestions") @RequestParam(defaultValue = "10") int limit) {
+        
+        List<String> suggestions = productService.getSearchSuggestions(q, limit);
+        return ResponseEntity.ok(suggestions);
+    }
+
+    @Operation(summary = "Get search autocomplete")
+    @GetMapping("/search/autocomplete")
+    public ResponseEntity<Map<String, Object>> getSearchAutocomplete(
+            @Parameter(description = "Partial search term") @RequestParam String q,
+            @Parameter(description = "Number of suggestions per category") @RequestParam(defaultValue = "5") int limit) {
+        
+        Map<String, Object> autocomplete = productService.getSearchAutocomplete(q, limit);
+        return ResponseEntity.ok(autocomplete);
+    }
+
+    @Operation(summary = "Advanced search with multiple filters")
+    @GetMapping("/search/advanced")
+    public ResponseEntity<Page<Product>> advancedSearch(
+            @Parameter(description = "Search term") @RequestParam(required = false) String q,
+            @Parameter(description = "Category IDs") @RequestParam(required = false) List<String> categories,
+            @Parameter(description = "Brand names") @RequestParam(required = false) List<String> brands,
+            @Parameter(description = "Minimum price") @RequestParam(required = false) BigDecimal minPrice,
+            @Parameter(description = "Maximum price") @RequestParam(required = false) BigDecimal maxPrice,
+            @Parameter(description = "Minimum rating") @RequestParam(required = false, defaultValue = "0") Double minRating,
+            @Parameter(description = "Maximum rating") @RequestParam(required = false, defaultValue = "5") Double maxRating,
+            @Parameter(description = "Has discount") @RequestParam(required = false) Boolean hasDiscount,
+            @Parameter(description = "In stock only") @RequestParam(required = false, defaultValue = "true") Boolean inStockOnly,
+            @Parameter(description = "Free shipping") @RequestParam(required = false) Boolean freeShipping,
+            @Parameter(description = "Page number") @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Page size") @RequestParam(defaultValue = "20") int size,
+            @Parameter(description = "Sort field") @RequestParam(defaultValue = "relevance") String sortBy,
+            @Parameter(description = "Sort direction") @RequestParam(defaultValue = "desc") String sortDir) {
+        
+        Sort sort = sortDir.equalsIgnoreCase("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        Pageable pageable = PageRequest.of(page, size, sort);
+        
+        Page<Product> products = productService.advancedSearch(
+            q, categories, brands, minPrice, maxPrice, minRating, maxRating, 
+            hasDiscount, inStockOnly, freeShipping, pageable);
+        return ResponseEntity.ok(products);
+    }
+
+    @Operation(summary = "Get popular search terms")
+    @GetMapping("/search/popular")
+    public ResponseEntity<List<String>> getPopularSearchTerms(
+            @Parameter(description = "Number of terms") @RequestParam(defaultValue = "10") int limit) {
+        
+        List<String> popularTerms = productService.getPopularSearchTerms(limit);
+        return ResponseEntity.ok(popularTerms);
+    }
+
+    @Operation(summary = "Get search analytics")
+    @GetMapping("/search/analytics")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Map<String, Object>> getSearchAnalytics(
+            @Parameter(description = "Days to analyze") @RequestParam(defaultValue = "30") int days) {
+        
+        Map<String, Object> analytics = productService.getSearchAnalytics(days);
+        return ResponseEntity.ok(analytics);
+    }
+
     @Operation(summary = "Get products by category")
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<Page<Product>> getProductsByCategory(

@@ -1,1 +1,168 @@
-import { useState, useEffect, createContext, useContext } from 'react';\nimport { Cart, CartItem, Product } from '@/types';\nimport { cartAPI } from '@/backend/api';\nimport { toast } from 'react-hot-toast';\nimport { useAuth } from './useAuth';\n\ninterface CartContextType {\n  cart: Cart | null;\n  loading: boolean;\n  addToCart: (product: Product, quantity?: number, options?: Record<string, string>) => Promise<void>;\n  updateCartItem: (itemId: string, quantity: number) => Promise<void>;\n  removeFromCart: (itemId: string) => Promise<void>;\n  clearCart: () => Promise<void>;\n  getCartItemCount: () => number;\n  getCartTotal: () => number;\n  isInCart: (productId: string) => boolean;\n  refreshCart: () => Promise<void>;\n}\n\nconst CartContext = createContext<CartContextType | undefined>(undefined);\n\nexport const useCart = (): CartContextType => {\n  const context = useContext(CartContext);\n  if (context === undefined) {\n    throw new Error('useCart must be used within a CartProvider');\n  }\n  return context;\n};\n\nexport const useCartState = () => {\n  const [cart, setCart] = useState<Cart | null>(null);\n  const [loading, setLoading] = useState(false);\n  const { isAuthenticated } = useAuth();\n\n  useEffect(() => {\n    if (isAuthenticated) {\n      refreshCart();\n    } else {\n      // Clear cart when user logs out\n      setCart(null);\n    }\n  }, [isAuthenticated]);\n\n  const refreshCart = async (): Promise<void> => {\n    if (!isAuthenticated) return;\n    \n    try {\n      setLoading(true);\n      const cartData = await cartAPI.getCart();\n      setCart(cartData);\n    } catch (error: any) {\n      // Don't show error toast for 404 (empty cart)\n      if (error.response?.status !== 404) {\n        console.error('Failed to fetch cart:', error);\n      }\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const addToCart = async (\n    product: Product, \n    quantity: number = 1, \n    options?: Record<string, string>\n  ): Promise<void> => {\n    if (!isAuthenticated) {\n      toast.error('Please sign in to add items to cart');\n      return;\n    }\n\n    try {\n      setLoading(true);\n      const updatedCart = await cartAPI.addToCart(product.id, quantity, options);\n      setCart(updatedCart);\n      toast.success(`${product.title} added to cart`);\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Failed to add item to cart';\n      toast.error(message);\n      throw error;\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const updateCartItem = async (itemId: string, quantity: number): Promise<void> => {\n    if (!isAuthenticated) return;\n\n    try {\n      setLoading(true);\n      \n      if (quantity <= 0) {\n        await removeFromCart(itemId);\n        return;\n      }\n      \n      const updatedCart = await cartAPI.updateCartItem(itemId, quantity);\n      setCart(updatedCart);\n      toast.success('Cart updated');\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Failed to update cart item';\n      toast.error(message);\n      throw error;\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const removeFromCart = async (itemId: string): Promise<void> => {\n    if (!isAuthenticated) return;\n\n    try {\n      setLoading(true);\n      const updatedCart = await cartAPI.removeFromCart(itemId);\n      setCart(updatedCart);\n      toast.success('Item removed from cart');\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Failed to remove item from cart';\n      toast.error(message);\n      throw error;\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const clearCart = async (): Promise<void> => {\n    if (!isAuthenticated) return;\n\n    try {\n      setLoading(true);\n      await cartAPI.clearCart();\n      setCart(null);\n      toast.success('Cart cleared');\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Failed to clear cart';\n      toast.error(message);\n      throw error;\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const getCartItemCount = (): number => {\n    return cart?.totalItems || 0;\n  };\n\n  const getCartTotal = (): number => {\n    return cart?.total || 0;\n  };\n\n  const isInCart = (productId: string): boolean => {\n    return cart?.items.some(item => item.product.id === productId) || false;\n  };\n\n  return {\n    cart,\n    loading,\n    addToCart,\n    updateCartItem,\n    removeFromCart,\n    clearCart,\n    getCartItemCount,\n    getCartTotal,\n    isInCart,\n    refreshCart,\n  };\n};\n\nexport default CartContext;
+import { useState, useEffect, createContext, useContext } from 'react';
+import { Cart, CartItem, Product } from '@/types';
+import { cartAPI } from '@/backend/api';
+import { toast } from 'react-hot-toast';
+import { useAuth } from './useAuth';
+
+interface CartContextType {
+  cart: Cart | null;
+  loading: boolean;
+  addToCart: (product: Product, quantity?: number, options?: Record<string, string>) => Promise<void>;
+  updateCartItem: (itemId: string, quantity: number) => Promise<void>;
+  removeFromCart: (itemId: string) => Promise<void>;
+  clearCart: () => Promise<void>;
+  getCartItemCount: () => number;
+  getCartTotal: () => number;
+  isInCart: (productId: string) => boolean;
+  refreshCart: () => Promise<void>;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export const useCart = (): CartContextType => {
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
+
+export const useCartState = () => {
+  const [cart, setCart] = useState<Cart | null>(null);
+  const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      refreshCart();
+    } else {
+      // Clear cart when user logs out
+      setCart(null);
+    }
+  }, [isAuthenticated]);
+
+  const refreshCart = async (): Promise<void> => {
+    if (!isAuthenticated) return;
+    
+    try {
+      setLoading(true);
+      const cartData = await cartAPI.getCart();
+      setCart(cartData);
+    } catch (error: any) {
+      // Don't show error toast for 404 (empty cart)
+      if (error.response?.status !== 404) {
+        console.error('Failed to fetch cart:', error);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addToCart = async (
+    product: Product, 
+    quantity: number = 1, 
+    options?: Record<string, string>
+  ): Promise<void> => {
+    if (!isAuthenticated) {
+      toast.error('Please sign in to add items to cart');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const updatedCart = await cartAPI.addToCart(product.id, quantity, options);
+      setCart(updatedCart);
+      toast.success(`${product.title} added to cart`);
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to add item to cart';
+      toast.error(message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateCartItem = async (itemId: string, quantity: number): Promise<void> => {
+    if (!isAuthenticated) return;
+
+    try {
+      setLoading(true);
+      
+      if (quantity <= 0) {
+        await removeFromCart(itemId);
+        return;
+      }
+      
+      const updatedCart = await cartAPI.updateCartItem(itemId, quantity);
+      setCart(updatedCart);
+      toast.success('Cart updated');
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to update cart item';
+      toast.error(message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeFromCart = async (itemId: string): Promise<void> => {
+    if (!isAuthenticated) return;
+
+    try {
+      setLoading(true);
+      const updatedCart = await cartAPI.removeFromCart(itemId);
+      setCart(updatedCart);
+      toast.success('Item removed from cart');
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to remove item from cart';
+      toast.error(message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearCart = async (): Promise<void> => {
+    if (!isAuthenticated) return;
+
+    try {
+      setLoading(true);
+      await cartAPI.clearCart();
+      setCart(null);
+      toast.success('Cart cleared');
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to clear cart';
+      toast.error(message);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getCartItemCount = (): number => {
+    return cart?.totalItems || 0;
+  };
+
+  const getCartTotal = (): number => {
+    return cart?.total || 0;
+  };
+
+  const isInCart = (productId: string): boolean => {
+    return cart?.items.some(item => item.product.id === productId) || false;
+  };
+
+  return {
+    cart,
+    loading,
+    addToCart,
+    updateCartItem,
+    removeFromCart,
+    clearCart,
+    getCartItemCount,
+    getCartTotal,
+    isInCart,
+    refreshCart,
+  };
+};
+
+export default CartContext;
