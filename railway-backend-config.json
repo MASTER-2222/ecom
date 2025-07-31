@@ -1,0 +1,27 @@
+# Railway Deployment Configuration
+
+# railway.json for backend
+{
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
+
+# Environment Variables for Backend
+MONGODB_URI=mongodb+srv://ritkart-admin:YOUR_PASSWORD@ritkart-cluster.xxxxx.mongodb.net/ritkart?retryWrites=true&w=majority
+MONGODB_DATABASE=ritkart
+JWT_SECRET=RitKART-Production-Secret-Key-2024-Ultra-Secure-256-Bit-HMAC-SHA
+PORT=8080
+CORS_ALLOWED_ORIGINS=https://ritkart-frontend.railway.app
+SPRING_PROFILES_ACTIVE=prod
+DEFAULT_ADMIN_EMAIL=admin@ritkart.com
+DEFAULT_ADMIN_PASSWORD=admin123
+
+# Railway automatically detects:
+# - Java Spring Boot applications
+# - Maven build system
+# - Starts with: java -jar target/*.jar
