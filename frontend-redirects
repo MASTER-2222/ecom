@@ -1,0 +1,9 @@
+# Frontend Redirects Configuration for SPA Routing
+
+# _redirects file for Render Static Sites
+# Place this in: frontend/public/_redirects
+
+/*    /index.html   200
+
+# This ensures all routes are handled by React Router
+# instead of returning 404 errors for client-side routes
