@@ -1,7 +1,7 @@
 // RitKART Frontend API Configuration and Client
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import {
-  User, Product, Category, Cart, Order, Review, Wishlist,
+  User, Product, Category, Cart, Order, Review, Wishlist, WishlistItem,
   ApiResponse, PaginatedResponse, LoginRequest, RegisterRequest,
   AuthResponse, SearchParams, Address
 } from '../types';
@@ -111,6 +111,74 @@ export const productsAPI = {
   searchProducts: async (query: string, params?: SearchParams): Promise<PaginatedResponse<Product>> => {
     const response = await apiClient.get<PaginatedResponse<Product>>('/products/search', {
       params: { q: query, ...params },
+    });
+    return response.data;
+  },
+
+  // Advanced search endpoints
+  getSearchSuggestions: async (query: string, limit: number = 10): Promise<string[]> => {
+    const response = await apiClient.get<string[]>('/products/search/suggestions', {
+      params: { q: query, limit },
+    });
+    return response.data;
+  },
+
+  getSearchAutocomplete: async (query: string, limit: number = 5): Promise<{
+    products: string[];
+    brands: string[];
+    categories: string[];
+    tags: string[];
+  }> => {
+    const response = await apiClient.get('/products/search/autocomplete', {
+      params: { q: query, limit },
+    });
+    return response.data;
+  },
+
+  advancedSearch: async (params: {
+    q?: string;
+    categories?: string[];
+    brands?: string[];
+    minPrice?: number;
+    maxPrice?: number;
+    minRating?: number;
+    maxRating?: number;
+    hasDiscount?: boolean;
+    inStockOnly?: boolean;
+    freeShipping?: boolean;
+    page?: number;
+    size?: number;
+    sortBy?: string;
+    sortDir?: string;
+  }): Promise<PaginatedResponse<Product>> => {
+    const response = await apiClient.get<PaginatedResponse<Product>>('/products/search/advanced', {
+      params,
+    });
+    return response.data;
+  },
+
+  getPopularSearchTerms: async (limit: number = 10): Promise<string[]> => {
+    const response = await apiClient.get<string[]>('/products/search/popular', {
+      params: { limit },
+    });
+    return response.data;
+  },
+
+  getSearchAnalytics: async (days: number = 30): Promise<{
+    totalSearches: number;
+    uniqueQueries: number;
+    averageResultsPerSearch: number;
+    noResultsRate: number;
+    topQueries: Array<{
+      query: string;
+      count: number;
+      clickRate: number;
+    }>;
+    noResultQueries: string[];
+    period: string;
+  }> => {
+    const response = await apiClient.get('/products/search/analytics', {
+      params: { days },
     });
     return response.data;
   },
@@ -233,18 +301,58 @@ export const reviewsAPI = {
 // Wishlist API
 export const wishlistAPI = {
   getWishlist: async (): Promise<Wishlist> => {
-    const response = await apiClient.get<ApiResponse<Wishlist>>('/wishlist');
-    return response.data.data;
+    const response = await apiClient.get<Wishlist>('/wishlist');
+    return response.data;
+  },
+
+  getWishlistWithProducts: async (): Promise<{ wishlist: Wishlist; products: Product[] }> => {
+    const response = await apiClient.get<{ wishlist: Wishlist; products: Product[] }>('/wishlist/with-products');
+    return response.data;
   },
 
   addToWishlist: async (productId: string): Promise<Wishlist> => {
-    const response = await apiClient.post<ApiResponse<Wishlist>>('/wishlist/add', { productId });
-    return response.data.data;
+    const response = await apiClient.post<Wishlist>('/wishlist/items', { productId });
+    return response.data;
   },
 
   removeFromWishlist: async (productId: string): Promise<Wishlist> => {
-    const response = await apiClient.delete<ApiResponse<Wishlist>>(`/wishlist/remove/${productId}`);
-    return response.data.data;
+    const response = await apiClient.delete<Wishlist>(`/wishlist/items/${productId}`);
+    return response.data;
+  },
+
+  toggleWishlist: async (productId: string): Promise<{ wishlist: Wishlist; added: boolean; inWishlist: boolean }> => {
+    const response = await apiClient.post<{ wishlist: Wishlist; added: boolean; inWishlist: boolean }>(`/wishlist/items/${productId}/toggle`);
+    return response.data;
+  },
+
+  isInWishlist: async (productId: string): Promise<boolean> => {
+    const response = await apiClient.get<{ exists: boolean }>(`/wishlist/items/${productId}/exists`);
+    return response.data.exists;
+  },
+
+  clearWishlist: async (): Promise<Wishlist> => {
+    const response = await apiClient.delete<Wishlist>('/wishlist/clear');
+    return response.data;
+  },
+
+  addMultipleItems: async (productIds: string[]): Promise<Wishlist> => {
+    const response = await apiClient.post<Wishlist>('/wishlist/items/bulk', productIds);
+    return response.data;
+  },
+
+  removeMultipleItems: async (productIds: string[]): Promise<Wishlist> => {
+    const response = await apiClient.delete<Wishlist>('/wishlist/items/bulk', { data: productIds });
+    return response.data;
+  },
+
+  getWishlistSummary: async (): Promise<{
+    totalItems: number;
+    categories: string[];
+    averagePrice: number;
+    totalValue: number;
+  }> => {
+    const response = await apiClient.get('/wishlist/summary');
+    return response.data;
   },
 };
 

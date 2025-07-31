@@ -17,10 +17,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import ProductCard from '@/components/ProductCard';
+import RecentlyViewed from '@/components/RecentlyViewed';
 import { Product, Review } from '@/types';
 import { productsAPI, reviewsAPI } from '@/backend/api';
 import { useCart } from '@/hooks/useCart';
 import { useAuth } from '@/hooks/useAuth';
+import { useRecentlyViewed } from '@/hooks/useRecentlyViewed';
 import toast from 'react-hot-toast';
 
 const ProductDetail: React.FC = () => {
@@ -28,6 +30,7 @@ const ProductDetail: React.FC = () => {
   const navigate = useNavigate();
   const { addItem } = useCart();
   const { user, isAuthenticated } = useAuth();
+  const { addToRecentlyViewed } = useRecentlyViewed();
 
   // State
   const [product, setProduct] = useState<Product | null>(null);
@@ -57,6 +60,9 @@ const ProductDetail: React.FC = () => {
 
         if (productResponse.success) {
           setProduct(productResponse.data);
+          
+          // Track this product in recently viewed
+          addToRecentlyViewed(productResponse.data);
           
           // Fetch related products
           if (productResponse.data.category?.id) {
@@ -688,7 +694,7 @@ const ProductDetail: React.FC = () => {
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div>
+          <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Products</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((relatedProduct) => (
@@ -697,6 +703,15 @@ const ProductDetail: React.FC = () => {
             </div>
           </div>
         )}
+        
+        {/* Recently Viewed Products */}
+        <RecentlyViewed 
+          excludeProductId={product?.id} 
+          title="Your Recently Viewed Items"
+          limit={6}
+          variant="horizontal"
+          className="mb-8"
+        />
       </div>
     </div>
   );

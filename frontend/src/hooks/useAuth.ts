@@ -1,1 +1,149 @@
-import { useState, useEffect, createContext, useContext } from 'react';\nimport { User, LoginRequest, RegisterRequest } from '@/types';\nimport { authAPI, setAuthToken, setUser, getUser, getAuthToken } from '@/backend/api';\nimport { toast } from 'react-hot-toast';\n\ninterface AuthContextType {\n  user: User | null;\n  loading: boolean;\n  login: (credentials: LoginRequest) => Promise<boolean>;\n  register: (userData: RegisterRequest) => Promise<boolean>;\n  logout: () => void;\n  updateUser: (userData: Partial<User>) => Promise<void>;\n  isAuthenticated: boolean;\n  isAdmin: boolean;\n}\n\nconst AuthContext = createContext<AuthContextType | undefined>(undefined);\n\nexport const useAuth = (): AuthContextType => {\n  const context = useContext(AuthContext);\n  if (context === undefined) {\n    throw new Error('useAuth must be used within an AuthProvider');\n  }\n  return context;\n};\n\nexport const useAuthState = () => {\n  const [user, setUserState] = useState<User | null>(null);\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() => {\n    // Check for existing user on mount\n    const initAuth = async () => {\n      try {\n        const token = getAuthToken();\n        const savedUser = getUser();\n        \n        if (token && savedUser) {\n          // Verify token is still valid by fetching fresh user data\n          const freshUser = await authAPI.getProfile();\n          setUserState(freshUser);\n          setUser(freshUser);\n        }\n      } catch (error) {\n        // Token invalid or expired, clear storage\n        localStorage.removeItem('ritkart_token');\n        localStorage.removeItem('ritkart_user');\n        localStorage.removeItem('ritkart_refresh_token');\n      } finally {\n        setLoading(false);\n      }\n    };\n\n    initAuth();\n  }, []);\n\n  const login = async (credentials: LoginRequest): Promise<boolean> => {\n    try {\n      setLoading(true);\n      const response = await authAPI.login(credentials);\n      \n      setAuthToken(response.token);\n      setUser(response.user);\n      setUserState(response.user);\n      \n      // Store refresh token if provided\n      if (response.refreshToken) {\n        localStorage.setItem('ritkart_refresh_token', response.refreshToken);\n      }\n      \n      toast.success('Welcome back!');\n      return true;\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Login failed. Please try again.';\n      toast.error(message);\n      return false;\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const register = async (userData: RegisterRequest): Promise<boolean> => {\n    try {\n      setLoading(true);\n      const response = await authAPI.register(userData);\n      \n      setAuthToken(response.token);\n      setUser(response.user);\n      setUserState(response.user);\n      \n      // Store refresh token if provided\n      if (response.refreshToken) {\n        localStorage.setItem('ritkart_refresh_token', response.refreshToken);\n      }\n      \n      toast.success('Account created successfully!');\n      return true;\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Registration failed. Please try again.';\n      toast.error(message);\n      return false;\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const logout = () => {\n    try {\n      authAPI.logout();\n    } catch (error) {\n      // Ignore errors during logout\n    } finally {\n      setUserState(null);\n      localStorage.removeItem('ritkart_token');\n      localStorage.removeItem('ritkart_user');\n      localStorage.removeItem('ritkart_refresh_token');\n      toast.success('Logged out successfully');\n    }\n  };\n\n  const updateUser = async (userData: Partial<User>): Promise<void> => {\n    try {\n      const updatedUser = await authAPI.updateProfile(userData);\n      setUserState(updatedUser);\n      setUser(updatedUser);\n      toast.success('Profile updated successfully');\n    } catch (error: any) {\n      const message = error.response?.data?.message || 'Failed to update profile';\n      toast.error(message);\n      throw error;\n    }\n  };\n\n  const isAuthenticated = !!user;\n  const isAdmin = user?.role === 'ADMIN';\n\n  return {\n    user,\n    loading,\n    login,\n    register,\n    logout,\n    updateUser,\n    isAuthenticated,\n    isAdmin,\n  };\n};\n\nexport default AuthContext;
+import { useState, useEffect, createContext, useContext } from 'react';
+import { User, LoginRequest, RegisterRequest } from '@/types';
+import { authAPI, setAuthToken, setUser, getUser, getAuthToken } from '@/backend/api';
+import { toast } from 'react-hot-toast';
+
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  login: (credentials: LoginRequest) => Promise<boolean>;
+  register: (userData: RegisterRequest) => Promise<boolean>;
+  logout: () => void;
+  updateUser: (userData: Partial<User>) => Promise<void>;
+  isAuthenticated: boolean;
+  isAdmin: boolean;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+
+export const useAuthState = () => {
+  const [user, setUserState] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Check for existing user on mount
+    const initAuth = async () => {
+      try {
+        const token = getAuthToken();
+        const savedUser = getUser();
+        
+        if (token && savedUser) {
+          // Verify token is still valid by fetching fresh user data
+          const freshUser = await authAPI.getProfile();
+          setUserState(freshUser);
+          setUser(freshUser);
+        }
+      } catch (error) {
+        // Token invalid or expired, clear storage
+        localStorage.removeItem('ritkart_token');
+        localStorage.removeItem('ritkart_user');
+        localStorage.removeItem('ritkart_refresh_token');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initAuth();
+  }, []);
+
+  const login = async (credentials: LoginRequest): Promise<boolean> => {
+    try {
+      setLoading(true);
+      const response = await authAPI.login(credentials);
+      
+      setAuthToken(response.token);
+      setUser(response.user);
+      setUserState(response.user);
+      
+      // Store refresh token if provided
+      if (response.refreshToken) {
+        localStorage.setItem('ritkart_refresh_token', response.refreshToken);
+      }
+      
+      toast.success('Welcome back!');
+      return true;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Login failed. Please try again.';
+      toast.error(message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const register = async (userData: RegisterRequest): Promise<boolean> => {
+    try {
+      setLoading(true);
+      const response = await authAPI.register(userData);
+      
+      setAuthToken(response.token);
+      setUser(response.user);
+      setUserState(response.user);
+      
+      // Store refresh token if provided
+      if (response.refreshToken) {
+        localStorage.setItem('ritkart_refresh_token', response.refreshToken);
+      }
+      
+      toast.success('Account created successfully!');
+      return true;
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Registration failed. Please try again.';
+      toast.error(message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    try {
+      authAPI.logout();
+    } catch (error) {
+      // Ignore errors during logout
+    } finally {
+      setUserState(null);
+      localStorage.removeItem('ritkart_token');
+      localStorage.removeItem('ritkart_user');
+      localStorage.removeItem('ritkart_refresh_token');
+      toast.success('Logged out successfully');
+    }
+  };
+
+  const updateUser = async (userData: Partial<User>): Promise<void> => {
+    try {
+      const updatedUser = await authAPI.updateProfile(userData);
+      setUserState(updatedUser);
+      setUser(updatedUser);
+      toast.success('Profile updated successfully');
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Failed to update profile';
+      toast.error(message);
+      throw error;
+    }
+  };
+
+  const isAuthenticated = !!user;
+  const isAdmin = user?.role === 'ADMIN';
+
+  return {
+    user,
+    loading,
+    login,
+    register,
+    logout,
+    updateUser,
+    isAuthenticated,
+    isAdmin,
+  };
+};
+
+export default AuthContext;

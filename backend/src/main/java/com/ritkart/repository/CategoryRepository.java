@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public interface CategoryRepository extends MongoRepository<Category, String> {
@@ -88,4 +89,22 @@ public interface CategoryRepository extends MongoRepository<Category, String> {
     
     @Query(value = "{'parentCategoryId': ?0, 'isActive': true}", sort = "{'sortOrder': 1, 'name': 1}")
     List<Category> findByParentCategoryIdAndIsActiveSorted(String parentCategoryId);
+    
+    // Category suggestions for autocomplete
+    @Query(value = "{'name': {$regex: ?0, $options: 'i'}, 'isActive': true}", 
+           fields = "{'name': 1}")
+    List<Category> findCategorySuggestionsQuery(String query, Pageable pageable);
+    
+    // Helper method for category suggestions
+    default List<String> findCategorySuggestions(String query, int limit) {
+        Pageable pageable = Pageable.ofSize(limit);
+        List<Category> categories = findCategorySuggestionsQuery(query, pageable);
+        
+        return categories.stream()
+            .map(Category::getName)
+            .filter(name -> name != null && name.toLowerCase().contains(query.toLowerCase()))
+            .distinct()
+            .limit(limit)
+            .collect(java.util.stream.Collectors.toList());
+    }
 }

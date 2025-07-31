@@ -1,1 +1,271 @@
-import React from 'react';\nimport { Link } from 'react-router-dom';\nimport { Star, Heart, ShoppingCart, Eye } from 'lucide-react';\nimport { Button } from '@/components/ui/button';\nimport { Card, CardContent } from '@/components/ui/card';\nimport { Badge } from '@/components/ui/badge';\nimport { Product } from '@/types';\nimport { useCart } from '@/hooks/useCart';\nimport { useAuth } from '@/hooks/useAuth';\nimport { cn } from '@/lib/utils';\n\ninterface ProductCardProps {\n  product: Product;\n  variant?: 'default' | 'grid' | 'list';\n  showQuickAdd?: boolean;\n  className?: string;\n}\n\nconst ProductCard: React.FC<ProductCardProps> = ({\n  product,\n  variant = 'default',\n  showQuickAdd = true,\n  className\n}) => {\n  const { addToCart, loading: cartLoading } = useCart();\n  const { isAuthenticated } = useAuth();\n\n  const handleAddToCart = async (e: React.MouseEvent) => {\n    e.preventDefault();\n    e.stopPropagation();\n    \n    if (!isAuthenticated) {\n      // Redirect to login or show login modal\n      return;\n    }\n    \n    try {\n      await addToCart(product, 1);\n    } catch (error) {\n      console.error('Failed to add to cart:', error);\n    }\n  };\n\n  const formatPrice = (price: number) => {\n    return new Intl.NumberFormat('en-US', {\n      style: 'currency',\n      currency: 'USD',\n    }).format(price);\n  };\n\n  const discountPercentage = product.originalPrice\n    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)\n    : 0;\n\n  const renderStars = (rating: number) => {\n    return (\n      <div className=\"flex items-center gap-1\">\n        {[...Array(5)].map((_, i) => (\n          <Star\n            key={i}\n            className={`w-4 h-4 ${\n              i < Math.floor(rating)\n                ? 'text-orange-400 fill-current'\n                : i < rating\n                ? 'text-orange-400 fill-current opacity-50'\n                : 'text-gray-300'\n            }`}\n          />\n        ))}\n        <span className=\"text-sm text-gray-600 ml-1\">({product.reviewCount})</span>\n      </div>\n    );\n  };\n\n  if (variant === 'list') {\n    return (\n      <Card className={cn('amazon-card group', className)}>\n        <CardContent className=\"p-4\">\n          <div className=\"flex gap-4\">\n            {/* Product Image */}\n            <div className=\"flex-shrink-0\">\n              <Link to={`/product/${product.id}`}>\n                <div className=\"w-32 h-32 bg-gray-100 rounded-lg overflow-hidden\">\n                  <div className=\"w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-sm\">\n                    Product\n                  </div>\n                </div>\n              </Link>\n            </div>\n            \n            {/* Product Info */}\n            <div className=\"flex-1 min-w-0\">\n              <Link to={`/product/${product.id}`}>\n                <h3 className=\"font-medium text-lg mb-2 group-hover:text-orange-600 transition-colors line-clamp-2\">\n                  {product.title}\n                </h3>\n              </Link>\n              \n              {renderStars(product.rating)}\n              \n              <p className=\"text-gray-600 text-sm mt-2 line-clamp-2\">\n                {product.shortDescription || product.description}\n              </p>\n              \n              <div className=\"flex items-center gap-2 mt-2\">\n                <span className=\"amazon-price text-2xl font-bold\">{formatPrice(product.price)}</span>\n                {product.originalPrice && product.originalPrice > product.price && (\n                  <>\n                    <span className=\"text-gray-500 line-through text-lg\">\n                      {formatPrice(product.originalPrice)}\n                    </span>\n                    <Badge className=\"bg-red-500 text-white\">\n                      -{discountPercentage}%\n                    </Badge>\n                  </>\n                )}\n              </div>\n              \n              <p className=\"text-sm text-gray-600 mt-1\">\n                Brand: <span className=\"font-medium\">{product.brand}</span>\n              </p>\n            </div>\n            \n            {/* Actions */}\n            <div className=\"flex-shrink-0 flex flex-col gap-2\">\n              <Button\n                onClick={handleAddToCart}\n                disabled={cartLoading || product.stock === 0}\n                className=\"amazon-button\"\n              >\n                {cartLoading ? (\n                  <div className=\"w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin\" />\n                ) : (\n                  <>\n                    <ShoppingCart className=\"w-4 h-4 mr-2\" />\n                    Add to Cart\n                  </>\n                )}\n              </Button>\n              \n              <Button variant=\"outline\" size=\"sm\">\n                <Heart className=\"w-4 h-4 mr-2\" />\n                Wishlist\n              </Button>\n            </div>\n          </div>\n        </CardContent>\n      </Card>\n    );\n  }\n\n  return (\n    <Card className={cn('amazon-card group h-full flex flex-col', className)}>\n      <CardContent className=\"p-4 flex flex-col h-full\">\n        {/* Product Image */}\n        <div className=\"relative mb-4\">\n          {discountPercentage > 0 && (\n            <Badge className=\"absolute top-2 left-2 bg-red-500 text-white font-bold z-10\">\n              -{discountPercentage}%\n            </Badge>\n          )}\n          \n          {product.stock === 0 && (\n            <Badge className=\"absolute top-2 right-2 bg-gray-500 text-white z-10\">\n              Out of Stock\n            </Badge>\n          )}\n          \n          <Link to={`/product/${product.id}`}>\n            <div className=\"aspect-square bg-gray-100 rounded-lg overflow-hidden group-hover:scale-105 transition-transform\">\n              {product.thumbnail || product.images[0] ? (\n                <img\n                  src={product.thumbnail || product.images[0]}\n                  alt={product.title}\n                  className=\"w-full h-full object-cover\"\n                  onError={(e) => {\n                    const target = e.target as HTMLImageElement;\n                    target.style.display = 'none';\n                    target.nextElementSibling?.classList.remove('hidden');\n                  }}\n                />\n              ) : null}\n              <div className=\"w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-sm\">\n                Product Image\n              </div>\n            </div>\n          </Link>\n          \n          {/* Quick Actions Overlay */}\n          <div className=\"absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2\">\n            <Button size=\"sm\" variant=\"secondary\">\n              <Eye className=\"w-4 h-4\" />\n            </Button>\n            <Button size=\"sm\" variant=\"secondary\">\n              <Heart className=\"w-4 h-4\" />\n            </Button>\n          </div>\n        </div>\n        \n        {/* Product Info */}\n        <div className=\"flex-1 flex flex-col\">\n          <Link to={`/product/${product.id}`}>\n            <h3 className=\"font-medium mb-2 group-hover:text-orange-600 transition-colors line-clamp-2 flex-1\">\n              {product.title}\n            </h3>\n          </Link>\n          \n          <p className=\"text-sm text-gray-600 mb-2\">\n            by <span className=\"font-medium\">{product.brand}</span>\n          </p>\n          \n          {renderStars(product.rating)}\n          \n          <div className=\"mt-auto pt-4\">\n            <div className=\"flex items-center gap-2 mb-3\">\n              <span className=\"amazon-price text-xl font-bold\">{formatPrice(product.price)}</span>\n              {product.originalPrice && product.originalPrice > product.price && (\n                <span className=\"text-gray-500 line-through text-sm\">\n                  {formatPrice(product.originalPrice)}\n                </span>\n              )}\n            </div>\n            \n            {product.stock > 0 && product.stock <= 10 && (\n              <p className=\"text-red-600 text-sm mb-2 font-medium\">\n                Only {product.stock} left in stock\n              </p>\n            )}\n            \n            {showQuickAdd && (\n              <Button\n                onClick={handleAddToCart}\n                disabled={cartLoading || product.stock === 0}\n                className=\"w-full amazon-button\"\n                size=\"sm\"\n              >\n                {cartLoading ? (\n                  <div className=\"w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin\" />\n                ) : product.stock === 0 ? (\n                  'Out of Stock'\n                ) : (\n                  'Add to Cart'\n                )}\n              </Button>\n            )}\n          </div>\n        </div>\n      </CardContent>\n    </Card>\n  );\n};\n\nexport default ProductCard;
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Star, ShoppingCart, Eye } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Product } from '@/types';
+import { useCart } from '@/hooks/useCart';
+import { useAuth } from '@/hooks/useAuth';
+import WishlistButton from '@/components/WishlistButton';
+import ComparisonButton from '@/components/ComparisonButton';
+import { cn } from '@/lib/utils';
+
+interface ProductCardProps {
+  product: Product;
+  variant?: 'default' | 'grid' | 'list';
+  showQuickAdd?: boolean;
+  className?: string;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  variant = 'default',
+  showQuickAdd = true,
+  className
+}) => {
+  const { addToCart, loading: cartLoading } = useCart();
+  const { isAuthenticated } = useAuth();
+
+  const handleAddToCart = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!isAuthenticated) {
+      // Redirect to login or show login modal
+      return;
+    }
+    
+    try {
+      await addToCart(product, 1);
+    } catch (error) {
+      console.error('Failed to add to cart:', error);
+    }
+  };
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(price);
+  };
+
+  const discountPercentage = product.originalPrice
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    : 0;
+
+  const renderStars = (rating: number) => {
+    return (
+      <div className="flex items-center gap-1">
+        {[...Array(5)].map((_, i) => (
+          <Star
+            key={i}
+            className={`w-4 h-4 ${
+              i < Math.floor(rating)
+                ? 'text-orange-400 fill-current'
+                : i < rating
+                ? 'text-orange-400 fill-current opacity-50'
+                : 'text-gray-300'
+            }`}
+          />
+        ))}
+        <span className="text-sm text-gray-600 ml-1">({product.reviewCount})</span>
+      </div>
+    );
+  };
+
+  if (variant === 'list') {
+    return (
+      <Card className={cn('amazon-card group', className)}>
+        <CardContent className="p-4">
+          <div className="flex gap-4">
+            {/* Product Image */}
+            <div className="flex-shrink-0">
+              <Link to={`/product/${product.id}`}>
+                <div className="w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
+                  {product.thumbnail || product.images[0] ? (
+                    <img
+                      src={product.thumbnail || product.images[0]}
+                      alt={product.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                  ) : null}
+                  <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-sm">
+                    Product
+                  </div>
+                </div>
+              </Link>
+            </div>
+            
+            {/* Product Info */}
+            <div className="flex-1 min-w-0">
+              <Link to={`/product/${product.id}`}>
+                <h3 className="font-medium text-lg mb-2 group-hover:text-orange-600 transition-colors line-clamp-2">
+                  {product.title}
+                </h3>
+              </Link>
+              
+              {renderStars(product.rating)}
+              
+              <p className="text-gray-600 text-sm mt-2 line-clamp-2">
+                {product.shortDescription || product.description}
+              </p>
+              
+              <div className="flex items-center gap-2 mt-2">
+                <span className="amazon-price text-2xl font-bold">{formatPrice(product.price)}</span>
+                {product.originalPrice && product.originalPrice > product.price && (
+                  <>
+                    <span className="text-gray-500 line-through text-lg">
+                      {formatPrice(product.originalPrice)}
+                    </span>
+                    <Badge className="bg-red-500 text-white">
+                      -{discountPercentage}%
+                    </Badge>
+                  </>
+                )}
+              </div>
+              
+              <p className="text-sm text-gray-600 mt-1">
+                Brand: <span className="font-medium">{product.brand}</span>
+              </p>
+            </div>
+            
+            {/* Actions */}
+            <div className="flex-shrink-0 flex flex-col gap-2">
+              <Button
+                onClick={handleAddToCart}
+                disabled={cartLoading || product.stock === 0}
+                className="amazon-button"
+              >
+                {cartLoading ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <>
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Add to Cart
+                  </>
+                )}
+              </Button>
+              
+              <div className="flex gap-2">
+                <WishlistButton product={product} size="sm" variant="outline" className="flex-1" />
+                <ComparisonButton product={product} size="sm" variant="outline" className="flex-1" />
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className={cn('amazon-card group h-full flex flex-col', className)}>
+      <CardContent className="p-4 flex flex-col h-full">
+        {/* Product Image */}
+        <div className="relative mb-4">
+          {discountPercentage > 0 && (
+            <Badge className="absolute top-2 left-2 bg-red-500 text-white font-bold z-10">
+              -{discountPercentage}%
+            </Badge>
+          )}
+          
+          {product.stock === 0 && (
+            <Badge className="absolute top-2 right-2 bg-gray-500 text-white z-10">
+              Out of Stock
+            </Badge>
+          )}
+          
+          {/* Wishlist Button */}
+          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+            <WishlistButton product={product} size="sm" variant="ghost" className="bg-white/90 hover:bg-white shadow-sm" />
+          </div>
+          
+          <Link to={`/product/${product.id}`}>
+            <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
+              {product.thumbnail || product.images[0] ? (
+                <img
+                  src={product.thumbnail || product.images[0]}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+              ) : null}
+              <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-sm">
+                Product Image
+              </div>
+            </div>
+          </Link>
+          
+          {/* Quick Actions Overlay */}
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-2">
+            <Button size="sm" variant="secondary">
+              <Eye className="w-4 h-4" />
+            </Button>
+            <WishlistButton product={product} size="sm" variant="ghost" className="bg-white/90 hover:bg-white" />
+            <ComparisonButton product={product} size="sm" variant="ghost" className="bg-white/90 hover:bg-white" />
+          </div>
+        </div>
+        
+        {/* Product Info */}
+        <div className="flex-1 flex flex-col">
+          <Link to={`/product/${product.id}`}>
+            <h3 className="font-medium mb-2 group-hover:text-orange-600 transition-colors line-clamp-2">
+              {product.title}
+            </h3>
+          </Link>
+          
+          <p className="text-sm text-gray-600 mb-2">
+            by <span className="font-medium">{product.brand}</span>
+          </p>
+          
+          {renderStars(product.rating)}
+          
+          <div className="mt-auto pt-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="amazon-price text-xl font-bold">{formatPrice(product.price)}</span>
+              {product.originalPrice && product.originalPrice > product.price && (
+                <span className="text-gray-500 line-through text-sm">
+                  {formatPrice(product.originalPrice)}
+                </span>
+              )}
+            </div>
+            
+            {product.stock > 0 && product.stock <= 10 && (
+              <p className="text-red-600 text-sm mb-2 font-medium">
+                Only {product.stock} left in stock
+              </p>
+            )}
+            
+            {showQuickAdd && (
+              <Button
+                onClick={handleAddToCart}
+                disabled={cartLoading || product.stock === 0}
+                className="w-full amazon-button"
+                size="sm"
+              >
+                {cartLoading ? (
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : product.stock === 0 ? (
+                  'Out of Stock'
+                ) : (
+                  'Add to Cart'
+                )}
+              </Button>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default ProductCard;

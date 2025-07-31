@@ -141,10 +141,15 @@ export interface Review {
   updatedAt: string;
 }
 
+export interface WishlistItem {
+  productId: string;
+  addedAt: string;
+}
+
 export interface Wishlist {
   id: string;
   userId: string;
-  products: Product[];
+  items: WishlistItem[];
   createdAt: string;
   updatedAt: string;
 }
