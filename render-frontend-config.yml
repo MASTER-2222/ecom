@@ -1,0 +1,30 @@
+# Render.com Frontend Configuration
+
+# For Static Site
+name: ritkart-frontend
+type: static
+plan: free
+repo: https://github.com/MASTER-2222/ecom
+branch: main
+rootDir: frontend
+buildCommand: "npm install && npm run build"
+publishDir: dist
+
+# Environment Variables for Frontend
+VITE_API_BASE_URL: https://ritkart-backend.onrender.com/api
+VITE_API_TIMEOUT: 10000
+
+# Headers for SPA routing
+headers:
+  - source: "/*"
+    headers:
+      - key: "X-Frame-Options"
+        value: "DENY"
+      - key: "X-Content-Type-Options"
+        value: "nosniff"
+
+# Redirect rules for SPA
+redirects:
+  - source: "/*"
+    destination: "/index.html"
+    code: 200
