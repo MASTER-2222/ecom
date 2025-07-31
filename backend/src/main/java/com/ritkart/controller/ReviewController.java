@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping("/reviews")
 @Tag(name = "Reviews", description = "Product review management endpoints")
 @CrossOrigin(origins = "*")
 public class ReviewController {

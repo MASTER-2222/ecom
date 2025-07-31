@@ -49,7 +49,7 @@ public class JwtTokenUtil {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parserBuilder()
+        return Jwts.parser()
                 .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
@@ -99,7 +99,7 @@ public class JwtTokenUtil {
 
     public Boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder()
+            Jwts.parser()
                 .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token);
@@ -112,11 +112,15 @@ public class JwtTokenUtil {
     public String refreshToken(String token) {
         try {
             final Claims claims = getAllClaimsFromToken(token);
-            claims.setIssuedAt(new Date());
-            claims.setExpiration(new Date(System.currentTimeMillis() + expiration));
+            Map<String, Object> claimsMap = new HashMap<>(claims);
+            claimsMap.put("iat", new Date().getTime() / 1000);
+            claimsMap.put("exp", (System.currentTimeMillis() + expiration) / 1000);
             
             return Jwts.builder()
-                    .setClaims(claims)
+                    .setClaims(claimsMap)
+                    .setSubject(claims.getSubject())
+                    .setIssuedAt(new Date())
+                    .setExpiration(new Date(System.currentTimeMillis() + expiration))
                     .signWith(getSigningKey(), SignatureAlgorithm.HS512)
                     .compact();
         } catch (JwtException | IllegalArgumentException e) {

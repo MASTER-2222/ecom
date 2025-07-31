@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/wishlist")
+@RequestMapping("/wishlist")
 @Tag(name = "Wishlist", description = "Wishlist management endpoints")
 @CrossOrigin(origins = "*")
 @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")

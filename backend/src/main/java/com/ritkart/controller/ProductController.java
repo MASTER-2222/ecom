@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 @Tag(name = "Products", description = "Product management endpoints")
 @CrossOrigin(origins = "*")
 public class ProductController {
