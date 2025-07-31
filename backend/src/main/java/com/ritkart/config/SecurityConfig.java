@@ -78,10 +78,10 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(authz -> authz
-                // Public endpoints
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/public/**").permitAll()
-                .requestMatchers("/api/health").permitAll()
+                // Public endpoints (without /api prefix since context path is already /api)
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/public/**").permitAll()
+                .requestMatchers("/health").permitAll()
                 
                 // Swagger/OpenAPI endpoints
                 .requestMatchers("/swagger-ui/**").permitAll()
@@ -91,26 +91,26 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/**").permitAll()
                 
                 // Public product endpoints (for browsing without login)
-                .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/reviews/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/categories/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/reviews/**").permitAll()
                 
                 // Admin only endpoints
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/categories/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/categories/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/categories/**").hasRole("ADMIN")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/products/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/products/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/products/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/categories/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/categories/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/categories/**").hasRole("ADMIN")
                 
                 // User endpoints (require authentication)
-                .requestMatchers("/api/users/profile/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
-                .requestMatchers("/api/cart/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
-                .requestMatchers("/api/orders/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
-                .requestMatchers("/api/reviews/create").hasAnyRole("USER", "CUSTOMER", "ADMIN")
-                .requestMatchers("/api/addresses/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
-                .requestMatchers("/api/wishlist/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
+                .requestMatchers("/users/profile/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
+                .requestMatchers("/cart/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
+                .requestMatchers("/orders/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
+                .requestMatchers("/reviews/create").hasAnyRole("USER", "CUSTOMER", "ADMIN")
+                .requestMatchers("/addresses/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
+                .requestMatchers("/wishlist/**").hasAnyRole("USER", "CUSTOMER", "ADMIN")
                 
                 // All other requests need authentication
                 .anyRequest().authenticated()

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/cart")
 @Tag(name = "Cart", description = "Shopping cart management endpoints")
 @CrossOrigin(origins = "*")
 @PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")

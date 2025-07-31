@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/orders")
 @Tag(name = "Orders", description = "Order management endpoints")
 @CrossOrigin(origins = "*")
 public class OrderController {

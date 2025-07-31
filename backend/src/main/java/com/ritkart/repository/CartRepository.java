@@ -64,7 +64,8 @@ public interface CartRepository extends MongoRepository<Cart, String> {
     List<Cart> findByShippingMethodId(String shippingMethodId);
     
     // Count queries
-    long countByExistsUserId();
+    @Query(value = "{'userId': {$exists: true, $ne: null}}", count = true)
+    long countCartsWithUserId();
     
     @Query(value = "{'items': {$ne: []}}", count = true)
     long countNonEmptyCarts();

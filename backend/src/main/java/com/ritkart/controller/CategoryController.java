@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 @Tag(name = "Categories", description = "Category management endpoints")
 @CrossOrigin(origins = "*")
 public class CategoryController {
