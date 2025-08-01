@@ -425,7 +425,7 @@ const Footer: React.FC = () => (
         <p>&copy; 2025 RitKART. All rights reserved. | Built with React + TypeScript + Tailwind CSS</p>
       </div>
     </div>
-  </div>
+  </footer>
 );
 
 // Main App Component
