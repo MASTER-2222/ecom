@@ -64,7 +64,7 @@ const ServerError: React.FC<ServerErrorProps> = ({ error, resetError }) => {
           </p>
 
           {/* Error Details for Development */}
-          {error && process.env.NODE_ENV === 'development' && (
+          {error && import.meta.env.MODE === 'development' && (
             <Card className="mt-6 text-left bg-red-50 border-red-200">
               <CardContent className="p-4">
                 <h3 className="font-semibold text-red-800 mb-2">Error Details (Development Only):</h3>
