@@ -131,7 +131,7 @@ export const useErrorHandler = (options: ErrorHandlerOptions = {}) => {
     console.error('Error Boundary caught an error:', error, errorInfo);
     
     // In production, you would report this to an error service
-    if (process.env.NODE_ENV === 'production') {
+    if (import.meta.env.MODE === 'production') {
       // Report to error tracking service (Sentry, LogRocket, etc.)
       // errorReportingService.captureException(error, { extra: errorInfo });
     }
