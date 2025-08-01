@@ -18,7 +18,7 @@ interface PageLoadMetrics {
 class PerformanceMonitor {
   private metrics: PerformanceMetric[] = [];
   private observers: PerformanceObserver[] = [];
-  private isEnabled = process.env.NODE_ENV === 'development' || process.env.VITE_ENABLE_PERFORMANCE_MONITORING === 'true';
+  private isEnabled = import.meta.env.MODE === 'development' || import.meta.env.VITE_ENABLE_PERFORMANCE_MONITORING === 'true';
 
   constructor() {
     if (!this.isEnabled) return;
