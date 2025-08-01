@@ -206,7 +206,7 @@ export const ERROR_REPORTING_CONFIG = {
     buildVersion: true,
     environment: true,
     breadcrumbs: true,
-    consoleOutput: process.env.NODE_ENV === 'development'
+    consoleOutput: import.meta.env.MODE === 'development'
   },
   
   // Sampling configuration
