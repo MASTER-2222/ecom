@@ -212,12 +212,12 @@ export const reportError = (error: any, context?: string, additionalInfo?: any) 
   };
 
   // In development, log to console
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.MODE === 'development') {
     console.error('Error Report:', errorReport);
   }
 
   // In production, send to error reporting service
-  if (process.env.NODE_ENV === 'production') {
+  if (import.meta.env.MODE === 'production') {
     // Example implementations:
     // Sentry.captureException(error, { extra: errorReport });
     // LogRocket.captureException(error);
