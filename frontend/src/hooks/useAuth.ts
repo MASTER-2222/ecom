@@ -36,10 +36,17 @@ export const useAuthState = () => {
         const savedUser = getUser();
         
         if (token && savedUser) {
-          // Verify token is still valid by fetching fresh user data
-          const freshUser = await authAPI.getProfile();
-          setUserState(freshUser);
-          setUser(freshUser);
+          try {
+            // Verify token is still valid by fetching fresh user data
+            const freshUser = await authAPI.getProfile();
+            setUserState(freshUser);
+            setUser(freshUser);
+          } catch (apiError) {
+            // If API call fails, use saved user data instead of failing completely
+            console.warn('API call failed, using cached user data:', apiError);
+            setUserState(savedUser);
+            setUser(savedUser);
+          }
         }
       } catch (error) {
         // Token invalid or expired, clear storage
