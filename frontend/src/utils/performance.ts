@@ -280,7 +280,7 @@ class PerformanceMonitor {
 
 // Utility functions for measuring specific operations
 export const measureRender = (componentName: string) => {
-  if (process.env.NODE_ENV !== 'development') return { start: () => {}, end: () => {} };
+  if (import.meta.env.MODE !== 'development') return { start: () => {}, end: () => {} };
   
   let startTime: number;
   
