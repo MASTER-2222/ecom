@@ -7,18 +7,6 @@
     <title>RitKART - Your One-Stop Shopping Destination</title>
     <meta name="description" content="RitKART - Premium e-commerce platform offering millions of products with fast delivery, great prices, and exceptional customer service." />
     <meta name="keywords" content="online shopping, e-commerce, electronics, fashion, home, books, amazon clone" />
-    <script>
-      // Add global error handler to prevent page crashes
-      window.addEventListener('error', function(e) {
-        console.warn('Non-critical error caught:', e.error);
-        return true; // Prevent default error handling
-      });
-      
-      window.addEventListener('unhandledrejection', function(e) {
-        console.warn('Promise rejection caught:', e.reason);
-        e.preventDefault(); // Prevent unhandled rejection errors
-      });
-    </script>
   </head>
   <body>
     <div id="root"></div>
