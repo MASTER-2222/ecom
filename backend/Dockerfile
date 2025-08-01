@@ -2,10 +2,11 @@
 FROM openjdk:17-jdk-slim
 
 # Set working directory
+# Check if we're in root or backend directory
+COPY . /tmp/source
+WORKDIR /tmp/source
+RUN if [ -d "backend" ]; then cp -r backend/* /app/; else cp -r . /app/; fi
 WORKDIR /app
-
-# Copy backend files
-COPY backend/ .
 
 # Install Maven
 RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
