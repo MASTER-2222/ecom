@@ -185,7 +185,7 @@ ${errorInfo?.componentStack || 'No component stack available'}
             </div>
 
             {/* Error Details for Development */}
-            {(process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') && error && (
+            {(import.meta.env.MODE === 'development' || window.location.hostname === 'localhost') && error && (
               <Card className="text-left bg-gray-50 border border-gray-200 mb-8">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
