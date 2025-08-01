@@ -202,14 +202,6 @@ export default defineConfig({
     ]
   },
   
-  // Enable experimental features
-  experimental: {
-    // Enable render built-in optimization
-    renderBuiltUrl(filename) {
-      return { runtime: `window.__assetsPath(${JSON.stringify(filename)})` };
-    }
-  },
-  
   // Define environment variables
   define: {
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
