@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
   const heroSlides = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=400&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/1200/400?random=1',
       title: 'Electronics Sale',
       subtitle: 'Up to 70% off on electronics',
       cta: 'Shop now',
@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/1200/400?random=2',
       title: 'Fashion Week',
       subtitle: 'Trending styles for everyone',
       cta: 'Explore fashion',
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&h=400&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/1200/400?random=3',
       title: 'Home & Garden',
       subtitle: 'Transform your space',
       cta: 'Shop home',
@@ -46,25 +46,25 @@ const HomePage: React.FC = () => {
   const categories = [
     {
       title: 'Electronics',
-      image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=300&h=300&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/300/300?random=4',
       link: '/electronics',
       items: ['Smartphones', 'Laptops', 'Headphones', 'Tablets']
     },
     {
       title: 'Fashion',
-      image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=300&h=300&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/300/300?random=5',
       link: '/fashion',
       items: ['Men\'s Clothing', 'Women\'s Clothing', 'Shoes', 'Accessories']
     },
     {
       title: 'Home & Kitchen',
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/300/300?random=6',
       link: '/home-kitchen',
       items: ['Furniture', 'Kitchen', 'Bedding', 'Decor']
     },
     {
       title: 'Books',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=center&auto=format&q=80',
+      image: 'https://picsum.photos/300/300?random=7',
       link: '/books',
       items: ['Fiction', 'Non-fiction', 'Educational', 'Children']
     }
