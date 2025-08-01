@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "build:prod": "vite build --mode production",
+    "build:render": "npm install --legacy-peer-deps && npm run build",
     "build:analyze": "ANALYZE=true vite build",
     "build:perf": "vite build --mode production && npm run analyze:bundle",
     "install:clean": "rm -rf node_modules package-lock.json yarn.lock && npm install --legacy-peer-deps",
