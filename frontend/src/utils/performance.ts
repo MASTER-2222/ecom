@@ -137,7 +137,7 @@ class PerformanceMonitor {
     this.metrics.push(metric);
 
     // Log in development
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.MODE === 'development') {
       console.log(`Performance Metric: ${name} = ${value.toFixed(2)}ms`, metadata);
     }
 
