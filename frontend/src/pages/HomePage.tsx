@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
       originalPrice: 99.99,
       price: 59.99,
       discount: 40,
-      image: '/api/placeholder/200/200',
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop&crop=center&auto=format&q=80',
       rating: 4.5,
       reviews: 1250
     },
@@ -88,7 +88,7 @@ const HomePage: React.FC = () => {
       originalPrice: 299.99,
       price: 199.99,
       discount: 33,
-      image: '/api/placeholder/200/200',
+      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop&crop=center&auto=format&q=80',
       rating: 4.3,
       reviews: 892
     },
@@ -98,7 +98,7 @@ const HomePage: React.FC = () => {
       originalPrice: 79.99,
       price: 49.99,
       discount: 38,
-      image: '/api/placeholder/200/200',
+      image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop&crop=center&auto=format&q=80',
       rating: 4.6,
       reviews: 2100
     },
@@ -108,7 +108,7 @@ const HomePage: React.FC = () => {
       originalPrice: 49.99,
       price: 29.99,
       discount: 40,
-      image: '/api/placeholder/200/200',
+      image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=200&h=200&fit=crop&crop=center&auto=format&q=80',
       rating: 4.4,
       reviews: 567
     }
