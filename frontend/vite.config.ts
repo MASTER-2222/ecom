@@ -183,9 +183,23 @@ export default defineConfig({
     // Enable HTTP/2 in development
     https: false,
     
+    // Allow external hosts for Emergent Preview
+    host: '0.0.0.0',
+    port: 3000,
+    
+    // Configure allowed hosts for preview environments
+    allowedHosts: [
+      'localhost',
+      '127.0.0.1',
+      '.emergentagent.com',
+      '.preview.emergentagent.com',
+      'ecom-troubleshoot.preview.emergentagent.com'
+    ],
+    
     // Improve HMR performance
     hmr: {
-      overlay: true
+      overlay: true,
+      port: 3000
     },
     
     // Optimize file watching
