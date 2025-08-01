@@ -339,7 +339,7 @@ export const usePerformanceTracker = (componentName: string) => {
 
 // Bundle size analyzer
 export const analyzeBundleSize = () => {
-  if (process.env.NODE_ENV !== 'development') return;
+  if (import.meta.env.MODE !== 'development') return;
   
   const scripts = Array.from(document.querySelectorAll('script[src]'));
   const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
