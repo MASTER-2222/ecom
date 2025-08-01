@@ -183,12 +183,12 @@ export const ERROR_REPORTING_CONFIG = {
   // Services to report errors to
   services: {
     sentry: {
-      enabled: process.env.NODE_ENV === 'production',
-      dsn: process.env.REACT_APP_SENTRY_DSN
+      enabled: import.meta.env.MODE === 'production',
+      dsn: import.meta.env.VITE_SENTRY_DSN
     },
     logRocket: {
-      enabled: process.env.NODE_ENV === 'production',
-      appId: process.env.REACT_APP_LOGROCKET_APP_ID
+      enabled: import.meta.env.MODE === 'production',
+      appId: import.meta.env.VITE_LOGROCKET_APP_ID
     },
     custom: {
       enabled: true,
