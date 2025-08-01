@@ -1,0 +1,15 @@
+[phases.setup]
+nixPkgs = ["maven", "jdk17"]
+
+[phases.build]
+cmds = [
+    "cd backend",
+    "mvn clean package -DskipTests"
+]
+
+[phases.start]
+cmd = "cd backend && java -jar target/ritkart-backend-1.0.0.jar"
+
+[variables]
+NIXPACKS_JDK_VERSION = "17"
+MAVEN_OPTS = "-Xmx1g"
