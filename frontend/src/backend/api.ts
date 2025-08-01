@@ -39,12 +39,19 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+    console.warn('API Error:', error.message, error.response?.status);
+    
     if (error.response?.status === 401) {
       // Unauthorized - clear token and redirect to login
       localStorage.removeItem('ritkart_token');
       localStorage.removeItem('ritkart_user');
-      window.location.href = '/login';
+      // Only redirect if we're not already on login page
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = '/login';
+      }
     }
+    
+    // Always return a rejected promise to handle errors properly
     return Promise.reject(error);
   }
 );
