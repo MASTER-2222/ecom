@@ -57,7 +57,7 @@ export default defineConfig({
     }),
     tailwindcss(),
     injectBuiltByScoutPlugin(),
-    splitVendorChunkPlugin(),
+    // splitVendorChunkPlugin(), // Removed due to conflict with manual chunks
     performancePlugin(),
     // Bundle analyzer in development
     process.env.ANALYZE && visualizer({
