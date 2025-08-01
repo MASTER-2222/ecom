@@ -86,36 +86,40 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Manual chunk splitting for better caching
-        manualChunks: {
+        manualChunks(id) {
           // Vendor chunks
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
-          'chart-vendor': ['recharts'],
-          'utils-vendor': ['axios', 'date-fns', 'clsx'],
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui-vendor';
+            }
+            if (id.includes('recharts')) {
+              return 'chart-vendor';
+            }
+            if (id.includes('axios') || id.includes('date-fns') || id.includes('clsx')) {
+              return 'utils-vendor';
+            }
+            return 'vendor';
+          }
           
-          // App chunks
-          'auth-pages': [
-            './src/pages/auth/Login.tsx',
-            './src/pages/auth/Register.tsx'
-          ],
-          'product-pages': [
-            './src/pages/ProductListing.tsx',
-            './src/pages/ProductDetail.tsx',
-            './src/pages/SearchResults.tsx'
-          ],
-          'cart-pages': [
-            './src/pages/Cart.tsx',
-            './src/pages/Checkout.tsx',
-            './src/pages/OrderSuccess.tsx'
-          ],
-          'admin-pages': [
-            './src/pages/admin/AdminDashboard.tsx'
-          ],
-          'account-pages': [
-            './src/pages/account/Profile.tsx',
-            './src/pages/Wishlist.tsx',
-            './src/pages/ComparisonPage.tsx'
-          ]
+          // App chunks based on file paths
+          if (id.includes('pages/auth/')) {
+            return 'auth-pages';
+          }
+          if (id.includes('pages/Product') || id.includes('pages/SearchResults')) {
+            return 'product-pages';
+          }
+          if (id.includes('pages/Cart') || id.includes('pages/Checkout') || id.includes('pages/OrderSuccess')) {
+            return 'cart-pages';
+          }
+          if (id.includes('pages/admin/')) {
+            return 'admin-pages';
+          }
+          if (id.includes('pages/account/') || id.includes('pages/Wishlist') || id.includes('pages/ComparisonPage')) {
+            return 'account-pages';
+          }
         },
         
         // Optimize asset file names
