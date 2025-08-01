@@ -142,22 +142,8 @@ export default defineConfig({
       ] : []
     },
     
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        // Remove console logs in production
-        drop_console: process.env.NODE_ENV === 'production',
-        drop_debugger: true,
-        pure_funcs: process.env.NODE_ENV === 'production' ? ['console.log', 'console.info'] : []
-      },
-      mangle: {
-        safari10: true
-      },
-      format: {
-        comments: false
-      }
-    },
+    // Enable minification with esbuild (faster than terser)
+    minify: 'esbuild',
     
     // Target modern browsers for better optimization
     target: 'es2020',
