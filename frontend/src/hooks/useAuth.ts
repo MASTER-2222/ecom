@@ -37,15 +37,30 @@ export const useAuthState = () => {
         
         if (token && savedUser) {
           // Verify token is still valid by fetching fresh user data
-          const freshUser = await authAPI.getProfile();
-          setUserState(freshUser);
-          setUser(freshUser);
+          try {
+            const freshUser = await authAPI.getProfile();
+            if (freshUser && freshUser.id) {
+              setUserState(freshUser);
+              setUser(freshUser);
+            } else {
+              throw new Error('Invalid user data received');
+            }
+          } catch (profileError) {
+            console.warn('Failed to fetch user profile:', profileError);
+            // Clear invalid auth data but don't crash the app
+            localStorage.removeItem('ritkart_token');
+            localStorage.removeItem('ritkart_user');
+            localStorage.removeItem('ritkart_refresh_token');
+            setUserState(null);
+          }
         }
       } catch (error) {
+        console.warn('Auth initialization error:', error);
         // Token invalid or expired, clear storage
         localStorage.removeItem('ritkart_token');
         localStorage.removeItem('ritkart_user');
         localStorage.removeItem('ritkart_refresh_token');
+        setUserState(null);
       } finally {
         setLoading(false);
       }
