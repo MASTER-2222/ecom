@@ -57,7 +57,11 @@ export default defineConfig({
     }),
     tailwindcss(),
     injectBuiltByScoutPlugin(),
-    splitVendorChunkPlugin(),
+    // Custom vendor chunk splitting
+    {
+      ...splitVendorChunkPlugin(),
+      name: 'custom-vendor-chunks'
+    },
     performancePlugin(),
     // Bundle analyzer in development
     process.env.ANALYZE && visualizer({
