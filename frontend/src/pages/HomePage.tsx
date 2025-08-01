@@ -127,7 +127,16 @@ const HomePage: React.FC = () => {
     // Fetch featured products
     const fetchFeaturedProducts = async () => {
       try {
-        // For now, we'll create mock data since backend isn't connected yet
+        // Try to fetch real featured products first
+        const response = await productsAPI.getFeaturedProducts();
+        if (response && Array.isArray(response)) {
+          setFeaturedProducts(response);
+        } else {
+          throw new Error('Invalid response format');
+        }
+      } catch (error) {
+        console.warn('Failed to fetch featured products, using mock data:', error);
+        // Fallback to mock data if API fails
         const mockProducts: Product[] = [
           {
             id: '1',
@@ -155,8 +164,6 @@ const HomePage: React.FC = () => {
           }
         ];
         setFeaturedProducts(mockProducts);
-      } catch (error) {
-        console.error('Failed to fetch featured products:', error);
       } finally {
         setLoading(false);
       }
