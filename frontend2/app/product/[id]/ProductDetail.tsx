@@ -320,10 +320,10 @@ const products: { [key: string]: Product } = {
     price: 32999,
     originalPrice: 39999,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['front-load-washer'],
+      productImages['front-load-washer'],
+      productImages['front-load-washer'],
+      productImages['front-load-washer']
     ],
     rating: 4.5,
     reviews: 892,
