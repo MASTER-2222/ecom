@@ -110,7 +110,7 @@ export default function SavedItemsPage() {
                   <div className="flex items-start space-x-4">
                     <Link href={`/product/${item.product_id}`}>
                       <img
-                        src={item.product_image || `https://readdy.ai/api/search-image?query=$%7Bitem.category%7D%20product%20modern%20design%20clean%20white%20background%20professional%20product%20photography&width=150&height=150&seq=saved-${item.product_id}&orientation=squarish`}
+                        src={item.product_image || `productImages['samsung-s24']
                         alt={item.product_name}
                         className="w-24 h-24 object-cover rounded-md cursor-pointer object-top"
                       />

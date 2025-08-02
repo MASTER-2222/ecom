@@ -108,7 +108,7 @@ export default function WishlistPage() {
                   <div className="relative mb-4">
                     <Link href={`/product/${item.product_id}`}>
                       <img
-                        src={item.product_image || `https://readdy.ai/api/search-image?query=$%7Bitem.category%7D%20product%20modern%20design%20clean%20white%20background%20professional%20product%20photography&width=250&height=250&seq=wish-${item.product_id}&orientation=squarish`}
+                        src={item.product_image || `productImages['samsung-s24']
                         alt={item.product_name}
                         className="w-full h-48 object-cover rounded-md cursor-pointer object-top"
                       />

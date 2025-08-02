@@ -177,7 +177,7 @@ export default function OrdersPage() {
                       <div key={item.id} className="flex items-center space-x-4">
                         <Link href={`/product/${item.product_id}`}>
                           <img
-                            src={item.product_image || `https://readdy.ai/api/search-image?query=product%20placeholder&width=80&height=80&seq=order-${item.id}&orientation=squarish`}
+                            src={item.product_image || `productImages['samsung-s24']
                             alt={item.product_name}
                             className="w-20 h-20 object-cover rounded-md cursor-pointer object-top"
                           />

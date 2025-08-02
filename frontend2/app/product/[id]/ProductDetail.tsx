@@ -36,10 +36,10 @@ const products: { [key: string]: Product } = {
     price: 124999,
     originalPrice: 149999,
     images: [
-      'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20smartphone%20in%20titanium%20black%20color%20with%20sleek%20modern%20design%2C%20product%20photography%20on%20clean%20white%20background%2C%20professional%20lighting%2C%20high-end%20smartphone%20with%20premium%20metallic%20finish%20and%20camera%20module%20visible&width=500&height=500&seq=s24-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20titanium%20black%20back%20view%20camera%20setup%20premium%20design%20clean%20white%20background%20professional%20product%20photography%20detailed%20view&width=500&height=500&seq=s24-back&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20titanium%20black%20side%20view%20profile%20premium%20smartphone%20design%20clean%20white%20background%20professional%20product%20photography&width=500&height=500&seq=s24-side&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20accessories%20box%20contents%20charger%20cable%20premium%20package%20clean%20white%20background%20professional%20product%20photography&width=500&height=500&seq=s24-box&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.5,
     reviews: 2847,
@@ -71,10 +71,10 @@ const products: { [key: string]: Product } = {
     price: 29990,
     originalPrice: 34990,
     images: [
-      'https://readdy.ai/api/search-image?query=Sony%20premium%20wireless%20noise%20canceling%20headphones%20in%20black%20color%20with%20modern%20sleek%20design%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20high-quality%20audio%20headphones%20with%20cushioned%20ear%20cups&width=500&height=500&seq=sony-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Sony%20WH-1000XM5%20headphones%20side%20view%20showing%20adjustable%20headband%20and%20premium%20build%20quality%2C%20professional%20product%20photography%20clean%20white%20background&width=500&height=500&seq=sony-side&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Sony%20WH-1000XM5%20headphones%20with%20accessories%20carry%20case%20and%20cables%2C%20premium%20package%20unboxing%20clean%20white%20background%20professional%20photography&width=500&height=500&seq=sony-acc&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Sony%20WH-1000XM5%20headphones%20folded%20compact%20design%20showing%20portability%2C%20professional%20product%20photography%20clean%20white%20background&width=500&height=500&seq=sony-fold&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.7,
     reviews: 1523,
@@ -106,10 +106,10 @@ const products: { [key: string]: Product } = {
     price: 114900,
     originalPrice: 119900,
     images: [
-      'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20laptop%20in%20silver%20color%20with%20ultra-thin%20design%2C%20clean%20minimalist%20product%20photography%20on%20white%20background%2C%20premium%20aluminum%20finish%20laptop%20computer%20with%20Apple%20logo%20visible&width=500&height=500&seq=macbook-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20laptop%20open%20showing%20keyboard%20and%20screen%2C%20clean%20design%20professional%20product%20photography%20white%20background&width=500&height=500&seq=macbook-open&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20laptop%20side%20view%20showing%20ultra-thin%20profile%2C%20premium%20design%20professional%20photography%20white%20background&width=500&height=500&seq=macbook-side&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20laptop%20with%20accessories%20MagSafe%20charger%20and%20cables%2C%20premium%20unboxing%20white%20background%20professional%20photography&width=500&height=500&seq=macbook-acc&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.8,
     reviews: 3621,
@@ -142,10 +142,10 @@ const products: { [key: string]: Product } = {
     price: 2999,
     originalPrice: 4499,
     images: [
-      'https://readdy.ai/api/search-image?query=Levis%20mens%20slim%20fit%20dark%20blue%20jeans%20with%20modern%20cut%20and%20premium%20denim%20fabric%2C%20professional%20fashion%20product%20photography%20on%20clean%20white%20background%2C%20stylish%20casual%20wear%20with%20brand%20details%20visible&width=500&height=500&seq=levis-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Levis%20511%20jeans%20back%20view%20showing%20pockets%20and%20fit%2C%20premium%20denim%20detailing%20professional%20fashion%20photography%20white%20background&width=500&height=500&seq=levis-back&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Levis%20jeans%20fabric%20detail%20showing%20premium%20denim%20texture%20and%20stitching%20quality%2C%20close-up%20professional%20photography%20white%20background&width=500&height=500&seq=levis-fabric&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Levis%20jeans%20waistband%20and%20label%20detail%20showing%20authentic%20brand%20tags%2C%20professional%20fashion%20photography%20white%20background&width=500&height=500&seq=levis-label&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.4,
     reviews: 1247,
@@ -177,10 +177,10 @@ const products: { [key: string]: Product } = {
     price: 7999,
     originalPrice: 8999,
     images: [
-      'https://readdy.ai/api/search-image?query=Nike%20Air%20Force%201%20white%20sneakers%20with%20classic%20design%20and%20premium%20leather%20upper%2C%20iconic%20basketball%20shoes%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20athletic%20footwear%20with%20Nike%20swoosh%20logo&width=500&height=500&seq=nike-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Nike%20Air%20Force%201%20sneakers%20side%20view%20showing%20classic%20silhouette%20and%20Air%20sole%20unit%2C%20professional%20footwear%20photography%20white%20background&width=500&height=500&seq=nike-side&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Nike%20Air%20Force%201%20sneakers%20sole%20view%20showing%20tread%20pattern%20and%20Air%20technology%2C%20professional%20product%20photography%20white%20background&width=500&height=500&seq=nike-sole&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Nike%20Air%20Force%201%20sneakers%20pair%20with%20shoebox%20and%20tissue%20paper%2C%20premium%20packaging%20professional%20photography%20white%20background&width=500&height=500&seq=nike-box&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.8,
     reviews: 2156,
@@ -213,10 +213,10 @@ const products: { [key: string]: Product } = {
     price: 24999,
     originalPrice: 29999,
     images: [
-      'https://readdy.ai/api/search-image?query=Modern%20white%20wooden%20bed%20frame%20with%20built-in%20storage%20drawers%20underneath%2C%20Scandinavian%20minimalist%20design%20furniture%20for%20bedroom%2C%20clean%20white%20background%20professional%20product%20photography%2C%20elegant%20home%20furniture&width=500&height=500&seq=ikea-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=IKEA%20HEMNES%20bed%20frame%20storage%20drawer%20detail%20showing%20organization%20compartments%2C%20functional%20bedroom%20furniture%20white%20background%20professional%20photography&width=500&height=500&seq=ikea-storage&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=IKEA%20HEMNES%20bed%20frame%20headboard%20detail%20showing%20wooden%20craftsmanship%20and%20white%20stain%20finish%2C%20professional%20furniture%20photography%20white%20background&width=500&height=500&seq=ikea-head&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=IKEA%20HEMNES%20bed%20frame%20assembly%20parts%20and%20hardware%20components%2C%20flat-pack%20furniture%20packaging%20professional%20photography%20white%20background&width=500&height=500&seq=ikea-parts&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.5,
     reviews: 1247,
@@ -248,10 +248,10 @@ const products: { [key: string]: Product } = {
     price: 34999,
     originalPrice: 44999,
     images: [
-      'https://readdy.ai/api/search-image?query=Modern%20navy%20blue%20fabric%20sofa%20with%20clean%20lines%20and%20comfortable%20cushions%2C%20contemporary%20living%20room%20furniture%20with%20wooden%20legs%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20stylish%20home%20decor&width=500&height=500&seq=sofa-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Urban%20Ladder%20Aruba%20sofa%20side%20view%20showing%20wooden%20legs%20and%20fabric%20upholstery%2C%20modern%20furniture%20design%20professional%20photography%20white%20background&width=500&height=500&seq=sofa-side&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Urban%20Ladder%20sofa%20cushion%20detail%20showing%20premium%20fabric%20texture%20and%20comfort%2C%20close-up%20furniture%20photography%20white%20background&width=500&height=500&seq=sofa-fabric&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Urban%20Ladder%20sofa%20wooden%20legs%20detail%20showing%20craftsmanship%20and%20finish%2C%20professional%20furniture%20photography%20white%20background&width=500&height=500&seq=sofa-legs&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.6,
     reviews: 892,
@@ -284,10 +284,10 @@ const products: { [key: string]: Product } = {
     price: 28999,
     originalPrice: 34999,
     images: [
-      'https://readdy.ai/api/search-image?query=Modern%20stainless%20steel%20double%20door%20refrigerator%20with%20sleek%20design%20and%20digital%20display%2C%20energy%20efficient%20home%20appliance%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20premium%20kitchen%20appliance&width=500&height=500&seq=lg-fridge-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=LG%20refrigerator%20interior%20showing%20spacious%20compartments%20and%20shelves%2C%20organized%20food%20storage%20professional%20appliance%20photography%20white%20background&width=500&height=500&seq=lg-fridge-inside&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=LG%20refrigerator%20digital%20control%20panel%20and%20display%20showing%20smart%20features%2C%20modern%20appliance%20interface%20professional%20photography%20white%20background&width=500&height=500&seq=lg-fridge-panel&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=LG%20refrigerator%20energy%20star%20rating%20label%20and%20specifications%2C%20efficient%20home%20appliance%20professional%20photography%20white%20background&width=500&height=500&seq=lg-fridge-rating&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.4,
     reviews: 1247,
@@ -319,10 +319,10 @@ const products: { [key: string]: Product } = {
     price: 32999,
     originalPrice: 39999,
     images: [
-      'https://readdy.ai/api/search-image?query=Modern%20white%20front%20loading%20washing%20machine%20with%20digital%20display%20and%20sleek%20design%2C%20efficient%20laundry%20appliance%20for%20home%20use%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20contemporary%20home%20appliance&width=500&height=500&seq=samsung-wash-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Samsung%20washing%20machine%20control%20panel%20showing%20various%20wash%20programs%20and%20digital%20display%2C%20modern%20appliance%20interface%20professional%20photography%20white%20background&width=500&height=500&seq=samsung-wash-panel&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Samsung%20washing%20machine%20drum%20interior%20showing%20stainless%20steel%20construction%20and%20wash%20basket%2C%20professional%20appliance%20photography%20white%20background&width=500&height=500&seq=samsung-wash-drum&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Samsung%20washing%20machine%20EcoBubble%20technology%20feature%20demonstration%2C%20energy%20efficient%20laundry%20professional%20photography%20white%20background&width=500&height=500&seq=samsung-wash-eco&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.5,
     reviews: 892,
@@ -355,10 +355,10 @@ const products: { [key: string]: Product } = {
     price: 299,
     originalPrice: 399,
     images: [
-      'https://readdy.ai/api/search-image?query=Psychology%20of%20Money%20book%20cover%20with%20professional%20finance%20theme%20design%2C%20bestselling%20personal%20finance%20book%20with%20modern%20typography%20and%20money%20symbols%2C%20clean%20book%20cover%20photography%20on%20white%20background&width=500&height=500&seq=psychology-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Psychology%20of%20Money%20book%20back%20cover%20showing%20author%20bio%20and%20book%20summary%2C%20professional%20book%20photography%20white%20background&width=500&height=500&seq=psychology-back&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Psychology%20of%20Money%20book%20open%20showing%20chapter%20pages%20and%20typography%20layout%2C%20professional%20book%20photography%20white%20background&width=500&height=500&seq=psychology-open&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Psychology%20of%20Money%20book%20with%20bookmark%20and%20reading%20glasses%2C%20professional%20lifestyle%20book%20photography%20white%20background&width=500&height=500&seq=psychology-read&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.6,
     reviews: 2847,
@@ -390,10 +390,10 @@ const products: { [key: string]: Product } = {
     price: 349,
     originalPrice: 449,
     images: [
-      'https://readdy.ai/api/search-image?query=Atomic%20Habits%20book%20cover%20with%20minimalist%20design%20and%20productivity%20theme%2C%20bestselling%20self-help%20book%20with%20modern%20clean%20typography%2C%20professional%20book%20photography%20on%20white%20background&width=500&height=500&seq=atomic-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Atomic%20Habits%20book%20spine%20showing%20title%20and%20author%20name%2C%20professional%20book%20photography%20white%20background%20library%20setting&width=500&height=500&seq=atomic-spine&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Atomic%20Habits%20book%20open%20showing%20habit%20formation%20diagrams%20and%20illustrations%2C%20professional%20book%20photography%20white%20background&width=500&height=500&seq=atomic-inside&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=Atomic%20Habits%20book%20with%20notepad%20and%20pen%20for%20taking%20notes%2C%20professional%20lifestyle%20book%20photography%20white%20background&width=500&height=500&seq=atomic-notes&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.7,
     reviews: 1923,
@@ -425,10 +425,10 @@ const products: { [key: string]: Product } = {
     price: 249,
     originalPrice: 329,
     images: [
-      'https://readdy.ai/api/search-image?query=The%20Alchemist%20book%20cover%20with%20mystical%20and%20adventure%20theme%20design%2C%20bestselling%20fiction%20novel%20with%20desert%20and%20journey%20imagery%2C%20artistic%20book%20cover%20photography%20on%20clean%20white%20background&width=500&height=500&seq=alchemist-main&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=The%20Alchemist%20book%20with%20desert%20sand%20and%20compass%2C%20mystical%20journey%20theme%20professional%20book%20photography%20white%20background&width=500&height=500&seq=alchemist-theme&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=The%20Alchemist%20book%20open%20showing%20beautiful%20prose%20and%20storytelling%2C%20professional%20book%20photography%20white%20background&width=500&height=500&seq=alchemist-open&orientation=squarish',
-      'https://readdy.ai/api/search-image?query=The%20Alchemist%20book%20collection%20showing%20multiple%20language%20editions%2C%20international%20bestseller%20professional%20photography%20white%20background&width=500&height=500&seq=alchemist-collection&orientation=squarish'
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']',
+      'productImages['samsung-s24']'
     ],
     rating: 4.8,
     reviews: 4521,

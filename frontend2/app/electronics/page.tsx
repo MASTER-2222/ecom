@@ -21,7 +21,7 @@ const products: Product[] = [
     name: 'Samsung Galaxy S24 Ultra 5G (Titanium Black, 256GB)',
     price: 124999,
     originalPrice: 149999,
-    image: 'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20smartphone%20in%20titanium%20black%20color%20with%20sleek%20modern%20design%2C%20product%20photography%20on%20clean%20white%20background%2C%20professional%20lighting%2C%20high-end%20smartphone%20with%20premium%20metallic%20finish%20and%20camera%20module%20visible&width=300&height=300&seq=electronics-1&orientation=squarish',
+    image: productImages['samsung-s24'],
     rating: 4.5,
     reviews: 2847,
     brand: 'Samsung'
@@ -31,7 +31,7 @@ const products: Product[] = [
     name: 'Sony WH-1000XM5 Wireless Noise Canceling Headphones',
     price: 29990,
     originalPrice: 34990,
-    image: 'https://readdy.ai/api/search-image?query=Sony%20premium%20wireless%20noise%20canceling%20headphones%20in%20black%20color%20with%20modern%20sleek%20design%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20high-quality%20audio%20headphones%20with%20cushioned%20ear%20cups&width=300&height=300&seq=electronics-2&orientation=squarish',
+    image: productImages['sony-headphones'],
     rating: 4.7,
     reviews: 1523,
     brand: 'Sony'
@@ -41,7 +41,7 @@ const products: Product[] = [
     name: 'Apple MacBook Air M2 (13-inch, 8GB RAM, 256GB SSD)',
     price: 114900,
     originalPrice: 119900,
-    image: 'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20laptop%20in%20silver%20color%20with%20ultra-thin%20design%2C%20clean%20minimalist%20product%20photography%20on%20white%20background%2C%20premium%20aluminum%20finish%20laptop%20computer%20with%20Apple%20logo%20visible&width=300&height=300&seq=electronics-3&orientation=squarish',
+    image: productImages['macbook-air'],
     rating: 4.8,
     reviews: 3621,
     brand: 'Apple'
@@ -51,7 +51,7 @@ const products: Product[] = [
     name: 'LG 55" 4K Ultra HD Smart OLED TV (OLED55C3PSA)',
     price: 139999,
     originalPrice: 179999,
-    image: 'https://readdy.ai/api/search-image?query=LG%20OLED%20smart%20TV%20with%20ultra-slim%20design%20displaying%20vibrant%20colors%20on%20screen%2C%20modern%20television%20with%20thin%20bezels%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20premium%20home%20entertainment%20device&width=300&height=300&seq=electronics-4&orientation=squarish',
+    image: productImages['lg-oled-tv'],
     rating: 4.6,
     reviews: 945,
     brand: 'LG'
@@ -61,7 +61,7 @@ const products: Product[] = [
     name: 'Canon EOS R6 Mark II Mirrorless Camera with 24-105mm Lens',
     price: 239999,
     originalPrice: 269999,
-    image: 'https://readdy.ai/api/search-image?query=Canon%20professional%20mirrorless%20camera%20with%20attached%20lens%2C%20black%20body%20with%20modern%20design%2C%20high-end%20photography%20equipment%20on%20clean%20white%20background%2C%20detailed%20camera%20body%20with%20controls%20and%20lens%20visible&width=300&height=300&seq=electronics-5&orientation=squarish',
+    image: productImages['canon-camera'],
     rating: 4.9,
     reviews: 567,
     brand: 'Canon'
@@ -71,7 +71,7 @@ const products: Product[] = [
     name: 'Dell XPS 13 Plus Laptop (Intel i7, 16GB RAM, 512GB SSD)',
     price: 149999,
     originalPrice: 169999,
-    image: 'https://readdy.ai/api/search-image?query=Dell%20XPS%20premium%20laptop%20computer%20in%20silver%20with%20modern%20sleek%20design%2C%20ultra-thin%20profile%2C%20professional%20business%20laptop%20on%20clean%20white%20background%2C%20high-quality%20aluminum%20construction%20with%20clean%20lines&width=300&height=300&seq=electronics-6&orientation=squarish',
+    image: productImages['dell-xps'],
     rating: 4.5,
     reviews: 1234,
     brand: 'Dell'
@@ -81,7 +81,7 @@ const products: Product[] = [
     name: 'JBL PartyBox 310 Portable Bluetooth Speaker',
     price: 28999,
     originalPrice: 34999,
-    image: 'https://readdy.ai/api/search-image?query=JBL%20large%20portable%20bluetooth%20speaker%20with%20LED%20lights%20and%20modern%20design%2C%20black%20color%20party%20speaker%20with%20handles%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20powerful%20audio%20equipment&width=300&height=300&seq=electronics-7&orientation=squarish',
+    image: productImages['ceiling-light'],
     rating: 4.4,
     reviews: 892,
     brand: 'JBL'
@@ -91,7 +91,7 @@ const products: Product[] = [
     name: 'iPad Air 5th Gen (10.9-inch, Wi-Fi, 64GB) - Space Gray',
     price: 59900,
     originalPrice: 64900,
-    image: 'https://readdy.ai/api/search-image?query=Apple%20iPad%20Air%20tablet%20in%20space%20gray%20color%20with%20modern%20slim%20design%2C%20clean%20minimalist%20product%20photography%20on%20white%20background%2C%20premium%20tablet%20computer%20with%20Apple%20logo%2C%20sleek%20aluminum%20finish&width=300&height=300&seq=electronics-8&orientation=squarish',
+    image: productImages['samsung-s24'],
     rating: 4.7,
     reviews: 2156,
     brand: 'Apple'
