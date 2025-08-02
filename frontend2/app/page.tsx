@@ -154,37 +154,37 @@ export default function Home() {
     {
       name: 'Electronics',
       icon: 'ri-computer-line',
-      image: 'https://readdy.ai/api/search-image?query=electronics%20category%20icon%20with%20laptop%20smartphone%20headphones%20modern%20tech%20gadgets%20blue%20background%20clean%20minimalist%20design%20ecommerce%20category%20illustration&width=120&height=120&seq=cat-electronics&orientation=squarish',
+      image: categoryImages.electronics,
       href: '/electronics'
     },
     {
       name: 'Fashion',
       icon: 'ri-shirt-line',
-      image: 'https://readdy.ai/api/search-image?query=fashion%20category%20icon%20with%20stylish%20clothing%20accessories%20shoes%20modern%20apparel%20design%20colorful%20background%20clean%20minimalist%20ecommerce%20category%20illustration&width=120&height=120&seq=cat-fashion&orientation=squarish',
+      image: categoryImages.fashion,
       href: '/fashion'
     },
     {
       name: 'Home & Kitchen',
       icon: 'ri-home-line',
-      image: 'https://readdy.ai/api/search-image?query=home%20kitchen%20category%20icon%20with%20appliances%20furniture%20cooking%20utensils%20modern%20household%20items%20warm%20background%20clean%20minimalist%20ecommerce%20illustration&width=120&height=120&seq=cat-home&orientation=squarish',
+      image: categoryImages.home,
       href: '/home'
     },
     {
       name: 'Appliances',
       icon: 'ri-fridge-line',
-      image: 'https://readdy.ai/api/search-image?query=appliances%20category%20icon%20with%20refrigerator%20washing%20machine%20microwave%20modern%20home%20appliances%20clean%20background%20minimalist%20ecommerce%20category%20illustration&width=120&height=120&seq=cat-appliances&orientation=squarish',
+      image: categoryImages.appliances,
       href: '/appliances'
     },
     {
       name: 'Mobiles',
       icon: 'ri-smartphone-line',
-      image: 'https://readdy.ai/api/search-image?query=mobile%20phones%20category%20icon%20with%20smartphones%20accessories%20modern%20mobile%20devices%20tech%20background%20clean%20minimalist%20ecommerce%20category%20illustration&width=120&height=120&seq=cat-mobiles&orientation=squarish',
+      image: categoryImages.mobiles,
       href: '/mobiles'
     },
     {
       name: 'Books',
       icon: 'ri-book-line',
-      image: 'https://readdy.ai/api/search-image?query=books%20category%20icon%20with%20stack%20of%20books%20reading%20education%20literature%20warm%20background%20clean%20minimalist%20ecommerce%20category%20illustration&width=120&height=120&seq=cat-books&orientation=squarish',
+      image: categoryImages.books,
       href: '/books'
     }
   ];
