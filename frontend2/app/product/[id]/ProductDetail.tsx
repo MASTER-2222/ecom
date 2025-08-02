@@ -143,10 +143,10 @@ const products: { [key: string]: Product } = {
     price: 2999,
     originalPrice: 4499,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['levis-jeans-men'],
+      productImages['levis-jeans-men'],
+      productImages['levis-jeans-men'],
+      productImages['levis-jeans-men']
     ],
     rating: 4.4,
     reviews: 1247,
