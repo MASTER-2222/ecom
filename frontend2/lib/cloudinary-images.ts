@@ -92,14 +92,14 @@ export const productImages = {
   'psychology-money-book': 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_250,h_250,c_fill,f_auto,q_auto/ritkart/books/psychology-money-book',
 };
 
-// Category Images
+// Category Images - Updated with actual Cloudinary URLs
 export const categoryImages = {
-  electronics: getCloudinaryUrl('category-electronics', transformations.category_icon),
-  fashion: getCloudinaryUrl('category-fashion', transformations.category_icon),
-  home: getCloudinaryUrl('category-home-kitchen', transformations.category_icon),
-  appliances: getCloudinaryUrl('category-appliances', transformations.category_icon),
-  mobiles: getCloudinaryUrl('category-mobiles', transformations.category_icon),
-  books: getCloudinaryUrl('category-books', transformations.category_icon),
+  electronics: 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_120,h_120,c_fill,f_auto,q_auto/ritkart/categories/category-electronics',
+  fashion: 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_120,h_120,c_fill,f_auto,q_auto/ritkart/categories/category-fashion',
+  home: 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_120,h_120,c_fill,f_auto,q_auto/ritkart/categories/category-home-kitchen',
+  appliances: 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_120,h_120,c_fill,f_auto,q_auto/ritkart/categories/category-appliances',
+  mobiles: 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_120,h_120,c_fill,f_auto,q_auto/ritkart/categories/category-mobiles',
+  books: 'https://res.cloudinary.com/dv0lg87ib/image/upload/w_120,h_120,c_fill,f_auto,q_auto/ritkart/categories/category-books',
 };
 
 // Hero Banner Images
