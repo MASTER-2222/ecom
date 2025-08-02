@@ -1,1 +1,382 @@
-{}
+{
+  "samsung-galaxy-s24-ultra": {
+    "public_id": "ritkart/electronics/samsung-galaxy-s24-ultra",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131652/ritkart/electronics/samsung-galaxy-s24-ultra.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:33.059Z"
+  },
+  "iphone-15-pro-max": {
+    "public_id": "ritkart/electronics/iphone-15-pro-max",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131653/ritkart/electronics/iphone-15-pro-max.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:34.099Z"
+  },
+  "sony-wh1000xm5": {
+    "public_id": "ritkart/electronics/sony-wh1000xm5",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131654/ritkart/electronics/sony-wh1000xm5.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:35.263Z"
+  },
+  "macbook-air-m2": {
+    "public_id": "ritkart/electronics/macbook-air-m2",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131655/ritkart/electronics/macbook-air-m2.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:38.351Z"
+  },
+  "dell-xps-13": {
+    "public_id": "ritkart/electronics/dell-xps-13",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131658/ritkart/electronics/dell-xps-13.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:39.355Z"
+  },
+  "lg-oled-tv-55": {
+    "public_id": "ritkart/electronics/lg-oled-tv-55",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131659/ritkart/electronics/lg-oled-tv-55.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:40.436Z"
+  },
+  "canon-eos-r6": {
+    "public_id": "ritkart/electronics/canon-eos-r6",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131660/ritkart/electronics/canon-eos-r6.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:41.577Z"
+  },
+  "playstation-5": {
+    "public_id": "ritkart/electronics/playstation-5",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131661/ritkart/electronics/playstation-5.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:42.611Z"
+  },
+  "nintendo-switch-oled": {
+    "public_id": "ritkart/electronics/nintendo-switch-oled",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131662/ritkart/electronics/nintendo-switch-oled.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Electronics",
+    "uploaded_at": "2025-08-02T10:47:43.542Z"
+  },
+  "oneplus-12": {
+    "public_id": "ritkart/mobiles/oneplus-12",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131663/ritkart/mobiles/oneplus-12.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Mobiles",
+    "uploaded_at": "2025-08-02T10:47:44.768Z"
+  },
+  "google-pixel-8": {
+    "public_id": "ritkart/mobiles/google-pixel-8",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131664/ritkart/mobiles/google-pixel-8.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Mobiles",
+    "uploaded_at": "2025-08-02T10:47:45.883Z"
+  },
+  "xiaomi-14-ultra": {
+    "public_id": "ritkart/mobiles/xiaomi-14-ultra",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131666/ritkart/mobiles/xiaomi-14-ultra.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Mobiles",
+    "uploaded_at": "2025-08-02T10:47:46.938Z"
+  },
+  "levis-jeans-men": {
+    "public_id": "ritkart/fashion/levis-jeans-men",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131667/ritkart/fashion/levis-jeans-men.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Fashion",
+    "uploaded_at": "2025-08-02T10:47:47.941Z"
+  },
+  "womens-floral-dress": {
+    "public_id": "ritkart/fashion/womens-floral-dress",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131668/ritkart/fashion/womens-floral-dress.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Fashion",
+    "uploaded_at": "2025-08-02T10:47:48.937Z"
+  },
+  "nike-air-force-1": {
+    "public_id": "ritkart/fashion/nike-air-force-1",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131669/ritkart/fashion/nike-air-force-1.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Fashion",
+    "uploaded_at": "2025-08-02T10:47:49.937Z"
+  },
+  "mens-cotton-tshirt": {
+    "public_id": "ritkart/fashion/mens-cotton-tshirt",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131670/ritkart/fashion/mens-cotton-tshirt.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Fashion",
+    "uploaded_at": "2025-08-02T10:47:51.082Z"
+  },
+  "womens-denim-jacket": {
+    "public_id": "ritkart/fashion/womens-denim-jacket",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131671/ritkart/fashion/womens-denim-jacket.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Fashion",
+    "uploaded_at": "2025-08-02T10:47:52.190Z"
+  },
+  "adidas-ultraboost": {
+    "public_id": "ritkart/fashion/adidas-ultraboost",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131672/ritkart/fashion/adidas-ultraboost.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Fashion",
+    "uploaded_at": "2025-08-02T10:47:53.170Z"
+  },
+  "wooden-bed-frame": {
+    "public_id": "ritkart/home/wooden-bed-frame",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131673/ritkart/home/wooden-bed-frame.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:47:54.167Z"
+  },
+  "navy-fabric-sofa": {
+    "public_id": "ritkart/home/navy-fabric-sofa",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131674/ritkart/home/navy-fabric-sofa.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:47:55.246Z"
+  },
+  "wooden-study-desk": {
+    "public_id": "ritkart/home/wooden-study-desk",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131675/ritkart/home/wooden-study-desk.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:47:56.300Z"
+  },
+  "dining-table-set": {
+    "public_id": "ritkart/home/dining-table-set",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131676/ritkart/home/dining-table-set.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:47:57.274Z"
+  },
+  "kitchen-cabinet-white": {
+    "public_id": "ritkart/home/kitchen-cabinet-white",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131677/ritkart/home/kitchen-cabinet-white.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:47:58.464Z"
+  },
+  "memory-foam-mattress": {
+    "public_id": "ritkart/home/memory-foam-mattress",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131678/ritkart/home/memory-foam-mattress.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:47:59.864Z"
+  },
+  "wooden-wardrobe": {
+    "public_id": "ritkart/home/wooden-wardrobe",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131680/ritkart/home/wooden-wardrobe.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:48:01.190Z"
+  },
+  "led-ceiling-light": {
+    "public_id": "ritkart/home/led-ceiling-light",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131681/ritkart/home/led-ceiling-light.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Home",
+    "uploaded_at": "2025-08-02T10:48:02.362Z"
+  },
+  "lg-double-door-fridge": {
+    "public_id": "ritkart/appliances/lg-double-door-fridge",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131682/ritkart/appliances/lg-double-door-fridge.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Appliances",
+    "uploaded_at": "2025-08-02T10:48:03.478Z"
+  },
+  "front-load-washer": {
+    "public_id": "ritkart/appliances/front-load-washer",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131683/ritkart/appliances/front-load-washer.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Appliances",
+    "uploaded_at": "2025-08-02T10:48:04.502Z"
+  },
+  "split-air-conditioner": {
+    "public_id": "ritkart/appliances/split-air-conditioner",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131684/ritkart/appliances/split-air-conditioner.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Appliances",
+    "uploaded_at": "2025-08-02T10:48:05.565Z"
+  },
+  "convection-microwave": {
+    "public_id": "ritkart/appliances/convection-microwave",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131685/ritkart/appliances/convection-microwave.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Appliances",
+    "uploaded_at": "2025-08-02T10:48:06.829Z"
+  },
+  "induction-cooktop": {
+    "public_id": "ritkart/appliances/induction-cooktop",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131687/ritkart/appliances/induction-cooktop.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Appliances",
+    "uploaded_at": "2025-08-02T10:48:07.772Z"
+  },
+  "psychology-money-book": {
+    "public_id": "ritkart/books/psychology-money-book",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131687/ritkart/books/psychology-money-book.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Books",
+    "uploaded_at": "2025-08-02T10:48:08.864Z"
+  },
+  "category-electronics": {
+    "public_id": "ritkart/categories/category-electronics",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131689/ritkart/categories/category-electronics.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Categories",
+    "uploaded_at": "2025-08-02T10:48:09.917Z"
+  },
+  "category-fashion": {
+    "public_id": "ritkart/categories/category-fashion",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131690/ritkart/categories/category-fashion.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Categories",
+    "uploaded_at": "2025-08-02T10:48:10.884Z"
+  },
+  "category-home-kitchen": {
+    "public_id": "ritkart/categories/category-home-kitchen",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131691/ritkart/categories/category-home-kitchen.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Categories",
+    "uploaded_at": "2025-08-02T10:48:11.896Z"
+  },
+  "category-appliances": {
+    "public_id": "ritkart/categories/category-appliances",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131692/ritkart/categories/category-appliances.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Categories",
+    "uploaded_at": "2025-08-02T10:48:12.881Z"
+  },
+  "category-mobiles": {
+    "public_id": "ritkart/categories/category-mobiles",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131693/ritkart/categories/category-mobiles.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Categories",
+    "uploaded_at": "2025-08-02T10:48:13.946Z"
+  },
+  "category-books": {
+    "public_id": "ritkart/categories/category-books",
+    "secure_url": "https://res.cloudinary.com/dv0lg87ib/image/upload/v1754131694/ritkart/categories/category-books.jpg",
+    "width": 800,
+    "height": 800,
+    "format": "jpg",
+    "bytes": 72754,
+    "category": "Categories",
+    "uploaded_at": "2025-08-02T10:48:15.028Z"
+  }
+}
