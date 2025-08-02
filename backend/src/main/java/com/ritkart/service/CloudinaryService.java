@@ -82,13 +82,12 @@ public class CloudinaryService {
      */
     public String getTransformedImageUrl(String publicId, int width, int height) {
         return cloudinary.url()
-            .transformation(ObjectUtils.asMap(
-                "width", width,
-                "height", height,
-                "crop", "fill",
-                "quality", "auto",
-                "format", "auto"
-            ))
+            .transformation(new Transformation()
+                .width(width)
+                .height(height)
+                .crop("fill")
+                .quality("auto")
+                .format("auto"))
             .publicId(publicId)
             .generate();
     }
