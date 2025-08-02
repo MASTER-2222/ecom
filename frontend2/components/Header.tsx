@@ -66,17 +66,9 @@ export default function Header() {
               ) : user ? (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                    {user.user_metadata?.avatar_url ? (
-                      <img 
-                        src={user.user_metadata.avatar_url} 
-                        alt="Profile" 
-                        className="w-8 h-8 rounded-full"
-                      />
-                    ) : (
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <i className="ri-user-line text-white w-4 h-4 flex items-center justify-center"></i>
-                      </div>
-                    )}
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <i className="ri-user-line text-white w-4 h-4 flex items-center justify-center"></i>
+                    </div>
                     <div className="relative group">
                       <span className="text-sm font-medium cursor-pointer">
                         Hi, {getUserDisplayName()}
