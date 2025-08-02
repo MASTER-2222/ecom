@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { bannerImages } from '../lib/cloudinary-images';
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,7 +12,7 @@ export default function HeroSection() {
       id: 1,
       title: 'Biggest Sale of the Year',
       subtitle: 'Up to 80% OFF on Electronics',
-      image: 'https://readdy.ai/api/search-image?query=modern%20electronics%20sale%20banner%20with%20smartphones%20laptops%20headphones%20on%20vibrant%20blue%20background%20with%20shopping%20elements%20promotional%20design%20clean%20professional%20ecommerce%20layout&width=1200&height=400&seq=banner1&orientation=landscape',
+      image: bannerImages.electronics,
       cta: 'Shop Now',
       link: '/electronics'
     },
@@ -19,7 +20,7 @@ export default function HeroSection() {
       id: 2,
       title: 'Fashion Fiesta',
       subtitle: 'Trendy Clothes at Best Prices',
-      image: 'https://readdy.ai/api/search-image?query=fashionable%20clothing%20collection%20banner%20with%20stylish%20apparel%20accessories%20shoes%20on%20elegant%20background%20modern%20fashion%20ecommerce%20promotional%20design%20colorful%20attractive%20layout&width=1200&height=400&seq=banner2&orientation=landscape',
+      image: bannerImages.fashion,
       cta: 'Explore Fashion',
       link: '/fashion'
     },
@@ -27,7 +28,7 @@ export default function HeroSection() {
       id: 3,
       title: 'Mobile Madness',
       subtitle: 'Latest Smartphones at Unbeatable Prices',
-      image: 'https://readdy.ai/api/search-image?query=latest%20smartphone%20collection%20banner%20with%20multiple%20mobile%20phones%20modern%20technology%20gadgets%20on%20sleek%20background%20professional%20ecommerce%20design%20promotional%20layout%20tech%20focused&width=1200&height=400&seq=banner3&orientation=landscape',
+      image: bannerImages.mobiles,
       cta: 'Shop Mobiles',
       link: '/mobiles'
     }

@@ -158,6 +158,8 @@ export const getProductImage = (productId: string, fallbackCategory: string = 'p
 export default {
   productImages,
   categoryImages,
+  bannerImages,
+  footerImages,
   placeholderImages,
   getProductImage,
   getCloudinaryUrl,
