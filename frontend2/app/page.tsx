@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
 import ProductCarousel from '../components/ProductCarousel';
 import RecommendationEngine from '../components/RecommendationEngine';
+import { productImages, categoryImages, getProductImage } from '../lib/cloudinary-images';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
