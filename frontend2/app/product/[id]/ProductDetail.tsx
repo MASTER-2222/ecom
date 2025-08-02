@@ -72,10 +72,10 @@ const products: { [key: string]: Product } = {
     price: 29990,
     originalPrice: 34990,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['sony-wh1000xm5'],
+      productImages['sony-wh1000xm5'],
+      productImages['sony-wh1000xm5'],
+      productImages['sony-wh1000xm5']
     ],
     rating: 4.7,
     reviews: 1523,
