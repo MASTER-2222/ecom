@@ -354,7 +354,7 @@ export default function CartPage() {
                 <Link key={item.id} href={`/product/${item.id}`}>
                   <div className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer">
                     <img
-                      src={`https://readdy.ai/api/search-image?query=premium%20${item.category.toLowerCase()}%20product%20modern%20device%20clean%20white%20background%20professional%20product%20photography&width=150&height=150&seq=recent-${item.id}&orientation=squarish`}
+                      src={productImages['macbook-air-m2'] || productImages['samsung-s24-ultra']}
                       alt={item.name}
                       className="w-full h-20 object-cover rounded mb-2 object-top"
                     />
