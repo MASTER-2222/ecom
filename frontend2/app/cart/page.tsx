@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { saveForLater } from '@/lib/database';
+import { productImages } from '../../lib/cloudinary-images';
 
 interface CartItem {
   id: string;
@@ -23,7 +24,7 @@ export default function CartPage() {
       name: 'Samsung Galaxy S24 Ultra 5G (Titanium Black, 256GB)',
       price: 124999,
       originalPrice: 149999,
-      image: 'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20smartphone%20in%20titanium%20black%20color%20with%20sleek%20modern%20design%2C%20product%20photography%20on%20clean%20white%20background%2C%20professional%20lighting%2C%20high-end%20smartphone%20with%20premium%20metallic%20finish%20and%20camera%20module%20visible&width=200&height=200&seq=cart-s24&orientation=squarish',
+      image: productImages['samsung-s24-ultra'],
       quantity: 1,
       brand: 'Samsung',
       category: 'Electronics'
@@ -33,7 +34,7 @@ export default function CartPage() {
       name: 'Sony WH-1000XM5 Wireless Noise Cancelling Headphones',
       price: 29990,
       originalPrice: 34990,
-      image: 'https://readdy.ai/api/search-image?query=Sony%20premium%20wireless%20headphones%20noise%20cancelling%20black%20sleek%20design%20professional%20audio%20equipment%20clean%20white%20background%20high%20quality&width=200&height=200&seq=cart-sony&orientation=squarish',
+      image: productImages['sony-wh1000xm5'],
       quantity: 1,
       brand: 'Sony',
       category: 'Electronics'
@@ -43,7 +44,7 @@ export default function CartPage() {
       name: 'Levi\'s Men\'s 511 Slim Fit Jeans - Dark Blue',
       price: 2999,
       originalPrice: 4499,
-      image: 'https://readdy.ai/api/search-image?query=Levis%20mens%20slim%20fit%20dark%20blue%20jeans%20with%20modern%20cut%20and%20premium%20denim%20fabric%2C%20professional%20fashion%20product%20photography%20on%20clean%20white%20background%2C%20stylish%20casual%20wear%20with%20brand%20details%20visible&width=200&height=200&seq=cart-levis&orientation=squarish',
+      image: productImages['levis-jeans-men'],
       quantity: 1,
       brand: 'Levi\'s',
       category: 'Fashion'
@@ -53,7 +54,7 @@ export default function CartPage() {
       name: 'LG 260L 3-Star Smart Inverter Frost-Free Double Door Refrigerator',
       price: 28999,
       originalPrice: 34999,
-      image: 'https://readdy.ai/api/search-image?query=Modern%20stainless%20steel%20double%20door%20refrigerator%20with%20sleek%20design%20and%20digital%20display%2C%20energy%20efficient%20home%20appliance%2C%20professional%20product%20photography%20on%20clean%20white%20background%2C%20premium%20kitchen%20appliance&width=200&height=200&seq=cart-lg-fridge&orientation=squarish',
+      image: productImages['lg-double-door-fridge'],
       quantity: 1,
       brand: 'LG',
       category: 'Appliances'
