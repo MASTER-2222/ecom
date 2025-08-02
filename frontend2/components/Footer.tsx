@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 
+import { footerImages } from '../lib/cloudinary-images';
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-8">
