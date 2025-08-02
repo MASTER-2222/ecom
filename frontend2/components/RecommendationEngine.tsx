@@ -202,7 +202,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'Samsung Galaxy S24 Ultra 5G',
             price: 124999,
             originalPrice: 149999,
-            image: 'https://readdy.ai/api/search-image?query=Samsung%20flagship%20smartphone%20premium%20design%20professional%20product%20photography&width=300&height=300&seq=pop-s24&orientation=squarish',
+            image: productImages['samsung-s24-ultra'],
             rating: 4.5,
             category: 'Electronics',
             brand: 'Samsung'
@@ -212,7 +212,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'Sony WH-1000XM5 Headphones',
             price: 29990,
             originalPrice: 34990,
-            image: 'https://readdy.ai/api/search-image?query=Sony%20premium%20wireless%20headphones%20modern%20design%20professional%20photography&width=300&height=300&seq=pop-sony&orientation=squarish',
+            image: productImages['sony-wh1000xm5'],
             rating: 4.7,
             category: 'Electronics',
             brand: 'Sony'
