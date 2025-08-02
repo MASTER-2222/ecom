@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { addToWishlist, saveForLater, addProductReview, getProductReviews } from '@/lib/database';
+import { productImages } from '@/lib/cloudinary-images';
 
 interface Product {
   id: string;
