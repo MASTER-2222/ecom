@@ -178,10 +178,10 @@ const products: { [key: string]: Product } = {
     price: 7999,
     originalPrice: 8999,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['nike-air-force-1'],
+      productImages['nike-air-force-1'],
+      productImages['nike-air-force-1'],
+      productImages['nike-air-force-1']
     ],
     rating: 4.8,
     reviews: 2156,
