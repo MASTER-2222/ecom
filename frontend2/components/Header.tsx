@@ -61,7 +61,7 @@ export default function Header() {
             </div>
 
             <div className="flex items-center space-x-6">
-              {loading ? (
+              {isLoading ? (
                 <div className="w-20 h-8 bg-blue-600 rounded animate-pulse"></div>
               ) : user ? (
                 <div className="flex items-center space-x-4">
