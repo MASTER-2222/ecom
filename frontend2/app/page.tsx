@@ -126,7 +126,7 @@ export default function Home() {
       name: 'OnePlus 12 5G (Flowy Emerald, 256GB)',
       price: 64999,
       originalPrice: 69999,
-      image: 'https://readdy.ai/api/search-image?query=OnePlus%20flagship%20smartphone%20emerald%20green%20color%20premium%20mobile%20phone%20sleek%20design%20clean%20white%20background%20professional%20product%20photography%20modern%20android&width=300&height=300&seq=oneplus-12&orientation=squarish',
+      image: productImages['oneplus-12'],
       rating: 4.4,
       reviews: 892
     },
@@ -135,7 +135,7 @@ export default function Home() {
       name: 'Google Pixel 8 Pro (Obsidian Black, 128GB)',
       price: 79999,
       originalPrice: 94999,
-      image: 'https://readdy.ai/api/search-image?query=Google%20Pixel%20smartphone%20obsidian%20black%20premium%20mobile%20phone%20clean%20minimalist%20design%20white%20background%20professional%20product%20photography%20android%20flagship&width=300&height=300&seq=pixel-8&orientation=squarish',
+      image: productImages['pixel-8'],
       rating: 4.5,
       reviews: 567
     },
@@ -144,7 +144,7 @@ export default function Home() {
       name: 'Xiaomi 14 Ultra (White, 512GB)',
       price: 99999,
       originalPrice: 119999,
-      image: 'https://readdy.ai/api/search-image?query=Xiaomi%20flagship%20smartphone%20white%20color%20premium%20mobile%20phone%20modern%20design%20camera%20setup%20clean%20white%20background%20professional%20product%20photography&width=300&height=300&seq=xiaomi-14&orientation=squarish',
+      image: productImages['xiaomi-14'],
       rating: 4.3,
       reviews: 1123
     }
