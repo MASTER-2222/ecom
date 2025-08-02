@@ -39,7 +39,7 @@ export default function Home() {
       name: 'Samsung Galaxy S24 Ultra 5G (Titanium Gray, 256GB)',
       price: 89999,
       originalPrice: 124999,
-      image: 'https://readdy.ai/api/search-image?query=premium%20Samsung%20Galaxy%20smartphone%20titanium%20gray%20color%20sleek%20modern%20design%20high%20quality%20product%20photography%20on%20clean%20white%20background%20professional%20ecommerce%20style&width=300&height=300&seq=samsung-s24&orientation=squarish',
+      image: productImages['samsung-s24'],
       rating: 4.5,
       reviews: 1250
     },
@@ -48,7 +48,7 @@ export default function Home() {
       name: 'Apple iPhone 15 Pro Max (Natural Titanium, 256GB)',
       price: 134900,
       originalPrice: 159900,
-      image: 'https://readdy.ai/api/search-image?query=Apple%20iPhone%2015%20Pro%20Max%20natural%20titanium%20finish%20premium%20smartphone%20elegant%20design%20professional%20product%20photography%20clean%20white%20background%20high%20end%20mobile&width=300&height=300&seq=iphone-15&orientation=squarish',
+      image: productImages['iphone-15'],
       rating: 4.7,
       reviews: 892
     },
@@ -57,7 +57,7 @@ export default function Home() {
       name: 'Sony WH-1000XM5 Wireless Noise Cancelling Headphones',
       price: 24990,
       originalPrice: 34990,
-      image: 'https://readdy.ai/api/search-image?query=Sony%20premium%20wireless%20headphones%20noise%20cancelling%20black%20sleek%20design%20professional%20audio%20equipment%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=300&seq=sony-headphones&orientation=squarish',
+      image: productImages['sony-headphones'],
       rating: 4.6,
       reviews: 2100
     },
@@ -66,7 +66,7 @@ export default function Home() {
       name: 'MacBook Air M2 Chip (13-inch, 8GB RAM, 256GB SSD)',
       price: 99900,
       originalPrice: 119900,
-      image: 'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20silver%20laptop%20sleek%20thin%20design%20premium%20computing%20device%20clean%20white%20background%20professional%20product%20photography%20modern%20notebook&width=300&height=300&seq=macbook-air&orientation=squarish',
+      image: productImages['macbook-air'],
       rating: 4.8,
       reviews: 756
     },
@@ -75,7 +75,7 @@ export default function Home() {
       name: 'Dell XPS 13 Plus (Intel i7, 16GB RAM, 512GB SSD)',
       price: 134990,
       originalPrice: 159990,
-      image: 'https://readdy.ai/api/search-image?query=Dell%20XPS%20premium%20laptop%20sleek%20black%20design%20modern%20ultrabook%20professional%20computing%20device%20clean%20white%20background%20high%20quality%20product%20photography&width=300&height=300&seq=dell-xps&orientation=squarish',
+      image: productImages['dell-xps'],
       rating: 4.4,
       reviews: 432
     }
