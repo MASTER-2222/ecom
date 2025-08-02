@@ -107,10 +107,10 @@ const products: { [key: string]: Product } = {
     price: 114900,
     originalPrice: 119900,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['macbook-air-m2'],
+      productImages['macbook-air-m2'],
+      productImages['macbook-air-m2'],
+      productImages['macbook-air-m2']
     ],
     rating: 4.8,
     reviews: 3621,
