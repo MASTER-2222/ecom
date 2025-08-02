@@ -285,10 +285,10 @@ const products: { [key: string]: Product } = {
     price: 28999,
     originalPrice: 34999,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['lg-double-door-fridge'],
+      productImages['lg-double-door-fridge'],
+      productImages['lg-double-door-fridge'],
+      productImages['lg-double-door-fridge']
     ],
     rating: 4.4,
     reviews: 1247,
