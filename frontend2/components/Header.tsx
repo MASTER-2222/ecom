@@ -2,10 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
-import { signOut } from '@/lib/auth';
+import { useAuth } from '@/lib/auth-context';
 import LoginModal from './LoginModal';
-import type { User } from '@supabase/supabase-js';
 
 export default function Header() {
   const [cartCount, setCartCount] = useState(4);
