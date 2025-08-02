@@ -37,10 +37,10 @@ const products: { [key: string]: Product } = {
     price: 124999,
     originalPrice: 149999,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['samsung-s24'],
+      productImages['samsung-s24'],
+      productImages['samsung-s24'],
+      productImages['samsung-s24']
     ],
     rating: 4.5,
     reviews: 2847,
