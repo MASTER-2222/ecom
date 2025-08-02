@@ -87,7 +87,7 @@ export default function Home() {
       name: 'LG 55" 4K Ultra HD Smart OLED TV',
       price: 89999,
       originalPrice: 124999,
-      image: 'https://readdy.ai/api/search-image?query=premium%20LG%20OLED%20smart%20TV%2055%20inch%204K%20ultra%20HD%20sleek%20modern%20television%20black%20frame%20clean%20white%20background%20professional%20electronics%20product%20photography&width=300&height=300&seq=lg-oled-tv&orientation=squarish',
+      image: productImages['lg-oled-tv'],
       rating: 4.5,
       reviews: 678
     },
@@ -96,7 +96,7 @@ export default function Home() {
       name: 'Canon EOS R6 Mark II Mirrorless Camera',
       price: 219999,
       originalPrice: 259999,
-      image: 'https://readdy.ai/api/search-image?query=Canon%20EOS%20professional%20mirrorless%20camera%20black%20body%20premium%20photography%20equipment%20clean%20white%20background%20high%20quality%20product%20photography%20DSLR%20style&width=300&height=300&seq=canon-camera&orientation=squarish',
+      image: productImages['canon-camera'],
       rating: 4.7,
       reviews: 245
     },
@@ -105,7 +105,7 @@ export default function Home() {
       name: 'PlayStation 5 Console with DualSense Controller',
       price: 54999,
       originalPrice: 59999,
-      image: 'https://readdy.ai/api/search-image?query=PlayStation%205%20console%20white%20and%20black%20design%20gaming%20system%20with%20wireless%20controller%20modern%20gaming%20setup%20clean%20white%20background%20professional%20product%20photography&width=300&height=300&seq=ps5-console&orientation=squarish',
+      image: productImages['ps5-console'],
       rating: 4.9,
       reviews: 1890
     },
@@ -114,7 +114,7 @@ export default function Home() {
       name: 'Nintendo Switch OLED Model Gaming Console',
       price: 37999,
       originalPrice: 42999,
-      image: 'https://readdy.ai/api/search-image?query=Nintendo%20Switch%20OLED%20handheld%20gaming%20console%20colorful%20screen%20portable%20gaming%20device%20clean%20white%20background%20professional%20product%20photography%20modern%20gaming&width=300&height=300&seq=nintendo-switch&orientation=squarish',
+      image: productImages['nintendo-switch'],
       rating: 4.6,
       reviews: 1234
     }
