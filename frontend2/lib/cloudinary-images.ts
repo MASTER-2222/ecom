@@ -19,48 +19,90 @@ export const getCloudinaryUrl = (publicId: string, transformation: string = 'w_3
 
 // Product Images
 export const productImages = {
-  // Electronics
+  // Electronics - Main Products
   'samsung-s24': getCloudinaryUrl('samsung-galaxy-s24-ultra', transformations.product_card),
+  'samsung-s24-ultra': getCloudinaryUrl('samsung-galaxy-s24-ultra', transformations.product_card),
   'iphone-15': getCloudinaryUrl('iphone-15-pro-max', transformations.product_card),
+  'iphone-15-pro-max': getCloudinaryUrl('iphone-15-pro-max', transformations.product_card),
   'sony-headphones': getCloudinaryUrl('sony-wh1000xm5', transformations.product_card),
+  'sony-wh1000xm5': getCloudinaryUrl('sony-wh1000xm5', transformations.product_card),
   'macbook-air': getCloudinaryUrl('macbook-air-m2', transformations.product_card),
+  'macbook-air-m2': getCloudinaryUrl('macbook-air-m2', transformations.product_card),
   'dell-xps': getCloudinaryUrl('dell-xps-13', transformations.product_card),
+  'dell-xps-13': getCloudinaryUrl('dell-xps-13', transformations.product_card),
   'lg-oled-tv': getCloudinaryUrl('lg-oled-tv-55', transformations.product_card),
+  'lg-oled-tv-55': getCloudinaryUrl('lg-oled-tv-55', transformations.product_card),
   'canon-camera': getCloudinaryUrl('canon-eos-r6', transformations.product_card),
+  'canon-eos-r6': getCloudinaryUrl('canon-eos-r6', transformations.product_card),
   'ps5-console': getCloudinaryUrl('playstation-5', transformations.product_card),
+  'playstation-5': getCloudinaryUrl('playstation-5', transformations.product_card),
   'nintendo-switch': getCloudinaryUrl('nintendo-switch-oled', transformations.product_card),
+  'nintendo-switch-oled': getCloudinaryUrl('nintendo-switch-oled', transformations.product_card),
   'oneplus-12': getCloudinaryUrl('oneplus-12', transformations.product_card),
   'pixel-8': getCloudinaryUrl('google-pixel-8', transformations.product_card),
+  'google-pixel-8': getCloudinaryUrl('google-pixel-8', transformations.product_card),
   'xiaomi-14': getCloudinaryUrl('xiaomi-14-ultra', transformations.product_card),
+  'xiaomi-14-ultra': getCloudinaryUrl('xiaomi-14-ultra', transformations.product_card),
+
+  // More Mobile Phones
+  'oppo-find-x7': getCloudinaryUrl('oppo-find-x7-ultra', transformations.product_card),
+  'vivo-x100': getCloudinaryUrl('vivo-x100-pro', transformations.product_card),
+  'nothing-phone-2': getCloudinaryUrl('nothing-phone-2', transformations.product_card),
 
   // Fashion
   'levis-jeans': getCloudinaryUrl('levis-jeans-men', transformations.product_card),
+  'levis-jeans-men': getCloudinaryUrl('levis-jeans-men', transformations.product_card),
   'floral-dress': getCloudinaryUrl('womens-floral-dress', transformations.product_card),
+  'womens-floral-dress': getCloudinaryUrl('womens-floral-dress', transformations.product_card),
   'nike-shoes': getCloudinaryUrl('nike-air-force-1', transformations.product_card),
+  'nike-air-force-1': getCloudinaryUrl('nike-air-force-1', transformations.product_card),
   'cotton-tshirt': getCloudinaryUrl('mens-cotton-tshirt', transformations.product_card),
+  'mens-cotton-tshirt': getCloudinaryUrl('mens-cotton-tshirt', transformations.product_card),
   'denim-jacket': getCloudinaryUrl('womens-denim-jacket', transformations.product_card),
+  'womens-denim-jacket': getCloudinaryUrl('womens-denim-jacket', transformations.product_card),
   'adidas-shoes': getCloudinaryUrl('adidas-ultraboost', transformations.product_card),
+  'adidas-ultraboost': getCloudinaryUrl('adidas-ultraboost', transformations.product_card),
   'polo-shirt': getCloudinaryUrl('tommy-polo-shirt', transformations.product_card),
+  'tommy-polo-shirt': getCloudinaryUrl('tommy-polo-shirt', transformations.product_card),
   'track-pants': getCloudinaryUrl('puma-track-pants', transformations.product_card),
+  'puma-track-pants': getCloudinaryUrl('puma-track-pants', transformations.product_card),
 
   // Home & Kitchen
   'wooden-bed': getCloudinaryUrl('wooden-bed-frame', transformations.product_card),
+  'wooden-bed-frame': getCloudinaryUrl('wooden-bed-frame', transformations.product_card),
   'navy-sofa': getCloudinaryUrl('navy-fabric-sofa', transformations.product_card),
+  'navy-fabric-sofa': getCloudinaryUrl('navy-fabric-sofa', transformations.product_card),
   'study-desk': getCloudinaryUrl('wooden-study-desk', transformations.product_card),
+  'wooden-study-desk': getCloudinaryUrl('wooden-study-desk', transformations.product_card),
   'dining-set': getCloudinaryUrl('dining-table-set', transformations.product_card),
+  'dining-table-set': getCloudinaryUrl('dining-table-set', transformations.product_card),
   'kitchen-cabinet': getCloudinaryUrl('kitchen-cabinet-white', transformations.product_card),
+  'kitchen-cabinet-white': getCloudinaryUrl('kitchen-cabinet-white', transformations.product_card),
   'memory-mattress': getCloudinaryUrl('memory-foam-mattress', transformations.product_card),
+  'memory-foam-mattress': getCloudinaryUrl('memory-foam-mattress', transformations.product_card),
   'wooden-wardrobe': getCloudinaryUrl('wooden-wardrobe', transformations.product_card),
   'ceiling-light': getCloudinaryUrl('led-ceiling-light', transformations.product_card),
+  'led-ceiling-light': getCloudinaryUrl('led-ceiling-light', transformations.product_card),
+  'ikea-bed': getCloudinaryUrl('wooden-bed-frame', transformations.product_card),
 
   // Appliances
   'lg-refrigerator': getCloudinaryUrl('lg-double-door-fridge', transformations.product_card),
+  'lg-double-door-fridge': getCloudinaryUrl('lg-double-door-fridge', transformations.product_card),
   'washing-machine': getCloudinaryUrl('front-load-washer', transformations.product_card),
+  'front-load-washer': getCloudinaryUrl('front-load-washer', transformations.product_card),
   'split-ac': getCloudinaryUrl('split-air-conditioner', transformations.product_card),
+  'split-air-conditioner': getCloudinaryUrl('split-air-conditioner', transformations.product_card),
   'microwave-oven': getCloudinaryUrl('convection-microwave', transformations.product_card),
+  'convection-microwave': getCloudinaryUrl('convection-microwave', transformations.product_card),
   'induction-cooktop': getCloudinaryUrl('induction-cooktop', transformations.product_card),
   'top-load-washer': getCloudinaryUrl('top-load-washer', transformations.product_card),
   'window-ac': getCloudinaryUrl('window-air-conditioner', transformations.product_card),
+  'window-air-conditioner': getCloudinaryUrl('window-air-conditioner', transformations.product_card),
+  'red-refrigerator': getCloudinaryUrl('red-single-door-fridge', transformations.product_card),
+
+  // Books
+  'psychology-money': getCloudinaryUrl('psychology-money-book', transformations.product_card),
+  'psychology-money-book': getCloudinaryUrl('psychology-money-book', transformations.product_card),
 };
 
 // Category Images
