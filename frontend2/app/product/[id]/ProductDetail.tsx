@@ -391,10 +391,10 @@ const products: { [key: string]: Product } = {
     price: 349,
     originalPrice: 449,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['psychology-money-book'],
+      productImages['psychology-money-book'],
+      productImages['psychology-money-book'],
+      productImages['psychology-money-book']
     ],
     rating: 4.7,
     reviews: 1923,
