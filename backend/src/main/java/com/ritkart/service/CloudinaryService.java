@@ -87,7 +87,7 @@ public class CloudinaryService {
                 .height(height)
                 .crop("fill")
                 .quality("auto")
-                .format("auto"))
+                .fetchFormat("auto"))
             .publicId(publicId)
             .generate();
     }
