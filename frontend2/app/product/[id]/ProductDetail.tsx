@@ -249,10 +249,10 @@ const products: { [key: string]: Product } = {
     price: 34999,
     originalPrice: 44999,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['navy-fabric-sofa'],
+      productImages['navy-fabric-sofa'],
+      productImages['navy-fabric-sofa'],
+      productImages['navy-fabric-sofa']
     ],
     rating: 4.6,
     reviews: 892,
