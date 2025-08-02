@@ -8,8 +8,7 @@ import LoginModal from './LoginModal';
 export default function Header() {
   const [cartCount, setCartCount] = useState(4);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, logout, isLoading } = useAuth();
 
   useEffect(() => {
     const getUser = async () => {
