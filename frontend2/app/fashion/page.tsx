@@ -1,8 +1,8 @@
-
 'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { productImages } from '../../lib/cloudinary-images';
 
 interface Product {
   id: string;
