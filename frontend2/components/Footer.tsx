@@ -75,8 +75,7 @@ export default function Footer() {
             <span className="text-sm text-gray-400">© 2024 RitKart. All rights reserved.</span>
           </div>
           <div className="flex items-center space-x-4">
-            <img src="https://readdy.ai/api/search-image?query=secure%20payment%20icons%20visa%20mastercard%20paypal%20ssl%20certificate%20security%20badges%20modern%20clean%20payment%20gateway%20logos%20on%20transparent%20background%20professional%20business%20trust%20symbols&width=200&height=60&seq=payment-icons&orientation=landscape" 
-                 alt="Payment Icons" className="h-6 object-contain" />
+            <img src={footerImages.payment} alt="Payment Icons" className="h-6 object-contain" />
           </div>
         </div>
       </div>
