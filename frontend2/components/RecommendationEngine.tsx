@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getUserPreferences, getUserOrders } from '@/lib/database';
+import { productImages } from '../lib/cloudinary-images';
 
 interface Product {
   id: string;
@@ -40,7 +41,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'Samsung Galaxy S24 Ultra 5G (Titanium Black, 256GB)',
             price: 124999,
             originalPrice: 149999,
-            image: 'https://readdy.ai/api/search-image?query=Samsung%20Galaxy%20S24%20Ultra%20smartphone%20titanium%20black%20color%20premium%20design%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-s24&orientation=squarish',
+            image: productImages['samsung-s24-ultra'],
             rating: 4.5,
             category: 'Electronics',
             brand: 'Samsung'
@@ -50,7 +51,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'Sony WH-1000XM5 Wireless Noise Cancelling Headphones',
             price: 29990,
             originalPrice: 34990,
-            image: 'https://readdy.ai/api/search-image?query=Sony%20premium%20wireless%20headphones%20noise%20cancelling%20modern%20design%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-sony&orientation=squarish',
+            image: productImages['sony-wh1000xm5'],
             rating: 4.7,
             category: 'Electronics',
             brand: 'Sony'
@@ -60,7 +61,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'MacBook Air M2 (13-inch, 8GB RAM, 256GB SSD)',
             price: 114900,
             originalPrice: 119900,
-            image: 'https://readdy.ai/api/search-image?query=Apple%20MacBook%20Air%20M2%20silver%20laptop%20ultra-thin%20design%20premium%20computing%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-mac&orientation=squarish',
+            image: productImages['macbook-air-m2'],
             rating: 4.8,
             category: 'Electronics',
             brand: 'Apple'
@@ -70,7 +71,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'Levi\'s Men\'s 511 Slim Fit Jeans - Dark Blue',
             price: 2999,
             originalPrice: 4499,
-            image: 'https://readdy.ai/api/search-image?query=Levis%20mens%20slim%20fit%20dark%20blue%20jeans%20premium%20denim%20fashion%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-levis&orientation=squarish',
+            image: productImages['levis-jeans-men'],
             rating: 4.4,
             category: 'Fashion',
             brand: 'Levi\'s'
@@ -80,7 +81,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'Nike Air Force 1 Low White Sneakers - Unisex',
             price: 7999,
             originalPrice: 8999,
-            image: 'https://readdy.ai/api/search-image?query=Nike%20Air%20Force%201%20white%20sneakers%20classic%20design%20athletic%20footwear%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-nike&orientation=squarish',
+            image: productImages['nike-air-force-1'],
             rating: 4.8,
             category: 'Fashion',
             brand: 'Nike'
@@ -90,7 +91,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'IKEA HEMNES Bed Frame with 4 Storage Boxes - White',
             price: 24999,
             originalPrice: 29999,
-            image: 'https://readdy.ai/api/search-image?query=Modern%20white%20wooden%20bed%20frame%20with%20storage%20drawers%20Scandinavian%20design%20bedroom%20furniture%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-ikea&orientation=squarish',
+            image: productImages['ikea-bed'],
             rating: 4.5,
             category: 'Home',
             brand: 'IKEA'
@@ -100,7 +101,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'LG 260L Smart Inverter Frost-Free Double Door Refrigerator',
             price: 28999,
             originalPrice: 34999,
-            image: 'https://readdy.ai/api/search-image?query=Modern%20stainless%20steel%20double%20door%20refrigerator%20energy%20efficient%20home%20appliance%20professional%20product%20photography%20clean%20white%20background&width=300&height=300&seq=rec-lg&orientation=squarish',
+            image: productImages['lg-double-door-fridge'],
             rating: 4.4,
             category: 'Appliances',
             brand: 'LG'
@@ -110,7 +111,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
             name: 'The Psychology of Money: Timeless Lessons on Wealth',
             price: 299,
             originalPrice: 399,
-            image: 'https://readdy.ai/api/search-image?query=Psychology%20of%20Money%20book%20cover%20professional%20finance%20theme%20modern%20typography%20bestselling%20personal%20finance%20book%20clean%20white%20background&width=300&height=300&seq=rec-book&orientation=squarish',
+            image: productImages['psychology-money-book'],
             rating: 4.6,
             category: 'Books',
             brand: 'Jaico Publishing'
