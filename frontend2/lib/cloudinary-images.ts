@@ -115,6 +115,18 @@ export const categoryImages = {
   books: getCloudinaryUrl('category-books', transformations.category_icon),
 };
 
+// Hero Banner Images
+export const bannerImages = {
+  electronics: getCloudinaryUrl('electronics-banner', transformations.hero_banner),
+  fashion: getCloudinaryUrl('fashion-banner', transformations.hero_banner),
+  mobiles: getCloudinaryUrl('mobiles-banner', transformations.hero_banner),
+};
+
+// Payment and Footer Images
+export const footerImages = {
+  payment: getCloudinaryUrl('payment-icons', 'w_200,h_60,c_fit,f_auto,q_auto'),
+};
+
 // Placeholder images for when we need generic product images
 export const placeholderImages = {
   product: getCloudinaryUrl('placeholder-product', transformations.product_card),
