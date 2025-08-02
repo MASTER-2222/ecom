@@ -214,10 +214,10 @@ const products: { [key: string]: Product } = {
     price: 24999,
     originalPrice: 29999,
     images: [
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']',
-      'productImages['samsung-s24']'
+      productImages['wooden-bed-frame'],
+      productImages['wooden-bed-frame'],
+      productImages['wooden-bed-frame'],
+      productImages['wooden-bed-frame']
     ],
     rating: 4.5,
     reviews: 1247,
