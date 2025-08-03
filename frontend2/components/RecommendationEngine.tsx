@@ -168,8 +168,8 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
 
         // If user has orders, exclude already purchased items and recommend similar
         if (orders && orders.length > 0) {
-          const purchasedProductIds = orders.flatMap(order => 
-            order.order_items.map(item => item.product_id)
+          const purchasedProductIds = orders.flatMap((order: Order) => 
+            order.order_items.map((item: OrderItem) => item.product_id)
           );
           
           filteredProducts = filteredProducts.filter(product => 
