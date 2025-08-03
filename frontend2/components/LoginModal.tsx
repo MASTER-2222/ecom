@@ -242,7 +242,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         {!isLogin && (
           <div className="mt-4 text-center">
             <p className="text-xs text-gray-500">
-              By creating an account, you agree to RitKART's{' '}
+              By creating an account, you agree to RitKART&apos;s{' '}
               <a href="#" className="text-[#2874f0] hover:underline">Terms of Use</a>
               {' '}and{' '}
               <a href="#" className="text-[#2874f0] hover:underline">Privacy Policy</a>
