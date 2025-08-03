@@ -42,48 +42,103 @@ public class ProductImageService {
         CATEGORY_FOLDER_MAPPING = Collections.unmodifiableMap(map);
     }
 
-    // Product name to Cloudinary public_id mapping
+    // Enhanced Product name to Cloudinary public_id mapping
     private static final Map<String, String> PRODUCT_IMAGE_MAPPING;
     static {
         Map<String, String> map = new HashMap<>();
+
         // Electronics
-        map.put("samsung", "samsung-galaxy-s24-ultra");
-        map.put("iphone", "iphone-15-pro-max");
-        map.put("sony", "sony-wh1000xm5");
-        map.put("macbook", "macbook-air-m2");
-        map.put("dell", "dell-xps-13");
-        map.put("lg", "lg-oled-tv-55");
-        map.put("canon", "canon-eos-r6");
-        map.put("playstation", "playstation-5");
-        map.put("nintendo", "nintendo-switch-oled");
+        map.put("samsung", "ritkart/electronics/samsung-galaxy-s24-ultra");
+        map.put("galaxy", "ritkart/electronics/samsung-galaxy-s24-ultra");
+        map.put("s24", "ritkart/electronics/samsung-galaxy-s24-ultra");
+        map.put("iphone", "ritkart/electronics/iphone-15-pro-max");
+        map.put("apple", "ritkart/electronics/iphone-15-pro-max");
+        map.put("15", "ritkart/electronics/iphone-15-pro-max");
+        map.put("sony", "ritkart/electronics/sony-wh1000xm5");
+        map.put("headphones", "ritkart/electronics/sony-wh1000xm5");
+        map.put("wh1000xm5", "ritkart/electronics/sony-wh1000xm5");
+        map.put("macbook", "ritkart/electronics/macbook-air-m2");
+        map.put("laptop", "ritkart/electronics/macbook-air-m2");
+        map.put("air", "ritkart/electronics/macbook-air-m2");
+        map.put("dell", "ritkart/electronics/dell-xps-13");
+        map.put("xps", "ritkart/electronics/dell-xps-13");
+        map.put("lg", "ritkart/electronics/lg-oled-tv-55");
+        map.put("tv", "ritkart/electronics/lg-oled-tv-55");
+        map.put("oled", "ritkart/electronics/lg-oled-tv-55");
+        map.put("canon", "ritkart/electronics/canon-eos-r6");
+        map.put("camera", "ritkart/electronics/canon-eos-r6");
+        map.put("playstation", "ritkart/electronics/playstation-5");
+        map.put("ps5", "ritkart/electronics/playstation-5");
+        map.put("nintendo", "ritkart/electronics/nintendo-switch-oled");
+        map.put("switch", "ritkart/electronics/nintendo-switch-oled");
+
         // Mobiles
-        map.put("oneplus", "oneplus-12");
-        map.put("pixel", "google-pixel-8");
-        map.put("xiaomi", "xiaomi-14-ultra");
+        map.put("oneplus", "ritkart/mobiles/oneplus-12");
+        map.put("12", "ritkart/mobiles/oneplus-12");
+        map.put("pixel", "ritkart/mobiles/google-pixel-8");
+        map.put("google", "ritkart/mobiles/google-pixel-8");
+        map.put("xiaomi", "ritkart/mobiles/xiaomi-14-ultra");
+        map.put("14", "ritkart/mobiles/xiaomi-14-ultra");
+        map.put("ultra", "ritkart/mobiles/xiaomi-14-ultra");
+
         // Fashion
-        map.put("levis", "levis-jeans-men");
-        map.put("dress", "womens-floral-dress");
-        map.put("nike", "nike-air-force-1");
-        map.put("tshirt", "mens-cotton-tshirt");
-        map.put("jacket", "womens-denim-jacket");
-        map.put("adidas", "adidas-ultraboost");
+        map.put("levis", "ritkart/fashion/levis-jeans-men");
+        map.put("jeans", "ritkart/fashion/levis-jeans-men");
+        map.put("dress", "ritkart/fashion/womens-floral-dress");
+        map.put("floral", "ritkart/fashion/womens-floral-dress");
+        map.put("nike", "ritkart/fashion/nike-air-force-1");
+        map.put("shoes", "ritkart/fashion/nike-air-force-1");
+        map.put("sneakers", "ritkart/fashion/nike-air-force-1");
+        map.put("tshirt", "ritkart/fashion/mens-cotton-tshirt");
+        map.put("cotton", "ritkart/fashion/mens-cotton-tshirt");
+        map.put("jacket", "ritkart/fashion/womens-denim-jacket");
+        map.put("denim", "ritkart/fashion/womens-denim-jacket");
+        map.put("adidas", "ritkart/fashion/adidas-ultraboost");
+        map.put("ultraboost", "ritkart/fashion/adidas-ultraboost");
+
         // Home
-        map.put("bed", "wooden-bed-frame");
-        map.put("sofa", "navy-fabric-sofa");
-        map.put("desk", "wooden-study-desk");
-        map.put("dining", "dining-table-set");
-        map.put("cabinet", "kitchen-cabinet-white");
-        map.put("mattress", "memory-foam-mattress");
-        map.put("wardrobe", "wooden-wardrobe");
-        map.put("light", "led-ceiling-light");
+        map.put("bed", "ritkart/home/wooden-bed-frame");
+        map.put("wooden", "ritkart/home/wooden-bed-frame");
+        map.put("sofa", "ritkart/home/navy-fabric-sofa");
+        map.put("fabric", "ritkart/home/navy-fabric-sofa");
+        map.put("desk", "ritkart/home/wooden-study-desk");
+        map.put("study", "ritkart/home/wooden-study-desk");
+        map.put("dining", "ritkart/home/dining-table-set");
+        map.put("table", "ritkart/home/dining-table-set");
+        map.put("cabinet", "ritkart/home/kitchen-cabinet-white");
+        map.put("kitchen", "ritkart/home/kitchen-cabinet-white");
+        map.put("mattress", "ritkart/home/memory-foam-mattress");
+        map.put("memory", "ritkart/home/memory-foam-mattress");
+        map.put("foam", "ritkart/home/memory-foam-mattress");
+        map.put("wardrobe", "ritkart/home/wooden-wardrobe");
+        map.put("light", "ritkart/home/led-ceiling-light");
+        map.put("led", "ritkart/home/led-ceiling-light");
+        map.put("ceiling", "ritkart/home/led-ceiling-light");
+
         // Appliances
-        map.put("refrigerator", "lg-double-door-fridge");
-        map.put("washing", "front-load-washer");
-        map.put("air conditioner", "split-air-conditioner");
-        map.put("microwave", "convection-microwave");
-        map.put("induction", "induction-cooktop");
+        map.put("refrigerator", "ritkart/appliances/lg-double-door-fridge");
+        map.put("fridge", "ritkart/appliances/lg-double-door-fridge");
+        map.put("washing", "ritkart/appliances/front-load-washer");
+        map.put("washer", "ritkart/appliances/front-load-washer");
+        map.put("machine", "ritkart/appliances/front-load-washer");
+        map.put("air conditioner", "ritkart/appliances/split-air-conditioner");
+        map.put("ac", "ritkart/appliances/split-air-conditioner");
+        map.put("split", "ritkart/appliances/split-air-conditioner");
+        map.put("microwave", "ritkart/appliances/convection-microwave");
+        map.put("convection", "ritkart/appliances/convection-microwave");
+        map.put("induction", "ritkart/appliances/induction-cooktop");
+        map.put("cooktop", "ritkart/appliances/induction-cooktop");
+
         // Books
-        map.put("psychology", "psychology-money-book");
+        map.put("psychology", "ritkart/books/psychology-money-book");
+        map.put("money", "ritkart/books/psychology-money-book");
+        map.put("programming", "ritkart/books/programming-book");
+        map.put("java", "ritkart/books/programming-book");
+        map.put("python", "ritkart/books/programming-book");
+        map.put("novel", "ritkart/books/fiction-novel");
+        map.put("fiction", "ritkart/books/fiction-novel");
+        map.put("cookbook", "ritkart/books/cookbook");
+        map.put("recipe", "ritkart/books/cookbook");
         PRODUCT_IMAGE_MAPPING = Collections.unmodifiableMap(map);
     }
 
@@ -435,7 +490,8 @@ public class ProductImageService {
         String lowerProductName = productName.toLowerCase();
         for (Map.Entry<String, String> entry : PRODUCT_IMAGE_MAPPING.entrySet()) {
             if (lowerProductName.contains(entry.getKey())) {
-                return folderPath + "/" + entry.getValue();
+                // The entry.getValue() already contains the full path like "ritkart/electronics/samsung-galaxy-s24-ultra"
+                return entry.getValue();
             }
         }
 
@@ -509,5 +565,157 @@ public class ProductImageService {
         }
         
         return "Category-based suggestion";
+    }
+
+    /**
+     * Replace ALL product images with appropriate category-specific images
+     */
+    public Map<String, Object> replaceAllProductImages() {
+        List<Product> allProducts = productRepository.findAll();
+        int totalProducts = allProducts.size();
+        int updatedProducts = 0;
+        int failedProducts = 0;
+        List<String> errors = new ArrayList<>();
+
+        for (Product product : allProducts) {
+            try {
+                // Get category name
+                String categoryName = "Unknown";
+                if (product.getCategoryId() != null) {
+                    Optional<Category> categoryOpt = categoryRepository.findById(product.getCategoryId());
+                    if (categoryOpt.isPresent()) {
+                        categoryName = categoryOpt.get().getName();
+                    }
+                }
+
+                String bestImagePublicId = findBestImageForProduct(product.getName(), categoryName);
+                if (bestImagePublicId != null) {
+                    String imageUrl = constructCloudinaryUrl(bestImagePublicId);
+
+                    // FORCE replace all existing images with the new appropriate image
+                    List<String> newImageUrls = new ArrayList<>();
+                    newImageUrls.add(imageUrl);
+                    product.setImageUrls(newImageUrls);
+                    productRepository.save(product);
+                    updatedProducts++;
+                }
+            } catch (Exception e) {
+                failedProducts++;
+                errors.add("Product " + product.getName() + ": " + e.getMessage());
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("totalProducts", totalProducts);
+        result.put("updatedCount", updatedProducts);
+        result.put("failedCount", failedProducts);
+        result.put("errors", errors);
+
+        return result;
+    }
+
+    /**
+     * Get all products with their current images and suggested images for admin overview
+     */
+    public List<Map<String, Object>> getProductsWithImageSuggestions() {
+        List<Product> allProducts = productRepository.findAll();
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (Product product : allProducts) {
+            Map<String, Object> productInfo = new HashMap<>();
+
+            // Basic product info
+            productInfo.put("id", product.getId());
+            productInfo.put("name", product.getName());
+            productInfo.put("sku", product.getSku());
+
+            // Get category name from categoryId
+            String categoryName = "Unknown";
+            if (product.getCategoryId() != null) {
+                Optional<Category> categoryOpt = categoryRepository.findById(product.getCategoryId());
+                if (categoryOpt.isPresent()) {
+                    categoryName = categoryOpt.get().getName();
+                }
+            }
+            productInfo.put("categoryName", categoryName);
+
+            // Current images
+            List<String> currentImages = product.getImageUrls() != null ? product.getImageUrls() : new ArrayList<>();
+            productInfo.put("currentImages", currentImages);
+            productInfo.put("hasImages", !currentImages.isEmpty());
+
+            // Suggested image
+            String suggestedImagePublicId = findBestImageForProduct(product.getName(), categoryName);
+            if (suggestedImagePublicId != null) {
+                String suggestedImageUrl = constructCloudinaryUrl(suggestedImagePublicId);
+                productInfo.put("suggestedImagePublicId", suggestedImagePublicId);
+                productInfo.put("suggestedImageUrl", suggestedImageUrl);
+
+                // Check if needs update (either no images or current image is generic)
+                boolean needsUpdate = currentImages.isEmpty() ||
+                    currentImages.stream().anyMatch(url ->
+                        url.contains("clothing-store") ||
+                        url.contains("generic") ||
+                        url.contains("placeholder") ||
+                        url.contains("default") ||
+                        url.contains("sample") ||
+                        url.contains("demo") ||
+                        // Check if it's the same generic image being used everywhere
+                        currentImages.size() == 1
+                    );
+                productInfo.put("needsUpdate", needsUpdate);
+            } else {
+                productInfo.put("suggestedImagePublicId", null);
+                productInfo.put("suggestedImageUrl", null);
+                productInfo.put("needsUpdate", true);
+            }
+
+            result.add(productInfo);
+        }
+
+        return result;
+    }
+
+    /**
+     * Update a specific product's images with the suggested appropriate image
+     */
+    public Map<String, Object> updateProductWithSuggestedImage(String productId) {
+        Optional<Product> productOpt = productRepository.findById(productId);
+        if (!productOpt.isPresent()) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("error", "Product not found");
+            return result;
+        }
+
+        Product product = productOpt.get();
+
+        // Get category name
+        String categoryName = "Unknown";
+        if (product.getCategoryId() != null) {
+            Optional<Category> categoryOpt = categoryRepository.findById(product.getCategoryId());
+            if (categoryOpt.isPresent()) {
+                categoryName = categoryOpt.get().getName();
+            }
+        }
+
+        String bestImagePublicId = findBestImageForProduct(product.getName(), categoryName);
+
+        if (bestImagePublicId != null) {
+            String imageUrl = constructCloudinaryUrl(bestImagePublicId);
+            product.setImageUrls(Arrays.asList(imageUrl));
+            productRepository.save(product);
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            result.put("updatedImageUrl", imageUrl);
+            result.put("publicId", bestImagePublicId);
+            return result;
+        } else {
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("error", "No appropriate image found for this product");
+            return result;
+        }
     }
 }
