@@ -6,6 +6,8 @@ import BulkImageUploader from '../../components/admin/BulkImageUploader';
 import ImageGallery from '../../components/admin/ImageGallery';
 import ImageEditor from '../../components/admin/ImageEditor';
 import StorageAnalytics from '../../components/admin/StorageAnalytics';
+import ProductImageManager from '../../components/admin/ProductImageManager';
+import ProductImageEditor from '../../components/admin/ProductImageEditor';
 
 interface AdminImage {
   public_id: string;
