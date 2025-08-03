@@ -227,7 +227,7 @@ export default function Home() {
       <div className="bg-gradient-to-r from-red-500 to-pink-600 py-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">⚡ Flash Sale</h2>
-          <p className="text-white/90 text-lg mb-6">Limited time offer! Grab these deals before they're gone!</p>
+          <p className="text-white/90 text-lg mb-6">Limited time offer! Grab these deals before they&apos;re gone!</p>
           <div className="flex justify-center items-center space-x-4 mb-8">
             <div className="bg-white/20 rounded-lg p-4 text-white">
               <div className="text-2xl font-bold" suppressHydrationWarning={true}>{timeLeft.hours}</div>
