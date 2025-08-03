@@ -114,7 +114,7 @@ export default function OrdersPage() {
           <div className="bg-white rounded-lg shadow-sm p-12 text-center">
             <i className="ri-shopping-bag-line text-6xl text-gray-300 mb-6 w-24 h-24 flex items-center justify-center mx-auto"></i>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">No Orders Yet</h2>
-            <p className="text-gray-600 mb-8">You haven't placed any orders yet. Start shopping to see your orders here!</p>
+            <p className="text-gray-600 mb-8">You haven&apos;t placed any orders yet. Start shopping to see your orders here!</p>
             <Link href="/" className="inline-block bg-[#2874f0] text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-600 transition-colors whitespace-nowrap cursor-pointer">
               Start Shopping
             </Link>
