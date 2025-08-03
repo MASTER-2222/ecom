@@ -22,7 +22,7 @@ interface AdminImage {
 }
 
 export default function AdminPanel() {
-  const [activeTab, setActiveTab] = useState('bulk-upload');
+  const [activeTab, setActiveTab] = useState('product-manager');
   const [images, setImages] = useState<AdminImage[]>([]);
   const [selectedImage, setSelectedImage] = useState<AdminImage | null>(null);
   const [loading, setLoading] = useState(false);
