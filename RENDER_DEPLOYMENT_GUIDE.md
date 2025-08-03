@@ -111,16 +111,17 @@ NEXT_PUBLIC_CLOUDINARY_API_KEY=195345735854272
 Make sure your `frontend2/next.config.ts` is configured for static export:
 
 ```typescript
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: "export",
   trailingSlash: true,
   images: {
-    unoptimized: true
-  }
-}
+    unoptimized: true,
+  },
+};
 
-module.exports = nextConfig
+export default nextConfig;
 ```
 
 ### 3.5 Deploy Frontend
