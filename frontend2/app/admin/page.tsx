@@ -95,10 +95,12 @@ export default function AdminPanel() {
   });
 
   const tabs = [
+    { id: 'product-manager', label: 'Product Images', icon: '🏷️' },
+    { id: 'product-editor', label: 'Image Editor', icon: '✏️' },
     { id: 'bulk-upload', label: 'Bulk Upload', icon: '⚡' },
     { id: 'upload', label: 'Upload Images', icon: '📤' },
     { id: 'gallery', label: 'Image Gallery', icon: '🖼️' },
-    { id: 'editor', label: 'Image Editor', icon: '✏️' },
+    { id: 'editor', label: 'Image Editor', icon: '🔧' },
     { id: 'analytics', label: 'Analytics', icon: '📊' }
   ];
 
