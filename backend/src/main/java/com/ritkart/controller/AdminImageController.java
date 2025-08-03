@@ -452,7 +452,8 @@ public class AdminImageController {
     @GetMapping("/analytics/storage")
     public ResponseEntity<?> getStorageAnalytics() {
         try {
-            Map<?, ?> usage = cloudinary.api().usage();
+            // Call usage method with empty options map
+            Map<?, ?> usage = cloudinary.api().usage(ObjectUtils.emptyMap());
             
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
