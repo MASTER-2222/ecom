@@ -111,7 +111,7 @@ export default function SavedItemsPage() {
                   <div className="flex items-start space-x-4">
                     <Link href={`/product/${item.product_id}`}>
                       <img
-                        src={item.product_image || `productImages['samsung-s24']
+                        src={item.product_image || "https://via.placeholder.com/150"}
                         alt={item.product_name}
                         className="w-24 h-24 object-cover rounded-md cursor-pointer object-top"
                       />

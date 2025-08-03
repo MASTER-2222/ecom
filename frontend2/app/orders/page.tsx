@@ -178,7 +178,7 @@ export default function OrdersPage() {
                       <div key={item.id} className="flex items-center space-x-4">
                         <Link href={`/product/${item.product_id}`}>
                           <img
-                            src={item.product_image || `productImages['samsung-s24']
+                            src={item.product_image || "https://via.placeholder.com/150"}
                             alt={item.product_name}
                             className="w-20 h-20 object-cover rounded-md cursor-pointer object-top"
                           />
