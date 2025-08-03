@@ -30,56 +30,62 @@ public class ProductImageService {
     private static final String CLOUDINARY_BASE_URL = "https://res.cloudinary.com/dv0lg87ib/image/upload";
     
     // Cloudinary folder mapping for categories
-    private static final Map<String, String> CATEGORY_FOLDER_MAPPING = Map.of(
-        "Electronics", "ritkart/electronics",
-        "Mobiles", "ritkart/mobiles", 
-        "Fashion", "ritkart/fashion",
-        "Home", "ritkart/home",
-        "Appliances", "ritkart/appliances",
-        "Books", "ritkart/books"
-    );
+    private static final Map<String, String> CATEGORY_FOLDER_MAPPING;
+    static {
+        Map<String, String> map = new HashMap<>();
+        map.put("Electronics", "ritkart/electronics");
+        map.put("Mobiles", "ritkart/mobiles");
+        map.put("Fashion", "ritkart/fashion");
+        map.put("Home", "ritkart/home");
+        map.put("Appliances", "ritkart/appliances");
+        map.put("Books", "ritkart/books");
+        CATEGORY_FOLDER_MAPPING = Collections.unmodifiableMap(map);
+    }
 
     // Product name to Cloudinary public_id mapping
-    private static final Map<String, String> PRODUCT_IMAGE_MAPPING = Map.of(
+    private static final Map<String, String> PRODUCT_IMAGE_MAPPING;
+    static {
+        Map<String, String> map = new HashMap<>();
         // Electronics
-        "samsung", "samsung-galaxy-s24-ultra",
-        "iphone", "iphone-15-pro-max",
-        "sony", "sony-wh1000xm5",
-        "macbook", "macbook-air-m2",
-        "dell", "dell-xps-13",
-        "lg", "lg-oled-tv-55",
-        "canon", "canon-eos-r6",
-        "playstation", "playstation-5",
-        "nintendo", "nintendo-switch-oled",
+        map.put("samsung", "samsung-galaxy-s24-ultra");
+        map.put("iphone", "iphone-15-pro-max");
+        map.put("sony", "sony-wh1000xm5");
+        map.put("macbook", "macbook-air-m2");
+        map.put("dell", "dell-xps-13");
+        map.put("lg", "lg-oled-tv-55");
+        map.put("canon", "canon-eos-r6");
+        map.put("playstation", "playstation-5");
+        map.put("nintendo", "nintendo-switch-oled");
         // Mobiles
-        "oneplus", "oneplus-12",
-        "pixel", "google-pixel-8",
-        "xiaomi", "xiaomi-14-ultra",
+        map.put("oneplus", "oneplus-12");
+        map.put("pixel", "google-pixel-8");
+        map.put("xiaomi", "xiaomi-14-ultra");
         // Fashion
-        "levis", "levis-jeans-men",
-        "dress", "womens-floral-dress",
-        "nike", "nike-air-force-1",
-        "tshirt", "mens-cotton-tshirt",
-        "jacket", "womens-denim-jacket",
-        "adidas", "adidas-ultraboost",
+        map.put("levis", "levis-jeans-men");
+        map.put("dress", "womens-floral-dress");
+        map.put("nike", "nike-air-force-1");
+        map.put("tshirt", "mens-cotton-tshirt");
+        map.put("jacket", "womens-denim-jacket");
+        map.put("adidas", "adidas-ultraboost");
         // Home
-        "bed", "wooden-bed-frame",
-        "sofa", "navy-fabric-sofa",
-        "desk", "wooden-study-desk",
-        "dining", "dining-table-set",
-        "cabinet", "kitchen-cabinet-white",
-        "mattress", "memory-foam-mattress",
-        "wardrobe", "wooden-wardrobe",
-        "light", "led-ceiling-light",
+        map.put("bed", "wooden-bed-frame");
+        map.put("sofa", "navy-fabric-sofa");
+        map.put("desk", "wooden-study-desk");
+        map.put("dining", "dining-table-set");
+        map.put("cabinet", "kitchen-cabinet-white");
+        map.put("mattress", "memory-foam-mattress");
+        map.put("wardrobe", "wooden-wardrobe");
+        map.put("light", "led-ceiling-light");
         // Appliances
-        "refrigerator", "lg-double-door-fridge",
-        "washing", "front-load-washer",
-        "air conditioner", "split-air-conditioner",
-        "microwave", "convection-microwave",
-        "induction", "induction-cooktop",
+        map.put("refrigerator", "lg-double-door-fridge");
+        map.put("washing", "front-load-washer");
+        map.put("air conditioner", "split-air-conditioner");
+        map.put("microwave", "convection-microwave");
+        map.put("induction", "induction-cooktop");
         // Books
-        "psychology", "psychology-money-book"
-    );
+        map.put("psychology", "psychology-money-book");
+        PRODUCT_IMAGE_MAPPING = Collections.unmodifiableMap(map);
+    }
 
     public Map<String, Object> autoAssignImagesForAllProducts() {
         List<Product> allProducts = productRepository.findAll();
