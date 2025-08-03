@@ -142,7 +142,7 @@ export const getProductImage = (productId: string, fallbackCategory: string = 'p
   return unsplashUrls[fallbackCategory as keyof typeof unsplashUrls] || unsplashUrls.product;
 };
 
-export default {
+const cloudinaryImages = {
   productImages,
   categoryImages,
   bannerImages,
@@ -152,3 +152,5 @@ export default {
   getCloudinaryUrl,
   transformations,
 };
+
+export default cloudinaryImages;
