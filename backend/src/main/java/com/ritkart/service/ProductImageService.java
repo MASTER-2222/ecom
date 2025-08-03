@@ -441,12 +441,11 @@ public class ProductImageService {
 
         // If no exact match, return a default image for the category
         try {
-            Map<String, Object> searchOptions = Map.of(
-                "resource_type", "image",
-                "type", "upload",
-                "prefix", folderPath,
-                "max_results", 1
-            );
+            Map<String, Object> searchOptions = new HashMap<>();
+            searchOptions.put("resource_type", "image");
+            searchOptions.put("type", "upload");
+            searchOptions.put("prefix", folderPath);
+            searchOptions.put("max_results", 1);
 
             @SuppressWarnings("unchecked")
             Map<String, Object> result = cloudinary.api().resources(searchOptions);
