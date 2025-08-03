@@ -93,6 +93,7 @@ export default function AdminPanel() {
   });
 
   const tabs = [
+    { id: 'bulk-upload', label: 'Bulk Upload', icon: '⚡' },
     { id: 'upload', label: 'Upload Images', icon: '📤' },
     { id: 'gallery', label: 'Image Gallery', icon: '🖼️' },
     { id: 'editor', label: 'Image Editor', icon: '✏️' },
