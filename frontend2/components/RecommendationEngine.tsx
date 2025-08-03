@@ -48,7 +48,7 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
     const generateRecommendations = async () => {
       try {
         // Get user preferences and order history
-        const [preferences, orders] = await Promise.all([
+        const [preferences, orders]: [any, Order[]] = await Promise.all([
           getUserPreferences().catch(() => null),
           getUserOrders().catch(() => [])
         ]);
