@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ritkart-frontend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: https://ritkart-backend.onrender.com/api
+      - key: NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+        value: dv0lg87ib
+      - key: NEXT_PUBLIC_CLOUDINARY_API_KEY
+        value: 195345735854272
