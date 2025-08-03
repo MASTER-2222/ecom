@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
+  // output: "export", // Commented out for server-side functionality
+  trailingSlash: false,
   images: {
     unoptimized: true,
   },
