@@ -185,4 +185,50 @@ public class ProductImageController {
             );
         }
     }
+
+    @Operation(summary = "Replace ALL product images with appropriate category-specific images")
+    @PostMapping("/replace-all-images")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> replaceAllProductImages() {
+        try {
+            Map<String, Object> result = productImageService.replaceAllProductImages();
+            return ResponseEntity.ok(Map.of("success", true, "data", result));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("success", false, "error", "Failed to replace all images: " + e.getMessage())
+            );
+        }
+    }
+
+    @Operation(summary = "Get all products with current and suggested images for admin overview")
+    @GetMapping("/products-with-suggestions")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getProductsWithImageSuggestions() {
+        try {
+            List<Map<String, Object>> result = productImageService.getProductsWithImageSuggestions();
+            return ResponseEntity.ok(Map.of("success", true, "data", result));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("success", false, "error", "Failed to get products with suggestions: " + e.getMessage())
+            );
+        }
+    }
+
+    @Operation(summary = "Update a specific product with its suggested appropriate image")
+    @PutMapping("/{productId}/images")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateProductWithSuggestedImage(@PathVariable String productId) {
+        try {
+            Map<String, Object> result = productImageService.updateProductWithSuggestedImage(productId);
+            if ((Boolean) result.get("success")) {
+                return ResponseEntity.ok(Map.of("success", true, "data", result));
+            } else {
+                return ResponseEntity.badRequest().body(Map.of("success", false, "error", result.get("error")));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                Map.of("success", false, "error", "Failed to update product image: " + e.getMessage())
+            );
+        }
+    }
 }

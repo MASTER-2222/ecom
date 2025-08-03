@@ -8,6 +8,7 @@ import ImageEditor from '../../components/admin/ImageEditor';
 import StorageAnalytics from '../../components/admin/StorageAnalytics';
 import ProductImageManager from '../../components/admin/ProductImageManager';
 import ProductImageEditor from '../../components/admin/ProductImageEditor';
+import ProductImageOverview from '../../components/admin/ProductImageOverview';
 
 interface AdminImage {
   public_id: string;
@@ -22,7 +23,7 @@ interface AdminImage {
 }
 
 export default function AdminPanel() {
-  const [activeTab, setActiveTab] = useState('product-manager');
+  const [activeTab, setActiveTab] = useState('image-overview');
   const [images, setImages] = useState<AdminImage[]>([]);
   const [selectedImage, setSelectedImage] = useState<AdminImage | null>(null);
   const [loading, setLoading] = useState(false);
@@ -95,13 +96,14 @@ export default function AdminPanel() {
   });
 
   const tabs = [
+    { id: 'image-overview', label: 'Image Overview', icon: '📊' },
     { id: 'product-manager', label: 'Product Images', icon: '🏷️' },
     { id: 'product-editor', label: 'Image Editor', icon: '✏️' },
     { id: 'bulk-upload', label: 'Bulk Upload', icon: '⚡' },
     { id: 'upload', label: 'Upload Images', icon: '📤' },
     { id: 'gallery', label: 'Image Gallery', icon: '🖼️' },
     { id: 'editor', label: 'Image Editor', icon: '🔧' },
-    { id: 'analytics', label: 'Analytics', icon: '📊' }
+    { id: 'analytics', label: 'Analytics', icon: '📈' }
   ];
 
   return (
@@ -154,6 +156,13 @@ export default function AdminPanel() {
 
         {/* Tab Content */}
         <div className="bg-white rounded-lg shadow">
+          {activeTab === 'image-overview' && (
+            <div className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">🎯 Complete Product Image Overview</h2>
+              <ProductImageOverview onSuccess={refreshImages} />
+            </div>
+          )}
+
           {activeTab === 'product-manager' && (
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Product Image Management</h2>
