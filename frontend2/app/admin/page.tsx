@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ImageUploader from '../../components/admin/ImageUploader';
+import BulkImageUploader from '../../components/admin/BulkImageUploader';
 import ImageGallery from '../../components/admin/ImageGallery';
 import ImageEditor from '../../components/admin/ImageEditor';
 import StorageAnalytics from '../../components/admin/StorageAnalytics';
