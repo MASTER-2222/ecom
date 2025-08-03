@@ -177,12 +177,12 @@ export default function RecommendationEngine({ title, userId }: RecommendationEn
           );
 
           // Add some logic to recommend similar categories
-          const purchasedCategories = orders.flatMap(order => 
-            order.order_items.map(item => {
+          const purchasedCategories = orders.flatMap((order: Order) => 
+            order.order_items.map((item: OrderItem) => {
               const product = allProducts.find(p => p.id === item.product_id);
               return product?.category;
             })
-          ).filter(Boolean);
+          ).filter((category): category is string => Boolean(category));
 
           if (purchasedCategories.length > 0) {
             const similarProducts = allProducts.filter(product => 
