@@ -1,5 +1,5 @@
 # Multi-stage build for Java Spring Boot application
-FROM maven:3.9.6-openjdk-17-slim AS build
+FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -15,14 +15,14 @@ COPY src ./src
 RUN mvn clean package -DskipTests -B
 
 # Production stage
-FROM openjdk:17-jdk-slim AS production
+FROM eclipse-temurin:17-jdk-alpine AS production
 
 # Install curl for health checks
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache curl
 
 # Create app user
-RUN addgroup --system --gid 1001 appgroup && \
-    adduser --system --uid 1001 --gid 1001 appuser
+RUN addgroup -g 1001 -S appgroup && \
+    adduser -S appuser -u 1001 -G appgroup
 
 # Set working directory
 WORKDIR /app
