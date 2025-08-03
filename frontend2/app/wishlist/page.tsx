@@ -162,7 +162,7 @@ export default function WishlistPage() {
           <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Share Your Wishlist</h3>
             <div className="flex items-center space-x-4">
-              <p className="text-gray-600 text-sm">Let others know what you're interested in</p>
+              <p className="text-gray-600 text-sm">Let others know what you&apos;re interested in</p>
               <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors whitespace-nowrap cursor-pointer">
                 <i className="ri-share-line mr-2 w-4 h-4 flex items-center justify-center inline"></i>
                 Share Wishlist
