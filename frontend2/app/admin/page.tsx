@@ -154,6 +154,20 @@ export default function AdminPanel() {
 
         {/* Tab Content */}
         <div className="bg-white rounded-lg shadow">
+          {activeTab === 'product-manager' && (
+            <div className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Product Image Management</h2>
+              <ProductImageManager onSuccess={refreshImages} />
+            </div>
+          )}
+
+          {activeTab === 'product-editor' && (
+            <div className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Product Image Editor</h2>
+              <ProductImageEditor onSuccess={refreshImages} />
+            </div>
+          )}
+
           {activeTab === 'bulk-upload' && (
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Bulk Upload Product Images</h2>
