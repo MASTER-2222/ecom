@@ -150,6 +150,16 @@ export default function AdminPanel() {
 
         {/* Tab Content */}
         <div className="bg-white rounded-lg shadow">
+          {activeTab === 'bulk-upload' && (
+            <div className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">Bulk Upload Product Images</h2>
+              <BulkImageUploader 
+                onUploadComplete={refreshImages}
+                onUploadError={(error) => console.error('Bulk upload error:', error)}
+              />
+            </div>
+          )}
+
           {activeTab === 'upload' && (
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Upload Images</h2>
