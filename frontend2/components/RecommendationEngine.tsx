@@ -16,6 +16,25 @@ interface Product {
   brand: string;
 }
 
+interface OrderItem {
+  id: string;
+  product_id: string;
+  product_name: string;
+  product_image?: string;
+  price: number;
+  quantity: number;
+}
+
+interface Order {
+  id: string;
+  order_number: string;
+  total_amount: number;
+  status: string;
+  payment_status: string;
+  created_at: string;
+  order_items: OrderItem[];
+}
+
 interface RecommendationEngineProps {
   title: string;
   userId?: string;
