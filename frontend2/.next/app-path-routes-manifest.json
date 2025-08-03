@@ -1,0 +1,17 @@
+{
+  "/appliances/page": "/appliances",
+  "/books/page": "/books",
+  "/admin/page": "/admin",
+  "/cart/page": "/cart",
+  "/electronics/page": "/electronics",
+  "/fashion/page": "/fashion",
+  "/auth/callback/page": "/auth/callback",
+  "/home/page": "/home",
+  "/_not-found/page": "/_not-found",
+  "/mobiles/page": "/mobiles",
+  "/page": "/",
+  "/orders/page": "/orders",
+  "/saved-items/page": "/saved-items",
+  "/wishlist/page": "/wishlist",
+  "/product/[id]/page": "/product/[id]"
+}
