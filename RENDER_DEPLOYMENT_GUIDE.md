@@ -173,6 +173,10 @@ Visit these URLs to test your backend:
 ### Common Issues & Solutions
 
 #### Backend Issues
+**Issue**: Docker build fails with "image not found"
+- **Solution**: Use correct Docker image tags. Our Dockerfile uses `maven:3.9.9-eclipse-temurin-17-alpine`
+- **Alternative**: If Alpine causes issues, rename `Dockerfile.ubuntu` to `Dockerfile` for Ubuntu base
+
 **Issue**: Service won't start
 - Check build logs in Render dashboard
 - Verify all environment variables are set
