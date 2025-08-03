@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: ritkart-backend
+    env: java
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/ritkart-backend-1.0.0.jar --server.port=$PORT
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://ritkart-admin:your_password@ritkart-cluster.yopyqig.mongodb.net/ritkart
+      - key: JWT_SECRET
+        value: your_jwt_secret_here
+      - key: CLOUDINARY_CLOUD_NAME
+        value: dv0lg87ib
+      - key: CLOUDINARY_API_KEY
+        value: 195345735854272
+      - key: CLOUDINARY_API_SECRET
+        value: your_cloudinary_secret
