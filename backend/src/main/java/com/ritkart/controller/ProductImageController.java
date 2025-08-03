@@ -188,7 +188,11 @@ public class ProductImageController {
 
     @Operation(summary = "Replace ALL product images with appropriate category-specific images")
     @PostMapping("/replace-all-images")
+<<<<<<< HEAD
     // @PreAuthorize("hasRole('ADMIN')") // Temporarily disabled for testing
+=======
+    @PreAuthorize("hasRole('ADMIN')")
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
     public ResponseEntity<?> replaceAllProductImages() {
         try {
             Map<String, Object> result = productImageService.replaceAllProductImages();
@@ -202,7 +206,11 @@ public class ProductImageController {
 
     @Operation(summary = "Get all products with current and suggested images for admin overview")
     @GetMapping("/products-with-suggestions")
+<<<<<<< HEAD
     // @PreAuthorize("hasRole('ADMIN')") // Temporarily disabled for testing
+=======
+    @PreAuthorize("hasRole('ADMIN')")
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
     public ResponseEntity<?> getProductsWithImageSuggestions() {
         try {
             List<Map<String, Object>> result = productImageService.getProductsWithImageSuggestions();
@@ -231,6 +239,7 @@ public class ProductImageController {
             );
         }
     }
+<<<<<<< HEAD
 
     @Operation(summary = "Debug endpoint to check current product images")
     @GetMapping("/debug/current-images")
@@ -244,4 +253,6 @@ public class ProductImageController {
             );
         }
     }
+=======
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
 }

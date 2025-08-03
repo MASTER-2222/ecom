@@ -579,6 +579,7 @@ public class ProductImageService {
 
         for (Product product : allProducts) {
             try {
+<<<<<<< HEAD
                 // Get category name
                 String categoryName = "Unknown";
                 if (product.getCategoryId() != null) {
@@ -596,6 +597,14 @@ public class ProductImageService {
                     List<String> newImageUrls = new ArrayList<>();
                     newImageUrls.add(imageUrl);
                     product.setImageUrls(newImageUrls);
+=======
+                String bestImagePublicId = findBestImageForProduct(product);
+                if (bestImagePublicId != null) {
+                    String imageUrl = cloudinaryService.getImageUrl(bestImagePublicId);
+
+                    // Replace all existing images with the new appropriate image
+                    product.setImageUrls(Arrays.asList(imageUrl));
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
                     productRepository.save(product);
                     updatedProducts++;
                 }
@@ -628,6 +637,7 @@ public class ProductImageService {
             productInfo.put("id", product.getId());
             productInfo.put("name", product.getName());
             productInfo.put("sku", product.getSku());
+<<<<<<< HEAD
 
             // Get category name from categoryId
             String categoryName = "Unknown";
@@ -638,6 +648,9 @@ public class ProductImageService {
                 }
             }
             productInfo.put("categoryName", categoryName);
+=======
+            productInfo.put("categoryName", product.getCategory() != null ? product.getCategory().getName() : "Unknown");
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
 
             // Current images
             List<String> currentImages = product.getImageUrls() != null ? product.getImageUrls() : new ArrayList<>();
@@ -645,14 +658,21 @@ public class ProductImageService {
             productInfo.put("hasImages", !currentImages.isEmpty());
 
             // Suggested image
+<<<<<<< HEAD
             String suggestedImagePublicId = findBestImageForProduct(product.getName(), categoryName);
             if (suggestedImagePublicId != null) {
                 String suggestedImageUrl = constructCloudinaryUrl(suggestedImagePublicId);
+=======
+            String suggestedImagePublicId = findBestImageForProduct(product);
+            if (suggestedImagePublicId != null) {
+                String suggestedImageUrl = cloudinaryService.getImageUrl(suggestedImagePublicId);
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
                 productInfo.put("suggestedImagePublicId", suggestedImagePublicId);
                 productInfo.put("suggestedImageUrl", suggestedImageUrl);
 
                 // Check if needs update (either no images or current image is generic)
                 boolean needsUpdate = currentImages.isEmpty() ||
+<<<<<<< HEAD
                     currentImages.stream().anyMatch(url ->
                         url.contains("clothing-store") ||
                         url.contains("generic") ||
@@ -663,6 +683,9 @@ public class ProductImageService {
                         // Check if it's the same generic image being used everywhere
                         currentImages.size() == 1
                     );
+=======
+                    currentImages.stream().anyMatch(url -> url.contains("clothing-store") || url.contains("generic"));
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
                 productInfo.put("needsUpdate", needsUpdate);
             } else {
                 productInfo.put("suggestedImagePublicId", null);
@@ -689,6 +712,7 @@ public class ProductImageService {
         }
 
         Product product = productOpt.get();
+<<<<<<< HEAD
 
         // Get category name
         String categoryName = "Unknown";
@@ -703,6 +727,12 @@ public class ProductImageService {
 
         if (bestImagePublicId != null) {
             String imageUrl = constructCloudinaryUrl(bestImagePublicId);
+=======
+        String bestImagePublicId = findBestImageForProduct(product);
+
+        if (bestImagePublicId != null) {
+            String imageUrl = cloudinaryService.getImageUrl(bestImagePublicId);
+>>>>>>> 080160958002700a996641f27063056b33d1e5f6
             product.setImageUrls(Arrays.asList(imageUrl));
             productRepository.save(product);
 
