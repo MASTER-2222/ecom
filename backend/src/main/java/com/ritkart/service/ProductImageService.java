@@ -269,12 +269,11 @@ public class ProductImageService {
             }
 
             // Get images from Cloudinary folder
-            Map<String, Object> searchOptions = Map.of(
-                "resource_type", "image",
-                "type", "upload",
-                "prefix", folderPath,
-                "max_results", 50
-            );
+            Map<String, Object> searchOptions = new HashMap<>();
+            searchOptions.put("resource_type", "image");
+            searchOptions.put("type", "upload");
+            searchOptions.put("prefix", folderPath);
+            searchOptions.put("max_results", 50);
 
             @SuppressWarnings("unchecked")
             Map<String, Object> result = cloudinary.api().resources(searchOptions);
