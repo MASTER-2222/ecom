@@ -207,7 +207,7 @@ export default function Dashboard({ onSuccess }: DashboardProps): JSX.Element {
               <div className="font-medium text-gray-900">Upload Images</div>
               <div className="text-sm text-gray-500">Bulk image upload</div>
             </div>
-          </div>
+          </button>
           
           <button className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
             <span className="text-2xl mr-3">📊</span>
