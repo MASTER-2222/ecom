@@ -1,6 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import AdminAuth, { isAdminAuthenticated, logoutAdmin, getAdminEmail } from '../../components/admin/AdminAuth';
+import Dashboard from '../../components/admin/Dashboard';
+import UserManagement from '../../components/admin/UserManagement';
+import ProductManagement from '../../components/admin/ProductManagement';
+import CategoryManagement from '../../components/admin/CategoryManagement';
+import OrderManagement from '../../components/admin/OrderManagement';
 import ImageUploader from '../../components/admin/ImageUploader';
 import BulkImageUploader from '../../components/admin/BulkImageUploader';
 import ImageGallery from '../../components/admin/ImageGallery';
@@ -9,6 +15,7 @@ import StorageAnalytics from '../../components/admin/StorageAnalytics';
 import ProductImageManager from '../../components/admin/ProductImageManager';
 import ProductImageEditor from '../../components/admin/ProductImageEditor';
 import ProductImageOverview from '../../components/admin/ProductImageOverview';
+import CloudinaryCleanup from '../../components/admin/CloudinaryCleanup';
 
 interface AdminImage {
   public_id: string;
@@ -23,13 +30,19 @@ interface AdminImage {
 }
 
 export default function AdminPanel() {
-  const [activeTab, setActiveTab] = useState('image-overview');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [images, setImages] = useState<AdminImage[]>([]);
   const [selectedImage, setSelectedImage] = useState<AdminImage | null>(null);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFolder, setSelectedFolder] = useState('');
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+  // Check authentication on component mount
+  useEffect(() => {
+    setIsAuthenticated(isAdminAuthenticated());
+  }, []);
 
   const folders = [
     'ritkart/electronics',
@@ -89,6 +102,20 @@ export default function AdminPanel() {
     setRefreshTrigger(prev => prev + 1);
   };
 
+  const handleLogin = (authenticated: boolean) => {
+    setIsAuthenticated(authenticated);
+  };
+
+  const handleLogout = () => {
+    logoutAdmin();
+    setIsAuthenticated(false);
+  };
+
+  // Show login screen if not authenticated
+  if (!isAuthenticated) {
+    return <AdminAuth onLogin={handleLogin} />;
+  }
+
   const filteredImages = images.filter(image => {
     if (!searchTerm) return true;
     return image.public_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -96,13 +123,15 @@ export default function AdminPanel() {
   });
 
   const tabs = [
+    { id: 'dashboard', label: 'Dashboard', icon: '🏠' },
+    { id: 'users', label: 'Users', icon: '👥' },
+    { id: 'products', label: 'Products', icon: '📦' },
+    { id: 'categories', label: 'Categories', icon: '🏷️' },
+    { id: 'orders', label: 'Orders', icon: '📋' },
     { id: 'image-overview', label: 'Image Overview', icon: '📊' },
-    { id: 'product-manager', label: 'Product Images', icon: '🏷️' },
-    { id: 'product-editor', label: 'Image Editor', icon: '✏️' },
+    { id: 'product-manager', label: 'Product Images', icon: '🖼️' },
+    { id: 'cleanup', label: 'Image Cleanup', icon: '🧹' },
     { id: 'bulk-upload', label: 'Bulk Upload', icon: '⚡' },
-    { id: 'upload', label: 'Upload Images', icon: '📤' },
-    { id: 'gallery', label: 'Image Gallery', icon: '🖼️' },
-    { id: 'editor', label: 'Image Editor', icon: '🔧' },
     { id: 'analytics', label: 'Analytics', icon: '📈' }
   ];
 
@@ -115,16 +144,25 @@ export default function AdminPanel() {
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-gray-900">RitKART Admin Panel</h1>
               <span className="ml-3 px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
-                Image Management
+                Complete Management System
               </span>
             </div>
             <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-600">
+                Welcome, {getAdminEmail() || 'Admin'}
+              </span>
               <button
                 onClick={refreshImages}
                 className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 disabled={loading}
               >
                 {loading ? '🔄' : '🔄'} Refresh
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+              >
+                🚪 Logout
               </button>
             </div>
           </div>
@@ -156,6 +194,36 @@ export default function AdminPanel() {
 
         {/* Tab Content */}
         <div className="bg-white rounded-lg shadow">
+          {activeTab === 'dashboard' && (
+            <div className="p-6">
+              <Dashboard onSuccess={refreshImages} />
+            </div>
+          )}
+
+          {activeTab === 'users' && (
+            <div className="p-6">
+              <UserManagement onSuccess={refreshImages} />
+            </div>
+          )}
+
+          {activeTab === 'products' && (
+            <div className="p-6">
+              <ProductManagement onSuccess={refreshImages} />
+            </div>
+          )}
+
+          {activeTab === 'categories' && (
+            <div className="p-6">
+              <CategoryManagement onSuccess={refreshImages} />
+            </div>
+          )}
+
+          {activeTab === 'orders' && (
+            <div className="p-6">
+              <OrderManagement onSuccess={refreshImages} />
+            </div>
+          )}
+
           {activeTab === 'image-overview' && (
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">🎯 Complete Product Image Overview</h2>
@@ -170,99 +238,19 @@ export default function AdminPanel() {
             </div>
           )}
 
-          {activeTab === 'product-editor' && (
+          {activeTab === 'cleanup' && (
             <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Product Image Editor</h2>
-              <ProductImageEditor onSuccess={refreshImages} />
+              <CloudinaryCleanup />
             </div>
           )}
 
           {activeTab === 'bulk-upload' && (
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Bulk Upload Product Images</h2>
-              <BulkImageUploader 
+              <BulkImageUploader
                 onUploadComplete={refreshImages}
                 onUploadError={(error) => console.error('Bulk upload error:', error)}
               />
-            </div>
-          )}
-
-          {activeTab === 'upload' && (
-            <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Upload Images</h2>
-              <ImageUploader onUploadSuccess={refreshImages} folders={folders} />
-            </div>
-          )}
-
-          {activeTab === 'gallery' && (
-            <div className="p-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-                <h2 className="text-xl font-semibold text-gray-900">Image Gallery</h2>
-                <div className="mt-4 sm:mt-0 flex space-x-4">
-                  {/* Search */}
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search images..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    />
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span className="text-gray-400">🔍</span>
-                    </div>
-                  </div>
-                  
-                  {/* Folder Filter */}
-                  <select
-                    value={selectedFolder}
-                    onChange={(e) => setSelectedFolder(e.target.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option value="">All Folders</option>
-                    {folders.map((folder) => (
-                      <option key={folder} value={folder}>
-                        {folder.replace('ritkart/', '')}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <ImageGallery 
-                images={filteredImages}
-                loading={loading}
-                onImageSelect={setSelectedImage}
-                onImageDeleted={refreshImages}
-                onImageUpdated={refreshImages}
-              />
-            </div>
-          )}
-
-          {activeTab === 'editor' && (
-            <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Image Editor</h2>
-              {selectedImage ? (
-                <ImageEditor 
-                  image={selectedImage}
-                  onImageUpdated={refreshImages}
-                  onClose={() => setSelectedImage(null)}
-                />
-              ) : (
-                <div className="text-center py-12">
-                  <span className="text-6xl">🖼️</span>
-                  <h3 className="mt-4 text-lg font-medium text-gray-900">No Image Selected</h3>
-                  <p className="mt-2 text-gray-500">
-                    Select an image from the gallery to edit its properties and metadata.
-                  </p>
-                  <button
-                    onClick={() => setActiveTab('gallery')}
-                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                  >
-                    Go to Gallery
-                  </button>
-                </div>
-              )}
             </div>
           )}
 

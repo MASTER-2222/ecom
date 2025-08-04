@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/admin/images")
@@ -474,6 +475,141 @@ public class AdminImageController {
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("success", false);
             errorResponse.put("error", "Failed to get analytics: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
+    }
+
+    /**
+     * Analyze duplicate images in Cloudinary
+     */
+    @GetMapping("/analyze-duplicates")
+    public ResponseEntity<?> analyzeDuplicates() {
+        try {
+            // Get all images from ritkart folder
+            Map<String, Object> searchParams = ObjectUtils.asMap(
+                "type", "upload",
+                "prefix", "ritkart/",
+                "max_results", 500,
+                "resource_type", "image"
+            );
+
+            Map<String, Object> result = cloudinary.api().resources(searchParams);
+            @SuppressWarnings("unchecked")
+            List<Map<String, Object>> allImages = (List<Map<String, Object>>) result.get("resources");
+
+            // Define duplicate criteria (based on your current duplicate issue)
+            final int DUPLICATE_BYTES = 72754;
+            final int DUPLICATE_WIDTH = 800;
+            final int DUPLICATE_HEIGHT = 800;
+            final String DUPLICATE_FORMAT = "jpg";
+
+            // Find duplicates
+            List<Map<String, Object>> duplicates = allImages.stream()
+                .filter(image -> {
+                    Object bytes = image.get("bytes");
+                    Object width = image.get("width");
+                    Object height = image.get("height");
+                    Object format = image.get("format");
+
+                    return bytes != null && bytes.equals(DUPLICATE_BYTES) &&
+                           width != null && width.equals(DUPLICATE_WIDTH) &&
+                           height != null && height.equals(DUPLICATE_HEIGHT) &&
+                           format != null && format.equals(DUPLICATE_FORMAT);
+                })
+                .collect(Collectors.toList());
+
+            // Calculate stats
+            int totalImages = allImages.size();
+            int duplicateCount = duplicates.size();
+            int uniqueCount = totalImages - duplicateCount;
+            double storageSavedMB = (duplicateCount * DUPLICATE_BYTES) / 1024.0 / 1024.0;
+
+            Map<String, Object> stats = new HashMap<>();
+            stats.put("totalImages", totalImages);
+            stats.put("duplicateImages", duplicateCount);
+            stats.put("uniqueImages", uniqueCount);
+            stats.put("storageSaved", String.format("%.2f MB", storageSavedMB));
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("duplicates", duplicates);
+            response.put("stats", stats);
+            response.put("message", String.format("Found %d duplicate images out of %d total images", duplicateCount, totalImages));
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("error", "Failed to analyze duplicates: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
+    }
+
+    /**
+     * Remove duplicate images from Cloudinary
+     */
+    @PostMapping("/remove-duplicates")
+    public ResponseEntity<?> removeDuplicates(@RequestBody Map<String, Object> request) {
+        try {
+            Boolean dryRun = (Boolean) request.get("dryRun");
+            @SuppressWarnings("unchecked")
+            List<String> duplicateIds = (List<String>) request.get("duplicateIds");
+
+            if (dryRun == null) dryRun = true;
+            if (duplicateIds == null) duplicateIds = new ArrayList<>();
+
+            List<String> successfulDeletions = new ArrayList<>();
+            List<String> failedDeletions = new ArrayList<>();
+
+            for (String publicId : duplicateIds) {
+                try {
+                    if (!dryRun) {
+                        // Actually delete the image
+                        Map<String, Object> deleteResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+                        String result = (String) deleteResult.get("result");
+
+                        if ("ok".equals(result)) {
+                            successfulDeletions.add(publicId);
+                        } else {
+                            failedDeletions.add(publicId);
+                        }
+                    } else {
+                        // Dry run - just add to successful list
+                        successfulDeletions.add(publicId);
+                    }
+
+                    // Small delay to avoid rate limiting
+                    Thread.sleep(100);
+
+                } catch (Exception e) {
+                    failedDeletions.add(publicId);
+                }
+            }
+
+            // Calculate storage saved
+            double storageSavedMB = (successfulDeletions.size() * 72754) / 1024.0 / 1024.0;
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("dryRun", dryRun);
+            response.put("successCount", successfulDeletions.size());
+            response.put("failureCount", failedDeletions.size());
+            response.put("storageSaved", String.format("%.2f MB", storageSavedMB));
+            response.put("message", dryRun ?
+                String.format("Dry run completed: %d images would be deleted", successfulDeletions.size()) :
+                String.format("Successfully deleted %d duplicate images", successfulDeletions.size()));
+
+            if (!failedDeletions.isEmpty()) {
+                response.put("failedDeletions", failedDeletions);
+            }
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("error", "Failed to remove duplicates: " + e.getMessage());
             return ResponseEntity.internalServerError().body(errorResponse);
         }
     }

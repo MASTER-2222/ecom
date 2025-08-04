@@ -161,14 +161,14 @@ public class ProductImageService {
             }
         }
 
-        return Map.of(
-            "success", true,
-            "message", "Auto-assignment completed",
-            "totalProducts", totalProducts,
-            "updatedProducts", updatedProducts,
-            "failedProducts", failedProducts,
-            "errors", errors
-        );
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("message", "Auto-assignment completed");
+        result.put("totalProducts", totalProducts);
+        result.put("updatedProducts", updatedProducts);
+        result.put("failedProducts", failedProducts);
+        result.put("errors", errors);
+        return result;
     }
 
     public Map<String, Object> autoAssignImagesByCategory(String categoryId) {
@@ -194,20 +194,20 @@ public class ProductImageService {
                 }
             }
 
-            return Map.of(
-                "success", true,
-                "message", "Auto-assignment completed for category: " + category.getName(),
-                "categoryName", category.getName(),
-                "totalProducts", totalProducts,
-                "updatedProducts", updatedProducts,
-                "failedProducts", failedProducts,
-                "errors", errors
-            );
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            result.put("message", "Auto-assignment completed for category: " + category.getName());
+            result.put("categoryName", category.getName());
+            result.put("totalProducts", totalProducts);
+            result.put("updatedProducts", updatedProducts);
+            result.put("failedProducts", failedProducts);
+            result.put("errors", errors);
+            return result;
         } catch (Exception e) {
-            return Map.of(
-                "success", false,
-                "error", e.getMessage()
-            );
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", false);
+            result.put("error", e.getMessage());
+            return result;
         }
     }
 
@@ -235,13 +235,13 @@ public class ProductImageService {
             product.setImageUrls(imageUrls);
             productRepository.save(product);
 
-            return Map.of(
-                "success", true,
-                "message", "Image assigned successfully",
-                "productName", product.getName(),
-                "imageUrl", imageUrl,
-                "isPrimary", setAsPrimary
-            );
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            result.put("message", "Image assigned successfully");
+            result.put("productName", product.getName());
+            result.put("imageUrl", imageUrl);
+            result.put("isPrimary", setAsPrimary);
+            return result;
         } catch (Exception e) {
             throw new RuntimeException("Failed to assign image: " + e.getMessage());
         }
@@ -255,12 +255,12 @@ public class ProductImageService {
             product.setImageUrls(imageUrls != null ? imageUrls : new ArrayList<>());
             productRepository.save(product);
 
-            return Map.of(
-                "success", true,
-                "message", "Product images updated successfully",
-                "productName", product.getName(),
-                "imageCount", product.getImageUrls().size()
-            );
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            result.put("message", "Product images updated successfully");
+            result.put("productName", product.getName());
+            result.put("imageCount", product.getImageUrls().size());
+            return result;
         } catch (Exception e) {
             throw new RuntimeException("Failed to update product images: " + e.getMessage());
         }
@@ -278,18 +278,18 @@ public class ProductImageService {
                 product.setImageUrls(imageUrls);
                 productRepository.save(product);
                 
-                return Map.of(
-                    "success", true,
-                    "message", "Image removed successfully",
-                    "productName", product.getName(),
-                    "removedImage", imageUrl
-                );
+                Map<String, Object> result = new HashMap<>();
+                result.put("success", true);
+                result.put("message", "Image removed successfully");
+                result.put("productName", product.getName());
+                result.put("removedImage", imageUrl);
+                return result;
             } else {
-                return Map.of(
-                    "success", false,
-                    "message", "Image not found in product",
-                    "productName", product.getName()
-                );
+                Map<String, Object> result = new HashMap<>();
+                result.put("success", false);
+                result.put("message", "Image not found in product");
+                result.put("productName", product.getName());
+                return result;
             }
         } catch (Exception e) {
             throw new RuntimeException("Failed to remove image: " + e.getMessage());
@@ -299,21 +299,22 @@ public class ProductImageService {
     public List<Map<String, Object>> getProductsWithoutImages() {
         List<Product> products = productRepository.findAll();
         
-        return products.stream()
-            .filter(product -> product.getImageUrls().isEmpty())
-            .map(product -> {
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getImageUrls().isEmpty()) {
                 Optional<Category> category = categoryRepository.findById(product.getCategoryId());
-                return Map.of(
-                    "id", product.getId(),
-                    "name", product.getName(),
-                    "sku", product.getSku(),
-                    "categoryName", category.map(Category::getName).orElse("Unknown"),
-                    "price", product.getPrice(),
-                    "stockQuantity", product.getStockQuantity(),
-                    "isActive", product.isActive()
-                );
-            })
-            .collect(Collectors.toList());
+                Map<String, Object> productMap = new HashMap<>();
+                productMap.put("id", product.getId());
+                productMap.put("name", product.getName());
+                productMap.put("sku", product.getSku());
+                productMap.put("categoryName", category.map(Category::getName).orElse("Unknown"));
+                productMap.put("price", product.getPrice());
+                productMap.put("stockQuantity", product.getStockQuantity());
+                productMap.put("isActive", product.isActive());
+                result.add(productMap);
+            }
+        }
+        return result;
     }
 
     public List<Map<String, Object>> getAvailableImagesForCategory(String categoryName) {
@@ -337,15 +338,17 @@ public class ProductImageService {
             List<Map<String, Object>> resources = (List<Map<String, Object>>) result.get("resources");
 
             return resources.stream()
-                .map(resource -> Map.of(
-                    "public_id", resource.get("public_id"),
-                    "secure_url", resource.get("secure_url"),
-                    "width", resource.get("width"),
-                    "height", resource.get("height"),
-                    "format", resource.get("format"),
-                    "bytes", resource.get("bytes"),
-                    "created_at", resource.get("created_at")
-                ))
+                .map(resource -> {
+                    Map<String, Object> resourceMap = new HashMap<>();
+                    resourceMap.put("public_id", resource.get("public_id"));
+                    resourceMap.put("secure_url", resource.get("secure_url"));
+                    resourceMap.put("width", resource.get("width"));
+                    resourceMap.put("height", resource.get("height"));
+                    resourceMap.put("format", resource.get("format"));
+                    resourceMap.put("bytes", resource.get("bytes"));
+                    resourceMap.put("created_at", resource.get("created_at"));
+                    return resourceMap;
+                })
                 .collect(Collectors.toList());
         } catch (Exception e) {
             return Collections.emptyList();
@@ -412,14 +415,14 @@ public class ProductImageService {
                 Collectors.counting()
             ));
 
-        return Map.of(
-            "totalProducts", totalProducts,
-            "productsWithImages", productsWithImages,
-            "productsWithoutImages", productsWithoutImages,
-            "assignmentPercentage", totalProducts > 0 ? (productsWithImages * 100.0 / totalProducts) : 0,
-            "productsByCategory", imagesByCategory,
-            "imagesAssignedByCategory", imagesAssignedByCategory
-        );
+        Map<String, Object> result = new HashMap<>();
+        result.put("totalProducts", totalProducts);
+        result.put("productsWithImages", productsWithImages);
+        result.put("productsWithoutImages", productsWithoutImages);
+        result.put("assignmentPercentage", totalProducts > 0 ? (productsWithImages * 100.0 / totalProducts) : 0);
+        result.put("productsByCategory", imagesByCategory);
+        result.put("imagesAssignedByCategory", imagesAssignedByCategory);
+        return result;
     }
 
     public Map<String, Object> bulkUpdateProductImages(List<Map<String, Object>> updates) {
@@ -441,14 +444,14 @@ public class ProductImageService {
             }
         }
 
-        return Map.of(
-            "success", true,
-            "message", "Bulk update completed",
-            "totalUpdates", updates.size(),
-            "successCount", successCount,
-            "failureCount", failureCount,
-            "errors", errors
-        );
+        Map<String, Object> result = new HashMap<>();
+        result.put("success", true);
+        result.put("message", "Bulk update completed");
+        result.put("totalUpdates", updates.size());
+        result.put("successCount", successCount);
+        result.put("failureCount", failureCount);
+        result.put("errors", errors);
+        return result;
     }
 
     // Helper methods
