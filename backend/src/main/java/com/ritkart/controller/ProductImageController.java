@@ -215,7 +215,7 @@ public class ProductImageController {
     }
 
     @Operation(summary = "Update a specific product with its suggested appropriate image")
-    @PutMapping("/{productId}/images")
+    @PutMapping("/{productId}/suggested-image")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateProductWithSuggestedImage(@PathVariable String productId) {
         try {

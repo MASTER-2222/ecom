@@ -25,7 +25,7 @@ const AdminAuth: React.FC<{ onLogin: (auth: boolean) => void }> = ({ onLogin }) 
           <h2 className="text-3xl font-bold text-gray-900">RitKART Admin</h2>
           <p className="mt-2 text-gray-600">Sign in to access admin panel</p>
         </div>
-
+        
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <input
@@ -57,7 +57,7 @@ const AdminAuth: React.FC<{ onLogin: (auth: boolean) => void }> = ({ onLogin }) 
             Sign In
           </button>
         </form>
-
+        
         <div className="text-center text-sm text-gray-500">
           <p>Default: admin@ritkart.com / admin123</p>
         </div>
@@ -88,33 +88,33 @@ const Dashboard: React.FC = () => {
         <h2 className="text-2xl font-bold text-gray-900">Dashboard</h2>
         <p className="text-gray-600">Welcome to RitKART Admin Panel</p>
       </div>
-
+      
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-blue-500 text-white p-6 rounded-lg">
           <div className="text-3xl mb-2">👥</div>
           <div className="text-2xl font-bold">{stats.totalUsers.toLocaleString()}</div>
           <div className="text-blue-100">Total Users</div>
         </div>
-
+        
         <div className="bg-green-500 text-white p-6 rounded-lg">
           <div className="text-3xl mb-2">📦</div>
           <div className="text-2xl font-bold">{stats.totalProducts.toLocaleString()}</div>
           <div className="text-green-100">Total Products</div>
         </div>
-
+        
         <div className="bg-purple-500 text-white p-6 rounded-lg">
           <div className="text-3xl mb-2">📋</div>
           <div className="text-2xl font-bold">{stats.totalOrders.toLocaleString()}</div>
           <div className="text-purple-100">Total Orders</div>
         </div>
-
+        
         <div className="bg-yellow-500 text-white p-6 rounded-lg">
           <div className="text-3xl mb-2">💰</div>
           <div className="text-2xl font-bold">{formatPrice(stats.totalRevenue)}</div>
           <div className="text-yellow-100">Total Revenue</div>
         </div>
       </div>
-
+      
       <div className="bg-white p-6 rounded-lg shadow">
         <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -136,7 +136,7 @@ const Dashboard: React.FC = () => {
           </button>
         </div>
       </div>
-
+      
       <div className="bg-white p-6 rounded-lg shadow">
         <h3 className="text-lg font-semibold mb-4">System Status</h3>
         <div className="space-y-3">
@@ -226,7 +226,7 @@ const AdminPanel: React.FC = () => {
 
         <div className="bg-white rounded-lg shadow p-6">
           {activeTab === 'dashboard' && <Dashboard />}
-
+          
           {activeTab === 'users' && (
             <div>
               <h2 className="text-xl font-semibold mb-4">User Management</h2>
@@ -236,7 +236,7 @@ const AdminPanel: React.FC = () => {
               </div>
             </div>
           )}
-
+          
           {activeTab === 'products' && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Product Management</h2>
@@ -246,7 +246,7 @@ const AdminPanel: React.FC = () => {
               </div>
             </div>
           )}
-
+          
           {activeTab === 'categories' && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Category Management</h2>
@@ -256,7 +256,7 @@ const AdminPanel: React.FC = () => {
               </div>
             </div>
           )}
-
+          
           {activeTab === 'orders' && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Order Management</h2>
@@ -266,7 +266,7 @@ const AdminPanel: React.FC = () => {
               </div>
             </div>
           )}
-
+          
           {activeTab === 'cleanup' && (
             <div>
               <h2 className="text-xl font-semibold mb-4">Image Cleanup</h2>
